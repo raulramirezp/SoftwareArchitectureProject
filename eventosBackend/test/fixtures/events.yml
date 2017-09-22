@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  assistants: 1
+  category: one
+  user: one
+  visibility: MyString
+  evetype: MyString
+  minage: 1
+
+two:
+  name: MyString
+  assistants: 1
+  category: two
+  user: two
+  visibility: MyString
+  evetype: MyString
+  minage: 1

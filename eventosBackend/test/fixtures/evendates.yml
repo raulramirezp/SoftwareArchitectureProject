@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  beginat: 2017-09-22 12:01:27
+  endat: 2017-09-22 12:01:27
+  place: MyString
+  event: one
+
+two:
+  beginat: 2017-09-22 12:01:27
+  endat: 2017-09-22 12:01:27
+  place: MyString
+  event: two
