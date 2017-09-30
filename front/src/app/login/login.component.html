@@ -14,6 +14,7 @@
         <label for="user_password">Password</label>
         <input type="text" class="form-control" #us_pass id="pwd" style="width: 15em">
     </div>
-    <button (click)="sendData(us_email.value,us_pass.value)" type="submit" class="btn btn-success">Submit</button>
+    <button (click)="sendData(us_email.value,us_pass.value)" type="submit" class="btn btn-success custom-width-buttons">Submit</button>
+    <a routerLink="/register"><button type="submit" class="btn btn-success custom-width-buttons">Register</button></a>
 </form>
 </div>

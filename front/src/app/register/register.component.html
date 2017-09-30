@@ -1,11 +1,11 @@
 <div align="center">
 <form>
     <div class="form-group">
-        <label for="user_fistName">Name</label>
+        <label for="user_fistName">Nombre</label>
         <input type="text" class="form-control" #user_fistName id="email" style="width: 15em">
     </div>
     <div class="form-group">
-        <label for="user_lastName">Last Name</label>
+        <label for="user_lastName">Apellido</label>
         <input type="text" class="form-control" #user_lastName id="email" style="width: 15em">
     </div>
     <div class="form-group">
@@ -13,9 +13,10 @@
         <input type="text" class="form-control" #user_email id="email" style="width: 15em">
     </div>
     <div class="form-group">
-        <label for="user_password">Password</label>
+        <label for="user_password">Contraseña</label>
         <input type="text" class="form-control" #user_password id="pwd" style="width: 15em">
     </div>
-    <button (click)="add(user_firstName.value, user_lastName.value, user_email.value, user_password.value);" type="submit" class="btn btn-success">Crear usuario</button>
+    <button (click)="add(user_firstName.value, user_lastName.value, user_email.value, user_password.value);" type="submit" class="btn btn-success custom-width-buttons">Crear usuario</button>
+    <a routerLink="/login"><button type="submit" class="btn btn-success custom-width-buttons">Atras</button></a>
 </form>
 </div>

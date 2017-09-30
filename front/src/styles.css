@@ -3,3 +3,7 @@
     margin-top: 129px;
     text-align: center;
 }
+
+.custom-width-buttons{
+  width: 20% !important;
+}
