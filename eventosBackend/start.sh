@@ -15,6 +15,6 @@ echo "**************************"
 docker-compose run --rm web rails db:create
 docker-compose run --rm web rails db:migrate
 echo "**************************"
-echo "*        Up app          *"
+echo "*        Up app           *"
 echo "**************************"
 docker-compose up

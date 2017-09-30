@@ -13,6 +13,9 @@ import { EventsComponent } from './events/events.component';
 import { DetailComponent } from './detail/detail.component';
 import { AddEventComponent } from './add-event/add-event.component';
 import { EditEventComponent } from './edit-event/edit-event.component';
+import { UserService } from './_services/user.service';
+
+import { AppRoutingModule }     from './app-routing.module';
 
 @NgModule({
   declarations: [
@@ -30,9 +33,10 @@ import { EditEventComponent } from './edit-event/edit-event.component';
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule
+    HttpModule,
+    AppRoutingModule
   ],
-  providers: [],
+  providers: [UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
