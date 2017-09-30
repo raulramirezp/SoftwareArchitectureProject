@@ -1,9 +1,19 @@
 class User < ApplicationRecord
+  require 'date'
+
   has_many :events
   has_many :users, :source => :relationship, :through => :relationship
   has_many :users, :source => :friendship, :through => :friendship
+  has_many :participants
+  has_many :invitations
   has_many :events, through: :event_invite
   has_many :events, through: :participant
+
+  validates :name, presence: true
+  validates :lastname, presence: true
+  validates :nickname, presence: true
+  validates :birthdate, presence: true
+  validate :email, presence: true, format: { with: /\A[^@\s]+@([^@\s]+\.)+[^@\s]+\z/, message: "No valid format"}
 
   def invite(u)
     if Relationship.exists?(user_id: u.id, invited_id: self.id)

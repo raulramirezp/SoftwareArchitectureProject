@@ -16,7 +16,9 @@ default: &default
   username: root
   password: arqui
   #host: db
+  # Ubuntu
   socket: /var/run/mysqld/mysqld.sock
+  # windows (comentar sockets)
 
 development:
   <<: *default
