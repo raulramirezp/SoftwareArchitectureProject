@@ -1,22 +1,20 @@
-<div align="center">
-<form>
-    <div class="form-group">
-        <label for="user_fistName">Nombre</label>
-        <input type="text" class="form-control" #user_fistName id="email" style="width: 15em">
-    </div>
-    <div class="form-group">
-        <label for="user_lastName">Apellido</label>
-        <input type="text" class="form-control" #user_lastName id="email" style="width: 15em">
-    </div>
-    <div class="form-group">
-        <label for="user_email">Email</label>
-        <input type="text" class="form-control" #user_email id="email" style="width: 15em">
-    </div>
-    <div class="form-group">
-        <label for="user_password">Contraseña</label>
-        <input type="text" class="form-control" #user_password id="pwd" style="width: 15em">
-    </div>
-    <button (click)="add(user_firstName.value, user_lastName.value, user_email.value, user_password.value);" type="submit" class="btn btn-success custom-width-buttons">Crear usuario</button>
-    <a routerLink="/login"><button type="submit" class="btn btn-success custom-width-buttons">Atras</button></a>
-</form>
+<div align="center" class="top">
+    <h2> ¡Regístrate en Nuestra App de Eventos! </h2>
+    <h4> Conoce eventos cerca y asiste con tus amigos </h4>
+    <form>
+        <div class="form-group">
+            <input class="form-control mr-sm-2" type="text" placeholder="Nombre" aria-label="user_fistName" #user_fistName >
+        </div>
+        <div class="form-group">
+            <input class="form-control mr-sm-2" type="text" placeholder="Apellido" aria-label="user_lastName" #user_lastName >
+        </div>
+        <div class="form-group">
+            <input class="form-control mr-sm-2" type="text" placeholder="Email" aria-label="user_email" #user_email >
+        </div>
+        <div class="form-group">
+            <input class="form-control mr-sm-2" type="text" placeholder="Contraseña" aria-label="user_password" #user_password  >
+        </div>
+        <button (click)="add(user_firstName.value, user_lastName.value, user_email.value, user_password.value);" type="submit" class="btn btn-success custom-width-buttons">Crear usuario</button>
+        <a routerLink="/login"><button type="submit" class="btn btn-success custom-width-buttons">Atras</button></a>
+    </form>
 </div>

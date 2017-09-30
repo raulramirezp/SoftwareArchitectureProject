@@ -4,17 +4,17 @@
         <p class="lead">Use this document as a way to quickly start any new project.<br> All you get is this text and a mostly barebones HTML document.</p>
       </div>
 </div>-->
-<div align="center">
-<form>
-    <div class="form-group">
-        <label for="user_email">Email</label>
-        <input type="text" class="form-control" #user_email id="email" style="width: 15em">
-    </div>
-    <div class="form-group">
-        <label for="user_password">Password</label>
-        <input type="text" class="form-control" #user_password id="pwd" style="width: 15em">
-    </div>
-    <button (click)="authenticate(user_email.value,user_password.value)" type="submit" class="btn btn-success custom-width-buttons">Submit</button>
-    <a routerLink="/register"><button type="submit" class="btn btn-success custom-width-buttons">Register</button></a>
-</form>
+<div align="center" class="top">
+    <h2>Ingresa a Nustra App de Enventos</h2>
+    <form>
+        <div class="form-group">
+            <input class="form-control mr-sm-2" type="text" placeholder="Email" aria-label="user_email" #user_email >
+        </div>
+        <div class="form-group">
+            <input class="form-control mr-sm-2" type="text" placeholder="Contraseña" aria-label="user_password" #user_password  >
+        </div>
+        <button (click)="authenticate(user_email.value,user_password.value)" type="submit" class="btn btn-success custom-width-buttons">Enviar</button>
+        <a routerLink="/register"><button type="submit" class="btn btn-success custom-width-buttons">Registrarse</button></a>
+    </form>
+    ¿No tienes cuenta? ¡Regístrate!
 </div>
