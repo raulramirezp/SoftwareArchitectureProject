@@ -1,3 +1,21 @@
-<p>
-  register works!
-</p>
+<div align="center">
+<form>
+    <div class="form-group">
+        <label for="user_fistName">Name</label>
+        <input type="text" class="form-control" #user_fistName id="email" style="width: 15em">
+    </div>
+    <div class="form-group">
+        <label for="user_lastName">Last Name</label>
+        <input type="text" class="form-control" #user_lastName id="email" style="width: 15em">
+    </div>
+    <div class="form-group">
+        <label for="user_email">Email</label>
+        <input type="text" class="form-control" #user_email id="email" style="width: 15em">
+    </div>
+    <div class="form-group">
+        <label for="user_password">Password</label>
+        <input type="text" class="form-control" #user_password id="pwd" style="width: 15em">
+    </div>
+    <button (click)="add(user_firstName.value, user_lastName.value, user_email.value, user_password.value);" type="submit" class="btn btn-success">Crear usuario</button>
+</form>
+</div>
