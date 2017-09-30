@@ -6,8 +6,9 @@ one:
   category: one
   user: one
   visibility: MyString
-  evetype: MyString
-  minage: 1
+  eventType: MyString
+  minAge: 1
+  place: MyString
 
 two:
   name: MyString
@@ -15,5 +16,6 @@ two:
   category: two
   user: two
   visibility: MyString
-  evetype: MyString
-  minage: 1
+  eventType: MyString
+  minAge: 1
+  place: MyString

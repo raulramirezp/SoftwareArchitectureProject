@@ -4,14 +4,12 @@ one:
   name: MyString
   lastname: MyString
   nickname: MyString
-  gender: MyString
-  birthdate: 2017-09-22 12:01:24
-  authentication: one
+  birthdate: 2017-09-30 09:19:43
+  email: MyString
 
 two:
   name: MyString
   lastname: MyString
   nickname: MyString
-  gender: MyString
-  birthdate: 2017-09-22 12:01:24
-  authentication: two
+  birthdate: 2017-09-30 09:19:43
+  email: MyString
