@@ -3,9 +3,9 @@
 one:
   user_id: 1
   token: MyString
-  password: MyString
+  password_digest: MyString
 
 two:
   user_id: 1
   token: MyString
-  password: MyString
+  password_digest: MyString

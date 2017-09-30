@@ -46,6 +46,6 @@ class AuthenticationsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def authentication_params
-      params.require(:authentication).permit(:user_id, :token, :password)
+      params.require(:authentication).permit(:user_id, :token, :password_digest)
     end
 end

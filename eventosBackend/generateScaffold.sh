@@ -1,7 +1,7 @@
 #!/bin/bash
 rails generate scaffold Category description:string imagen:string
 rails generate scaffold User name:string lastname:string nickname:string birthdate:datetime email:string
-rails generate scaffold Authentication user_id:integer token:string password:string
+rails generate scaffold Authentication user_id:integer token:string password_digest:string
 rails generate scaffold Event name:string assistants:integer category:references user:references visibility:string eventType:string minAge:integer place:string
 rails generate scaffold Eventdate beginAt:datetime endAt:datetime event:references
 rails generate scaffold Invitation user:references event:references

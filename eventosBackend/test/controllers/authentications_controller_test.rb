@@ -12,7 +12,7 @@ class AuthenticationsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create authentication" do
     assert_difference('Authentication.count') do
-      post authentications_url, params: { authentication: { password: @authentication.password, token: @authentication.token, user_id: @authentication.user_id } }, as: :json
+      post authentications_url, params: { authentication: { password_digest: @authentication.password_digest, token: @authentication.token, user_id: @authentication.user_id } }, as: :json
     end
 
     assert_response 201
@@ -24,7 +24,7 @@ class AuthenticationsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update authentication" do
-    patch authentication_url(@authentication), params: { authentication: { password: @authentication.password, token: @authentication.token, user_id: @authentication.user_id } }, as: :json
+    patch authentication_url(@authentication), params: { authentication: { password_digest: @authentication.password_digest, token: @authentication.token, user_id: @authentication.user_id } }, as: :json
     assert_response 200
   end
 
