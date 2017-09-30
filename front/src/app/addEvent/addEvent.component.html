@@ -1,0 +1,22 @@
+<div align="center">
+<form>
+    <div class="form-group">
+        <label for="event_name">Nombre</label>
+        <input type="text" class="form-control" #event_name id="email" style="width: 15em">
+    </div>
+    <div class="form-group">
+        <label for="event_place">Lugar</label>
+        <input type="text" class="form-control" #event_place id="email" style="width: 15em">
+    </div>
+    <div class="form-group">
+        <label for="event_isPrivate">Privado?</label>
+        <input type="text" class="form-control" #event_isPrivate id="email" style="width: 15em">
+    </div>
+    <div class="form-group">
+        <label for="event_mAge">Edad Mínima</label>
+        <input type="text" class="form-control" #event_mAge id="pwd" style="width: 15em">
+    </div>
+    <button (click)="add(event_name.value, event_place.value, event_isPrivate.value, event_beginAt.value);" type="submit" class="btn btn-success custom-width-buttons">Crear evento</button>
+    <a routerLink="/login"><button type="submit" class="btn btn-success custom-width-buttons">Atras</button></a>
+</form>
+</div>

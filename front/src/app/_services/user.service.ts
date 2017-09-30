@@ -4,12 +4,27 @@ import { Http,Response,Headers,RequestOptions } from '@angular/http';
 import 'rxjs/add/operator/map'
 import 'rxjs/add/operator/toPromise';
 import { User } from '../_models/user';
+import { Authentication } from '../_models/authentication';
 
 @Injectable()
 export class UserService {
     private headers = new Headers({'Content-Type': 'application/json'});
-    private usersUrl = 'http://192.168.99.101:3000/users';  // URL to web api
+    private usersUrl = 'http://192.168.99.101:3000/users';
+    private authenticationsUrl = 'http://192.168.99.101:3000/authentication';
+    // URL to web api
     constructor(private http: Http) {  }
+    authenticate(user_email, user_password){
+      return this.http
+        .post(this.authenticationsUrl, JSON.stringify({user_email:user_email , user_password:user_password }), {headers: this.headers})
+        .toPromise()
+        .then(res => { //res.json().data as Authentication;
+                     let user =res.json().data;
+                     if(user){
+                         localStorage.setItem('currentUser',JSON.stringify(user) )  
+                     }})
+        .catch(this.handleError);  
+    }
+    
     getUsers(user_id){
         return this.http.get(this.usersUrl)
         .toPromise()

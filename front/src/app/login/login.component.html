@@ -8,13 +8,13 @@
 <form>
     <div class="form-group">
         <label for="user_email">Email</label>
-        <input type="text" class="form-control" #us_email id="email" style="width: 15em">
+        <input type="text" class="form-control" #user_email id="email" style="width: 15em">
     </div>
     <div class="form-group">
         <label for="user_password">Password</label>
-        <input type="text" class="form-control" #us_pass id="pwd" style="width: 15em">
+        <input type="text" class="form-control" #user_password id="pwd" style="width: 15em">
     </div>
-    <button (click)="sendData(us_email.value,us_pass.value)" type="submit" class="btn btn-success custom-width-buttons">Submit</button>
+    <button (click)="authenticate(user_email.value,user_password.value)" type="submit" class="btn btn-success custom-width-buttons">Submit</button>
     <a routerLink="/register"><button type="submit" class="btn btn-success custom-width-buttons">Register</button></a>
 </form>
 </div>
