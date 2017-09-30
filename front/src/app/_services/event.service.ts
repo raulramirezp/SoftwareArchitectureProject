@@ -4,13 +4,16 @@ import { Http,Response,Headers,RequestOptions } from '@angular/http';
 import 'rxjs/add/operator/map'
 import 'rxjs/add/operator/toPromise';
 import { Event } from '../_models/event';
+import { User } from '../_models/user';
 
 @Injectable()
 export class EventService {
     private headers = new Headers({'Content-Type': 'application/json'});
     private eventsUrl = 'http://192.168.99.101:3000/events'; 
-    
-    constructor(private http: Http) {  }
+    private currentUser: User;
+    constructor(private http: Http) {
+    this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    }
     getEvents(event_id){
         return this.http.get(this.eventsUrl)
         .toPromise()
@@ -24,9 +27,9 @@ export class EventService {
         .then(response => response.json().data as Event)
         .catch(this.handleError);
     }
-    create(firstName: string, lastName: string, email: string, password:string): Promise<Event> {
+    create(name: string, place: string, isPrivate: boolean, minAge:number, category:number, beginAt: string, endAt: string): Promise<Event> {
       return this.http
-        .post(this.eventsUrl, JSON.stringify({firstName: firstName, lastName: lastName, email:email, password:password }), {headers: this.headers})
+        .post(this.eventsUrl, JSON.stringify({name: name, place: place, isPrivate:isPrivate, minAge:minAge, user_id:this.currentUser.id, category:category }), {headers: this.headers})
         .toPromise()
         .then(res => res.json().data as Event)
         .catch(this.handleError);

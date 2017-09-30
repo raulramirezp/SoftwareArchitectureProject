@@ -17,14 +17,17 @@ export class UserService {
       return this.http
         .post(this.authenticationsUrl, JSON.stringify({user_email:user_email , user_password:user_password }), {headers: this.headers})
         .toPromise()
-        .then(res => { //res.json().data as Authentication;
-                     let user =res.json().data;
+        .then(res => { res.json().data as User;
+                     let user =res.json();
                      if(user){
                          localStorage.setItem('currentUser',JSON.stringify(user) )  
                      }})
         .catch(this.handleError);  
     }
-    
+    logout() {
+        // remove user from local storage to log user out
+        localStorage.removeItem('currentUser');
+    }
     getUsers(user_id){
         return this.http.get(this.usersUrl)
         .toPromise()
