@@ -1,4 +1,4 @@
-class AuthenticationsController < ApplicationController
+class AuthenticationsController < ApiController
   before_action :set_authentication, only: [:show, :update, :destroy]
 
   # GET /authentications

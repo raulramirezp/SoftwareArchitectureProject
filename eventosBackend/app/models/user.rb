@@ -8,6 +8,18 @@ class User < ApplicationRecord
   has_many :invitations
   has_many :events, through: :event_invite
   has_many :events, through: :participant
+  has_one :authentication
+  
+  def invalidate_token
+    self.update_columns(token: nil)
+  end
+
+  def self.valid_login?(email, password)
+    user = find_by(email: email)
+    if user  && (user.authentication.password_digest == password)
+      user
+    end
+  end
 
   validates :name, presence: true
   validates :lastname, presence: true

@@ -1,5 +1,6 @@
-class RelationshipsController < ApplicationController
+class RelationshipsController < ApiController
   before_action :set_relationship, only: [:show, :update, :destroy]
+  before_action :require_login
 
   # GET /relationships
   def index

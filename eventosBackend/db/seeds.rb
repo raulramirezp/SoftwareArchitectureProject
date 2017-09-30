@@ -11,3 +11,9 @@ User.create(name:"Jose", lastname: "Molano", nickname: "jmolano", email: "jose@m
 User.create(name:"Raul", lastname: "Ramirez", nickname: "rramirez", email: "raul@mail.com")
 User.create(name:"Santiago", lastname: "Blanco", nickname: "sblanco", email: "santiago@mail.com")
 User.create(name:"Luis", lastname: "Alfonso", nickname: "lalfonso", email: "luis@mail.com")
+
+Authentication.create(user_id:"1",password_digest:"123456")
+Authentication.create(user_id:"2",password_digest:"123456")
+Authentication.create(user_id:"3",password_digest:"123456")
+Authentication.create(user_id:"4",password_digest:"123456")
+Authentication.create(user_id:"5",password_digest:"123456")

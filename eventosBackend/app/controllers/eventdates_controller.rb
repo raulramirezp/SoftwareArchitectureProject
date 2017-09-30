@@ -1,5 +1,6 @@
-class EventdatesController < ApplicationController
+class EventdatesController < ApiController
   before_action :set_eventdate, only: [:show, :update, :destroy]
+  before_action :require_login
 
   # GET /eventdates
   def index
