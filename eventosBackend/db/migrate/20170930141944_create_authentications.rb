@@ -3,7 +3,7 @@ class CreateAuthentications < ActiveRecord::Migration[5.1]
     create_table :authentications do |t|
       t.integer :user_id
       t.string :token
-      t.string :password
+      t.string :password_digest
 
       t.timestamps
     end
