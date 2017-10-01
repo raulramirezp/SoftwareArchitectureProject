@@ -24,7 +24,7 @@ export class LoginComponent implements OnInit {
         user_password.trim();
         if (!user_email || !user_password ) { return; }
         this.userService.authenticate(user_email, user_password).then(
-            user => {this.user=user;
+            user => {
                     this.router.navigate(['/home'])
                     });
         

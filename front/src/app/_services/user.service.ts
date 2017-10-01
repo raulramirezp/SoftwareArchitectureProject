@@ -11,13 +11,15 @@ export class UserService {
     private headers = new Headers({'Content-Type': 'application/json'});
     private usersUrl = 'http://localhost:3000/users';
     private authenticationsUrl = 'http://localhost:3000/authentications';
+    private loginUrl = 'http://localhost:3000/login.json';
     // URL to web api
+    
     constructor(private http: Http) {  }
-    authenticate(user_email, user_password){  
+    authenticate(user_email:string, user_password:string){  
     return this.http
-        .post(this.authenticationsUrl, JSON.stringify({user_email:user_email , user_password:user_password }), {headers: this.headers})
+        .post(this.loginUrl, JSON.stringify({email:user_email , password:user_password }), {headers: this.headers})
         .toPromise()
-        .then(res => { res.json().data as User;
+        .then(res => { //res.json().data as User;
                      let user =res.json();
                      if(user){
                          localStorage.setItem('currentUser',JSON.stringify(user) )  
@@ -34,7 +36,7 @@ export class UserService {
         .then(response => response.json().data as User[])
         .catch(this.handleError)
     }
-    getUser(id: number): Promise<User> {
+    getCurrtenUser(id: number): Promise<User> {
       const url = `${this.usersUrl}/${id}`;
       return this.http.get(url)
         .toPromise()

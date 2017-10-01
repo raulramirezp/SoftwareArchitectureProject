@@ -16,7 +16,7 @@ import { EditEventComponent } from './edit-event/edit-event.component';
 import { UserService } from './_services/user.service';
 import { EventService } from './_services/event.service';
 
-import { AppRoutingModule }     from './app-routing.module';
+import { AppRoutingModule } from './app-routing.module';
 
 import { AuthGuard } from './_guards/auth.guard';
 
