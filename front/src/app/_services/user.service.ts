@@ -9,12 +9,12 @@ import { Authentication } from '../_models/authentication';
 @Injectable()
 export class UserService {
     private headers = new Headers({'Content-Type': 'application/json'});
-    private usersUrl = 'http://192.168.99.101:3000/users';
-    private authenticationsUrl = 'http://192.168.99.101:3000/authentication';
+    private usersUrl = 'http://localhost:3000/users';
+    private authenticationsUrl = 'http://localhost:3000/authentications';
     // URL to web api
     constructor(private http: Http) {  }
-    authenticate(user_email, user_password){
-      return this.http
+    authenticate(user_email, user_password){  
+    return this.http
         .post(this.authenticationsUrl, JSON.stringify({user_email:user_email , user_password:user_password }), {headers: this.headers})
         .toPromise()
         .then(res => { res.json().data as User;
@@ -41,14 +41,18 @@ export class UserService {
         .then(response => response.json().data as User)
         .catch(this.handleError);
     }
-    create(firstName: string, lastName: string, email: string, password:string): Promise<User> {
-      return this.http
-        .post(this.usersUrl, JSON.stringify({firstName: firstName, lastName: lastName, email:email, password:password }), {headers: this.headers})
+    createUser(firstName: string, lastName: string, email: string, nickname: string, birthdate:string): Promise<User> {
+        console.log('this is a test');
+        console.log(this.usersUrl);
+        return this.http
+        .post(this.usersUrl, JSON.stringify({name: firstName, lastname: lastName, nickname:nickname, birthdate:birthdate, email:email }), {headers: this.headers})
         .toPromise()
-        .then(res => res.json().data as User)
+        .then(response => response.json() as User)
         .catch(this.handleError);
     }
-    
+    createAuthentication(user_id:string, password:string): Promise<Authentication> {
+        return this.http.post(this.authenticationsUrl,JSON.stringify({user_id:user_id, password_digest: password}), {headers: this.headers}).toPromise().then(res => res.json() as Authentication).catch(this.handleError);
+    }
     private handleError(error: any): Promise<any> {
       console.error('An error occurred', error); // for demo purposes only
       return Promise.reject(error.message || error);

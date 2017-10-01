@@ -1,6 +1,8 @@
 export class Authentication {
     id: number;
-    user_email: string;
-    user_password: string;
+    user_id: string;
     token: string;
+    password_digest: string;
+    created_at: string;
+    updated_at: string;
 }
