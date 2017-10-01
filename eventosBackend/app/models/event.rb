@@ -2,7 +2,7 @@ class Event < ApplicationRecord
   belongs_to :category
   belongs_to :user
   has_one :eventdate
-  has_many :invitations  
+  has_many :invitations
   has_many :users, through: :event_invite
   has_many :users, through: :participant
 
@@ -13,5 +13,5 @@ class Event < ApplicationRecord
   validates :visibility, presence: true
   validates :eventType, presence: true
   validates :minAge, presence: true
-  validates :place, presence: true
+  validates :place, presence: true  
 end

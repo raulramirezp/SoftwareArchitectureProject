@@ -1,5 +1,6 @@
-class RelationshipsController < ApplicationController
+class RelationshipsController < ApiController
   before_action :set_relationship, only: [:show, :update, :destroy]
+  before_action :require_login
 
   # GET /relationships
   def index
@@ -37,6 +38,12 @@ class RelationshipsController < ApplicationController
   def destroy
     @relationship.destroy
   end
+
+def invite
+  #@cu = User.self 
+  #@cu.invite
+  render json: {m: "Hecho", id: params[:id]}
+end
 
   private
     # Use callbacks to share common setup or constraints between actions.

@@ -1,5 +1,6 @@
-class InvitationsController < ApplicationController
+class InvitationsController < ApiController
   before_action :set_invitation, only: [:show, :update, :destroy]
+  before_action :require_login
 
   # GET /invitations
   def index

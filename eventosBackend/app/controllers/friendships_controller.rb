@@ -1,5 +1,6 @@
-class FriendshipsController < ApplicationController
+class FriendshipsController < ApiController
   before_action :set_friendship, only: [:show, :update, :destroy]
+  before_action :require_login
 
   # GET /friendships
   def index
