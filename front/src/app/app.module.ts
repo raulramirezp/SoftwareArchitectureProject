@@ -8,7 +8,6 @@ import { LoginComponent } from './login/login.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { RegisterComponent } from './register/register.component';
 import { HomeComponent } from './home/home.component';
-import { CalendarComponent } from './calendar/calendar.component';
 import { EventsComponent } from './events/events.component';
 import { DetailComponent } from './detail/detail.component';
 import { AddEventComponent } from './addEvent/addEvent.component';
@@ -17,6 +16,7 @@ import { UserService } from './_services/user.service';
 import { EventService } from './_services/event.service';
 
 import { AppRoutingModule }     from './app-routing.module';
+import { MyCalendarComponent } from './my-calendar/my-calendar.component';
 
 @NgModule({
   declarations: [
@@ -25,11 +25,11 @@ import { AppRoutingModule }     from './app-routing.module';
     NavbarComponent,
     RegisterComponent,
     HomeComponent,
-    CalendarComponent,
     EventsComponent,
     DetailComponent,
     AddEventComponent,
-    EditEventComponent
+    EditEventComponent,
+    MyCalendarComponent
   ],
   imports: [
     BrowserModule,
