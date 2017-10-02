@@ -45,7 +45,6 @@ def invite
     @user = User.find(params[:id].to_i)
     @ans = @cu.invite @user
     render json: @ans
-    p @ans
   else
     render json: User.find(params[:id].to_i)
   end

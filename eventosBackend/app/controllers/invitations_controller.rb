@@ -39,6 +39,28 @@ class InvitationsController < ApiController
     @invitation.destroy
   end
 
+  def acept
+    @cu = current_user
+    @ev = Event.find(params[:event].to_i)
+    if @cu.follows?(@ev)
+      render json: ["OK"]
+      false
+    else
+      @cu.follow(@ev)
+      @r = Invitation.where(user_id: @cu.id, invited_id: params[:invited_id].to_i,event_id: @ev.id)
+      @r.delete_all
+      true
+    end
+  end
+
+  def decline
+    @cu = current_user
+    @ev = Event.find(params[:event].to_i)
+    @r = Invitation.where(user_id: @cu.id, invited_id: params[:invited_id].to_i,event_id: @ev.id)
+    @r.delete_all
+    true
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_invitation
@@ -47,6 +69,6 @@ class InvitationsController < ApiController
 
     # Only allow a trusted parameter "white list" through.
     def invitation_params
-      params.require(:invitation).permit(:user_id, :event_id)
+      params.require(:invitation).permit(:user_id, :invited_id, :event_id)
     end
 end

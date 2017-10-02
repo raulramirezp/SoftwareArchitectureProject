@@ -33,5 +33,11 @@ Rails.application.routes.draw do
       get 'friends_names', to: "friendships#friends_names"
     end
   end
+  resources :invitations, only: [] do
+    collection do
+      get 'acept', to: "invitations#acept"
+      get 'decline', to: "invitations#decline"
+    end
+  end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
