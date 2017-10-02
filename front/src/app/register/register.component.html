@@ -12,7 +12,7 @@
             <input class="form-control mr-sm-2" type="text" placeholder="Email" aria-label="user_email" #user_email >
         </div>
         <div class="form-group">
-            <input class="form-control mr-sm-2" type="text" placeholder="Contraseña" aria-label="user_password" #user_password  >
+            <input class="form-control mr-sm-2" type="password" placeholder="Contraseña" aria-label="user_password" #user_password  >
         </div>
         <button (click)="add(user_firstName.value, user_lastName.value, user_email.value, user_password.value);" type="submit" class="btn btn-success custom-width-buttons">Crear usuario</button>
         <a routerLink="/login"><button type="submit" class="btn btn-success custom-width-buttons">Atras</button></a>

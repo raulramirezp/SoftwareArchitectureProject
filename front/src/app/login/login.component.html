@@ -11,7 +11,7 @@
             <input class="form-control mr-sm-2" type="text" placeholder="Email" aria-label="user_email" #user_email >
         </div>
         <div class="form-group">
-            <input class="form-control mr-sm-2" type="text" placeholder="Contraseña" aria-label="user_password" #user_password  >
+            <input class="form-control mr-sm-2" type="password" placeholder="Contraseña" aria-label="user_password" #user_password  >
         </div>
         <button (click)="authenticate(user_email.value,user_password.value)" type="submit" class="btn btn-success custom-width-buttons">Enviar</button>
         <a routerLink="/register"><button type="submit" class="btn btn-success custom-width-buttons">Registrarse</button></a>
