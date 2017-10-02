@@ -39,6 +39,29 @@ class FriendshipsController < ApiController
     @friendship.destroy
   end
 
+  def remove
+    @cu = current_user
+    if User.exists?(id: params[:id].to_i)
+      @user = User.find(params[:id].to_i)
+      @ans = @cu.remove @user
+      render json: @ans
+    else
+      render json: User.find(params[:id].to_i)
+    end
+  end
+
+  def friends
+    @cu = current_user
+    @ans = @cu.friends
+    render json: @ans
+  end
+
+  def friends_names
+    @cu = current_user
+    @ans = @cu.friends_names
+    render json: @ans
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_friendship

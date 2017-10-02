@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170930200258) do
+ActiveRecord::Schema.define(version: 20171002161544) do
 
   create_table "authentications", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer "user_id"
@@ -52,6 +52,20 @@ ActiveRecord::Schema.define(version: 20170930200258) do
     t.index ["user_id"], name: "index_events_on_user_id"
   end
 
+  create_table "follows", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "followable_type"
+    t.integer "followable_id"
+    t.string "follower_type"
+    t.integer "follower_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["followable_id", "followable_type"], name: "index_partisan_followables"
+    t.index ["followable_type", "followable_id"], name: "index_follows_on_followable_type_and_followable_id"
+    t.index ["follower_id", "follower_type", "followable_id"], name: "index_partisan_unique_follow", unique: true
+    t.index ["follower_id", "follower_type"], name: "index_partisan_followers"
+    t.index ["follower_type", "follower_id"], name: "index_follows_on_follower_type_and_follower_id"
+  end
+
   create_table "friendships", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.bigint "user_id"
     t.bigint "friend_id"
@@ -63,10 +77,12 @@ ActiveRecord::Schema.define(version: 20170930200258) do
 
   create_table "invitations", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.bigint "user_id"
+    t.bigint "invited_id"
     t.bigint "event_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["event_id"], name: "index_invitations_on_event_id"
+    t.index ["invited_id"], name: "index_invitations_on_invited_id"
     t.index ["user_id"], name: "index_invitations_on_user_id"
   end
 
@@ -93,5 +109,4 @@ ActiveRecord::Schema.define(version: 20170930200258) do
   add_foreign_key "events", "categories"
   add_foreign_key "events", "users"
   add_foreign_key "invitations", "events"
-  add_foreign_key "invitations", "users"
 end

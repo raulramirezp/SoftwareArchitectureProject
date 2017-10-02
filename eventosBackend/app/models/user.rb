@@ -9,7 +9,9 @@ class User < ApplicationRecord
   has_many :events, through: :event_invite
   has_many :events, through: :participant
   has_one :authentication
-  
+
+  acts_as_follower
+
   def invalidate_token
     self.update_columns(token: nil)
   end
@@ -25,20 +27,25 @@ class User < ApplicationRecord
   validates :lastname, presence: true
   validates :nickname, presence: true
   validates :birthdate, presence: true
-  validate :email, presence: true, format: { with: /\A[^@\s]+@([^@\s]+\.)+[^@\s]+\z/, message: "No valid format"}
+  validates :email, presence: true, format: { with: /\A[^@\s]+@([^@\s]+\.)+[^@\s]+\z/, message: "No valid format"}
 
   def invite(u)
     if Relationship.exists?(user_id: u.id, invited_id: self.id)
-      p "Ya hay una solicitud de esta persona"
+      err_msg "Ya hay una solicitud de esta persona"
+      errors[:base] << (err_msg)
     else
-      @r = Relationship.new(user_id: self.id, invited_id: u.id)
-      if @r.valid?
-        @r.save
+      if Relationship.exists?(user_id: self.id, invited_id: u.id)
+        err_msg = "Ya hay una solicitud para esta persona"
+        errors[:relation] << (err_msg)
       else
-        @r.errors.messages
+        @r = Relationship.new(user_id: self.id, invited_id: u.id)
+        if @r.valid?
+          @r.save
+        else
+          @r.errors.messages
+        end
       end
     end
-
   end
 
   def acept(u)
@@ -49,8 +56,10 @@ class User < ApplicationRecord
       @p.save
       @r = Relationship.where(user_id: u.id, invited_id: self.id)
       @r.delete_all
+      true
     else
-      p "No hay solicitud"
+      err_msg = "No hay solicitud"
+      errors[:base] << (err_msg)
     end
   end
 
@@ -59,7 +68,8 @@ class User < ApplicationRecord
       @r = Relationship.where(user_id: u.id, invited_id: self.id)
       @r.delete_all
     else
-      p "No hay solicitud"
+      err_msg = "No hay solicitud"
+      errors[:base] << (err_msg)
     end
   end
 
@@ -70,7 +80,8 @@ class User < ApplicationRecord
       @r = Friendship.where(user_id: u.id, friend_id: self.id)
       @r.delete_all
     else
-      p "No son amigos"
+      err_msg = "No son amigos"
+      errors[:base] << (err_msg)
     end
   end
 
@@ -83,6 +94,7 @@ class User < ApplicationRecord
       @names.push k[0]
     end
     p @names
+    @names
   end
 
   def invited
@@ -93,6 +105,7 @@ class User < ApplicationRecord
       @names.push k[0]
     end
     p @names
+    @names
   end
 
   def friends
@@ -103,6 +116,7 @@ class User < ApplicationRecord
       @names.push k[0]
     end
     p @names
+    @names
   end
 
   def friends_names
@@ -113,5 +127,6 @@ class User < ApplicationRecord
       @names.push k[0].name
     end
     p @names
+    @names
   end
 end

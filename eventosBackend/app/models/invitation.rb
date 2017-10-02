@@ -1,7 +1,9 @@
 class Invitation < ApplicationRecord
   belongs_to :user
   belongs_to :event
+  belongs_to :invited, :class_name => 'User'
 
   validates :user_id, presence: true
+  validates :invited_id, presence: true
   validates :event_id, presence: true
 end

@@ -6,6 +6,9 @@ git_source(:github) do |repo_name|
 end
 
 gem 'json'
+gem 'httparty'
+gem 'rack-cors'
+gem 'partisan'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.3'

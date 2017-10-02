@@ -2,7 +2,7 @@ class EventsController < ApiController
   before_action :set_event, only: [:show, :update, :destroy]
   before_action :require_login
 
-  def login 
+  def login
     render json: {nombre: "Acceso con login"}
   end
 

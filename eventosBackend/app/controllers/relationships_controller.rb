@@ -40,9 +40,49 @@ class RelationshipsController < ApiController
   end
 
 def invite
-  #@cu = User.self 
-  #@cu.invite
-  render json: {m: "Hecho", id: params[:id]}
+  @cu = current_user
+  if User.exists?(id: params[:id].to_i)
+    @user = User.find(params[:id].to_i)
+    @ans = @cu.invite @user
+    render json: @ans
+    p @ans
+  else
+    render json: User.find(params[:id].to_i)
+  end
+end
+
+def acept
+  @cu = current_user
+  if User.exists?(id: params[:id].to_i)
+    @user = User.find(params[:id].to_i)
+    @ans = @cu.acept @user
+    render json: @ans
+  else
+    render json: User.find(params[:id].to_i)
+  end
+end
+
+def decline
+  @cu = current_user
+  if User.exists?(id: params[:id].to_i)
+    @user = User.find(params[:id].to_i)
+    @ans = @cu.decline @user
+    render json: @ans
+  else
+    render json: User.find(params[:id].to_i)
+  end
+end
+
+def requests
+  @cu = current_user
+  @ans = @cu.requests
+  render json: @ans
+end
+
+def invited
+  @cu = current_user
+  @ans = @cu.invited
+  render json: @ans
 end
 
   private

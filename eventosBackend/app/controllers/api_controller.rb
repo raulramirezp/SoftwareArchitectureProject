@@ -4,6 +4,7 @@ class ApiController < ActionController::Base
   end
 
   def current_user
+    @current_user = User.find(request.headers["currentUser"].to_i)
     @current_user ||= User.find(authenticate_token.user_id)
   end
 
@@ -19,7 +20,6 @@ class ApiController < ActionController::Base
   def authenticate_token
     authenticate_with_http_token do |token, options|
       Authentication.includes(:user).find_by(token: token)
-      
     end
-  end  
+  end
 end
