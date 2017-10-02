@@ -19,7 +19,15 @@ export class EventService {
     this.headers.append('Content-Type', 'application/json');
      this.headers.append('Authorization', 'Token token='.concat(this.currentUser.token));
     }
-    
+//    getCreatedEvents(){
+//        this.headers= new Headers();
+//        this.headers.append('Content-Type', 'application/json');
+//        console.log("this is another test");
+//        this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+//        this.headers.append('Authorization', 'Token token='.concat(this.currentUser.token));
+//        console.log("test");
+//        return this.http.get(this.usersUrl, {headers: this.headers}).map((response: Response) => response.json());
+//    }
     getEvents(event_id){
         return this.http.get(this.eventsUrl)
         .toPromise()

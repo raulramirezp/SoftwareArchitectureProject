@@ -1,4 +1,32 @@
-<input #searchBox id="search-box" />
 <h1>Hi {{currentUser.name}}!</h1>
+<input #searchBox id="search-box" />
+<h3>All registered users:</h3>
+    <ul>
+        <li *ngFor="let user of users">
+            {{user.email}} ( {{user.name}} )
+            - <a (click)="addFriend(user.id)">Añadir Amigo</a>
+        </li>
+    </ul>
+<h3>Friend Requests:</h3>
+    <ul>
+        <li *ngFor="let user of usersRequests">
+            {{user.email}} ( {{user.name}} )
+            - <a (click)="aceptFriend(user.id)">Aceptar Amistad</a>
+        </li>
+    </ul>
+<h3>Friends:</h3>
+    <ul>
+        <li *ngFor="let user of friends">
+            {{user.email}} ( {{user.name}} )
+            - <a (click)="viewProfile(user.id)">Ver perfil</a>
+        </li>
+    </ul>
+<h3>Mis Eventos:</h3>
+    <ul>
+        <li *ngFor="let events of myevents">
+            {{event.name}} ( {{event.place}} )
+            - <a (click)="viewProfile(user.id)">Ver perfil</a>
+        </li>
+    </ul>
 <a routerLink="/login"><button type="submit" class="btn btn-success custom-width-buttons">Logout</button></a>
 <a routerLink="/addevent"><button type="submit" class="btn btn-success custom-width-buttons">Añadir Evento</button></a>

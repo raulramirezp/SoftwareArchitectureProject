@@ -19,6 +19,7 @@ import { EventService } from './_services/event.service';
 import { AppRoutingModule } from './app-routing.module';
 
 import { AuthGuard } from './_guards/auth.guard';
+import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -31,15 +32,16 @@ import { AuthGuard } from './_guards/auth.guard';
     EventsComponent,
     DetailComponent,
     AddEventComponent,
-    EditEventComponent
+    EditEventComponent,
+    ProfileComponent
   ],
   imports: [
-    BrowserModule,
+    BrowserModule,  
     FormsModule,
     HttpModule,
     AppRoutingModule
   ],
   providers: [UserService, EventService, AuthGuard],
   bootstrap: [AppComponent]
-})
+})  
 export class AppModule { }
