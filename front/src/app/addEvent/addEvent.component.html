@@ -1,3 +1,4 @@
+<h1>Añadir Evento</h1>
 <div align="center">
 <form>
     <div class="form-group">
@@ -5,18 +6,58 @@
         <input type="text" class="form-control" #event_name id="email" style="width: 15em">
     </div>
     <div class="form-group">
+        <label for="event_category">Categoría</label>
+        <input type="text" class="form-control" #event_category id="email" style="width: 15em">
+    </div>
+    <div class="form-group">
+        <label for="event_visibility">Visibilidad</label>
+        <input type="text" class="form-control" #event_visibility id="pwd" style="width: 15em">
+    </div>
+    <div class="form-group">
+        <label for="event_Type">Tipo de Evento</label>
+        <input type="text" class="form-control" #event_Type id="pwd" style="width: 15em">
+    </div>
+    <div class="form-group">
+        <label for="event_minAge">Edad Mínima</label>
+        <input type="text" class="form-control" #event_minAge id="pwd" style="width: 15em">
+    </div>
+    <div class="form-group">
         <label for="event_place">Lugar</label>
-        <input type="text" class="form-control" #event_place id="email" style="width: 15em">
+        <input type="text" class="form-control" #event_place id="pwd" style="width: 15em">
     </div>
     <div class="form-group">
-        <label for="event_isPrivate">Privado?</label>
-        <input type="text" class="form-control" #event_isPrivate id="email" style="width: 15em">
+        <label for="event_beginAtDay">Dia Inicio</label>
+        <input type="text" class="form-control" #event_beginAtDay id="pwd" style="width: 15em">
     </div>
     <div class="form-group">
-        <label for="event_mAge">Edad Mínima</label>
-        <input type="text" class="form-control" #event_mAge id="pwd" style="width: 15em">
+        <label for="event_beginAtMonth">Mes Inicio</label>
+        <input type="text" class="form-control" #event_beginAtMonth id="pwd" style="width: 15em">
     </div>
-    <button (click)="add(event_name.value, event_place.value, event_isPrivate.value, event_beginAt.value);" type="submit" class="btn btn-success custom-width-buttons">Crear evento</button>
-    <a routerLink="/login"><button type="submit" class="btn btn-success custom-width-buttons">Atras</button></a>
+    <div class="form-group">
+        <label for="event_beginAtYear">Año Inicio</label>
+        <input type="text" class="form-control" #event_beginAtYear id="pwd" style="width: 15em">
+    </div>
+    <div class="form-group">
+        <label for="event_beginAtHour">Hora Inicio</label>
+        <input type="text" class="form-control" #event_beginAtHour id="pwd" style="width: 15em">
+    </div>
+    <div class="form-group">
+        <label for="event_endAtDay">Dia Final</label>
+        <input type="text" class="form-control" #event_endAtDay id="pwd" style="width: 15em">
+    </div>
+    <div class="form-group">
+        <label for="event_endAtMonth">Mes Final</label>
+        <input type="text" class="form-control" #event_endAtMonth id="pwd" style="width: 15em">
+    </div>
+    <div class="form-group">
+        <label for="event_endAtYear">Año Final</label>
+        <input type="text" class="form-control" #event_endAtYear id="pwd" style="width: 15em">
+    </div>
+    <div class="form-group">
+        <label for="event_endAtHour">Hora Final</label>
+        <input type="text" class="form-control" #event_endAtHour id="pwd" style="width: 15em">
+    </div>
+    <button (click)="add(event_name.value, event_category.value, event_visibility.value, event_Type.value, event_minAge.value, event_place.value, event_beginAtDay.value, event_beginAtMonth.value, event_beginAtYear.value, event_beginAtHour.value, event_endAtDay.value, event_endAtMonth.value, event_endAtYear.value, event_endAtHour.value);" type="submit" class="btn btn-success custom-width-buttons">Crear evento</button>
+    <a routerLink="/home"><button type="submit" class="btn btn-success custom-width-buttons">Atras</button></a>
 </form>
 </div>
