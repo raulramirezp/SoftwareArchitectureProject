@@ -14,13 +14,30 @@ export class AddEventComponent implements OnInit {
 
   ngOnInit() {
   }
-    add(name: string, place: string, isPrivate: boolean, minAge: number, category: number , beginAt: string, endAt: string): void {
+    add(name: string, category_id: string, visibility: string, eventType: string, minAge: string, place: string, beginAt: string, endAt: string, category: string): void {
       name = name.trim();
       place = place.trim();
+      minAge = minAge.trim();
       if (!name || !place || !minAge ) { return; }
-      this.eventService.create(name, place, isPrivate, minAge, category, beginAt, endAt).then(event => {
+      this.eventService.create(name, category_id, visibility, eventType, minAge, place, beginAt, endAt, category).then(event => {
         this.events.push(event);
       });
     }
 
 }
+//Event
+//t.string :name
+//      t.integer :assistants
+//      t.references :category, foreign_key: true
+//      t.references :user, foreign_key: true
+//      t.string :visibility
+//      t.string :eventType
+//      t.integer :minAge
+//      t.string :place
+//EventDate      
+//      t.datetime :beginAt
+//      t.datetime :endAt
+//      t.references :event, foreign_key: true
+//Category
+//t.string :description
+//      t.string :imagen

@@ -5,6 +5,7 @@ import 'rxjs/add/operator/map'
 import 'rxjs/add/operator/toPromise';
 import { User } from '../_models/user';
 import { Authentication } from '../_models/authentication';
+import { Router }            from '@angular/router';
 
 @Injectable()
 export class UserService {
@@ -14,17 +15,14 @@ export class UserService {
     private loginUrl = 'http://localhost:3000/login.json';
     // URL to web api
     
-    constructor(private http: Http) {  }
+    constructor(private http: Http, private router: Router) {  }
     authenticate(user_email:string, user_password:string){  
     return this.http
-        .post(this.loginUrl, JSON.stringify({email:user_email , password:user_password }), {headers: this.headers})
-        .toPromise()
-        .then(res => { //res.json().data as User;
-                     let user =res.json();
-                     if(user){
-                         localStorage.setItem('currentUser',JSON.stringify(user) )  
-                     }})
-        .catch(this.handleError);  
+        .post(this.loginUrl, JSON.stringify({email:user_email , password:user_password }), {headers: this.headers}).map((response: Response) => {
+        // res.json().data as User;
+            let item =response.json();
+            localStorage.setItem('currentUser',JSON.stringify(item));
+        })
     }
     logout() {
         // remove user from local storage to log user out

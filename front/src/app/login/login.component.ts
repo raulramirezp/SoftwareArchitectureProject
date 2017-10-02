@@ -23,10 +23,14 @@ export class LoginComponent implements OnInit {
         user_email.trim();
         user_password.trim();
         if (!user_email || !user_password ) { return; }
-        this.userService.authenticate(user_email, user_password).then(
-            user => {
+        this.userService.authenticate(user_email, user_password).subscribe(
+            data => {
                     this.router.navigate(['/home'])
-                    });
+                    },
+            error => {
+                    console.log(error);
+                    this.router.navigate(['/login'])
+            } );
         
     }
 

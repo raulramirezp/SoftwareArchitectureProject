@@ -1,5 +1,5 @@
-export class User {
-    id: string;
+export class Error {
+    errors: string[];
     name: string;
     lastname: string;
     nickname: string;
