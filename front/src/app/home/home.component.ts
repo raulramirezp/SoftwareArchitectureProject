@@ -61,5 +61,9 @@ export class HomeComponent implements OnInit {
         let link = ['/profile', user_id];
         this.router.navigate(link);
     }
+    private logout(){
+        this.userService.logout();
+        this.router.navigate(['/login']);
+    }
 
 }

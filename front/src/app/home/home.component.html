@@ -35,10 +35,10 @@
 	</div>
 	<div class="col-4" style="text-align: right">
 		<div class="btn-group">
-  			<a class="btn btn-default" href="#">
+  			<a (click)="addFriend(user.id)" class="btn btn-default" href="#">
    				<i class="fa fa-plus fa-2x" aria-hidden="true" title="Agregar a mis Amigos"></i>
   			</a>
-  			<a class="btn btn-default" routerLink="/profile">
+  			<a (click)="viewProfile(user.id)" class="btn btn-default">
    				<i class="fa fa-user-circle fa-2x" aria-hidden="true" title="Ver perfil"></i>
   			</a>
 		</div>

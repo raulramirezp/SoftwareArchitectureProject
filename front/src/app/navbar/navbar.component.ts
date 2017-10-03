@@ -15,5 +15,13 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit() {
   }
+    private isLogged(){
+        if(this.currentUser==null){
+            return false;
+        }
+        else{
+            return true;
+        }
+    }
 
 }
