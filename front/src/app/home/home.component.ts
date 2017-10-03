@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../_models/user';
 import { UserService } from '../_services/user.service';
-import { ProfileComponent } from '../profile/profile.component';
+// import { ProfileComponent } from '../profile/profile.component';
 import { Router }            from '@angular/router';
 @Component({
   selector: 'app-home',
