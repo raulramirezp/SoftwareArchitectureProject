@@ -20,7 +20,6 @@ import { MyCalendarComponent } from './my-calendar/my-calendar.component';
 import { ProfileComponent } from './profile/profile.component';
 
 import { AuthGuard } from './_guards/auth.guard';
-import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
   declarations: [

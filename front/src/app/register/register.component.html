@@ -1,5 +1,4 @@
-    <a routerLink="/login"><button (click)="add(user_firstName.value, user_lastName.value, user_email.value, user_nickname.value, user_dateDay.value, user_dateMonth.value, user_dateYear.value, user_password.value)" type="submit" class="btn btn-success custom-width-buttons">Crear usuario</button></a>
-    <a routerLink="/login"><button type="submit" class="btn btn-success custom-width-buttons">Atras</button></a>
+    
 <div align="center" class="top">
     <h2> ¡Regístrate en Nuestra App de Eventos! </h2>
     <h4> Conoce eventos cerca y asiste con tus amigos </h4>
@@ -23,18 +22,32 @@
                 </div>
         </div>
         <div class="form-group">
+            <label for="user_nickname">Nickname</label>
+            <input type="text" class="form-control" #user_nickname id="email" style="width: 15em">
+        </div>
+        <div class="form-group">
+            <label for="user_dateDay">Dia</label>
+            <input type="text" class="form-control" #user_dateDay id="email" style="width: 15em">
+        </div>
+        <div class="form-group">
+            <label for="user_dateMonth">Mes</label>
+            <input type="text" class="form-control" #user_dateMonth id="email" style="width: 15em">
+        </div>
+        <div class="form-group">
+            <label for="user_dateYear">Año</label>
+            <input type="text" class="form-control" #user_dateYear id="email" style="width: 15em">
+        </div>
+
+        
+        <div class="form-group">
             <label class="control-label col-sm-2" for="psw">Contraseña:</label>
                 <div class="col-sm-10">
                     <input class="form-control" type="password" placeholder="Ingrese su Nueva Contraseña" aria-label="user_password" id="psw"#user_password  >
                 </div>
         </div>
         <div class="form-group">
-            <button (click)="add(user_firstName.value, user_lastName.value, user_email.value, user_password.value);" type="submit" class="btn btn-success custom-width-buttons">Crear usuario</button>
+            <a routerLink="/login"><button (click)="add(user_firstName.value, user_lastName.value, user_email.value, user_nickname.value, user_dateDay.value, user_dateMonth.value, user_dateYear.value, user_password.value);" type="submit" class="btn btn-success custom-width-buttons">Crear usuario</button></a>
             <a routerLink="/login"><button type="submit" class="btn btn-success custom-width-buttons">Atras</button></a>
         </div>
     </form>
-    <div class="form-group">
-        <label for="user_fistName">Nombre</label>
-        <input type="text" class="form-control" #user_firstName id="email" style="width: 15em">
-    </div>
 </div>
