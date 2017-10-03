@@ -12,7 +12,7 @@ class EventsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create event" do
     assert_difference('Event.count') do
-      post events_url, params: { event: { assistants: @event.assistants, category_id: @event.category_id, eventType: @event.eventType, minAge: @event.minAge, name: @event.name, place: @event.place, user_id: @event.user_id, visibility: @event.visibility } }, as: :json
+      post events_url, params: { event: { assistants: @event.assistants, category_id: @event.category_id, isPrivate: @event.isPrivate, minAge: @event.minAge, name: @event.name, place: @event.place, user_id: @event.user_id } }, as: :json
     end
 
     assert_response 201
@@ -24,7 +24,7 @@ class EventsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update event" do
-    patch event_url(@event), params: { event: { assistants: @event.assistants, category_id: @event.category_id, eventType: @event.eventType, minAge: @event.minAge, name: @event.name, place: @event.place, user_id: @event.user_id, visibility: @event.visibility } }, as: :json
+    patch event_url(@event), params: { event: { assistants: @event.assistants, category_id: @event.category_id, isPrivate: @event.isPrivate, minAge: @event.minAge, name: @event.name, place: @event.place, user_id: @event.user_id } }, as: :json
     assert_response 200
   end
 

@@ -42,8 +42,7 @@ ActiveRecord::Schema.define(version: 20171002161544) do
     t.integer "assistants"
     t.bigint "category_id"
     t.bigint "user_id"
-    t.string "visibility"
-    t.string "eventType"
+    t.boolean "isPrivate"
     t.integer "minAge"
     t.string "place"
     t.datetime "created_at", null: false

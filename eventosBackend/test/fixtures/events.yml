@@ -5,8 +5,7 @@ one:
   assistants: 1
   category: one
   user: one
-  visibility: MyString
-  eventType: MyString
+  isPrivate: MyString
   minAge: 1
   place: MyString
 
@@ -15,7 +14,6 @@ two:
   assistants: 1
   category: two
   user: two
-  visibility: MyString
-  eventType: MyString
+  isPrivate: MyString
   minAge: 1
   place: MyString

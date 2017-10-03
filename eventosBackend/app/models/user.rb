@@ -30,19 +30,24 @@ class User < ApplicationRecord
   validates :email, presence: true, format: { with: /\A[^@\s]+@([^@\s]+\.)+[^@\s]+\z/, message: "No valid format"}
 
   def invite(u)
-    if Relationship.exists?(user_id: u.id, invited_id: self.id)
-      err_msg "Ya hay una solicitud de esta persona"
+    if Friendship.exists?(user_id: self.id, friend_id: u.id)
+      err_msg = "Ya son amigos"
       errors[:base] << (err_msg)
     else
-      if Relationship.exists?(user_id: self.id, invited_id: u.id)
-        err_msg = "Ya hay una solicitud para esta persona"
-        errors[:relation] << (err_msg)
+      if Relationship.exists?(user_id: u.id, invited_id: self.id)
+        err_msg = "Ya hay una solicitud de esta persona"
+        errors[:base] << (err_msg)
       else
-        @r = Relationship.new(user_id: self.id, invited_id: u.id)
-        if @r.valid?
-          @r.save
+        if Relationship.exists?(user_id: self.id, invited_id: u.id)
+          err_msg = "Ya hay una solicitud para esta persona"
+          errors[:relation] << (err_msg)
         else
-          @r.errors.messages
+          @r = Relationship.new(user_id: self.id, invited_id: u.id)
+          if @r.valid?
+            @r.save
+          else
+            @r.errors.messages
+          end
         end
       end
     end

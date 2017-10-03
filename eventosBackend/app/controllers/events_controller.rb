@@ -51,6 +51,6 @@ class EventsController < ApiController
 
     # Only allow a trusted parameter "white list" through.
     def event_params
-      params.require(:event).permit(:name, :assistants, :category_id, :user_id, :visibility, :eventType, :minAge, :place)
+      params.require(:event).permit(:name, :assistants, :category_id, :user_id, :isPrivate, :minAge, :place)
     end
 end
