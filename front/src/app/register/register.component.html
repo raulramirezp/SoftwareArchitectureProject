@@ -1,20 +1,34 @@
 <div align="center" class="top">
     <h2> ¡Regístrate en Nuestra App de Eventos! </h2>
     <h4> Conoce eventos cerca y asiste con tus amigos </h4>
-    <form>
+    <form class="form-horizontal">
         <div class="form-group">
-            <input class="form-control mr-sm-2" type="text" placeholder="Nombre" aria-label="user_fistName" #user_fistName >
+            <label class="control-label col-sm-2" for="name">Nombre:</label>
+                <div class="col-sm-10">
+                    <input class="form-control" type="text" placeholder="Ingrese su Nombre" aria-label="user_firstName" id = "name"#user_firstName  >
+                </div>
         </div>
         <div class="form-group">
-            <input class="form-control mr-sm-2" type="text" placeholder="Apellido" aria-label="user_lastName" #user_lastName >
+            <label class="control-label col-sm-2" for="lastName">Apellido:</label>
+                <div class="col-sm-10">
+                    <input class="form-control" type="text" placeholder="Ingrese su Apellido" aria-label="user_lastName" id = "lastName"#user_lastName  >
+                </div>
         </div>
         <div class="form-group">
-            <input class="form-control mr-sm-2" type="text" placeholder="Email" aria-label="user_email" #user_email >
+            <label class="control-label col-sm-2" for="email">Email:</label>
+                <div class="col-sm-10">
+                    <input class="form-control" type="email" placeholder="Ingrese su Email" aria-label="user_email" id = "email "#user_email >
+                </div>
         </div>
         <div class="form-group">
-            <input class="form-control mr-sm-2" type="password" placeholder="Contraseña" aria-label="user_password" #user_password  >
+            <label class="control-label col-sm-2" for="psw">Contraseña:</label>
+                <div class="col-sm-10">
+                    <input class="form-control" type="password" placeholder="Ingrese su Nueva Contraseña" aria-label="user_password" id="psw"#user_password  >
+                </div>
         </div>
-        <button (click)="add(user_firstName.value, user_lastName.value, user_email.value, user_password.value);" type="submit" class="btn btn-success custom-width-buttons">Crear usuario</button>
-        <a routerLink="/login"><button type="submit" class="btn btn-success custom-width-buttons">Atras</button></a>
+        <div class="form-group">
+            <button (click)="add(user_firstName.value, user_lastName.value, user_email.value, user_password.value);" type="submit" class="btn btn-success custom-width-buttons">Crear usuario</button>
+            <a routerLink="/login"><button type="submit" class="btn btn-success custom-width-buttons">Atras</button></a>
+        </div>
     </form>
 </div>
