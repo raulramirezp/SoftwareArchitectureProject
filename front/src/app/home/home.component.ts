@@ -56,10 +56,10 @@ export class HomeComponent implements OnInit {
     {
         console.log("test 1");
         
-        this.userService.viewProfile(user_id).subscribe(profileUser => { localStorage.setItem('profileUser',JSON.stringify(profileUser)); });
+       this.userService.viewProfile(user_id).subscribe(profileUser => { localStorage.setItem('profileUser',JSON.stringify(profileUser)); });
 //        this.profileComponent.setUser(this.profileUser)
-        let link = ['/profile', user_id];
-        this.router.navigate(link);
+       let link = ['/profile', user_id];
+       this.router.navigate(link);
     }
     private logout(){
         this.userService.logout();
