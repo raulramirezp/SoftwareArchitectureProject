@@ -17,6 +17,7 @@ import { EventService } from './_services/event.service';
 
 import { AppRoutingModule }     from './app-routing.module';
 import { MyCalendarComponent } from './my-calendar/my-calendar.component';
+import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { MyCalendarComponent } from './my-calendar/my-calendar.component';
     DetailComponent,
     AddEventComponent,
     EditEventComponent,
-    MyCalendarComponent
+    MyCalendarComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
