@@ -1,0 +1,10 @@
+<div id="search-component">
+  <h4>Invitar Amigos</h4>
+  <input #searchBox id="search-box" (keyup)="search(searchBox.value)" />
+  <div>
+    <div *ngFor="let user of users | async"
+         (click)="addToInvitation(user)" class="search-result" >
+      {{user.name}} {{user.lastname}} {{user.email}}
+    </div>
+  </div>
+</div>

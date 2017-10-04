@@ -45,6 +45,8 @@
         <label for="event_endAtDay">Dia Final</label>
         <input type="text" class="form-control" #event_endAtDay id="pwd" style="width: 15em">
     </div>
+    <app-user-search></app-user-search>
+
     <div class="form-group">
         <label for="event_endAtMonth">Mes Final</label>
         <input type="text" class="form-control" #event_endAtMonth id="pwd" style="width: 15em">
@@ -57,7 +59,11 @@
         <label for="event_endAtHour">Hora Final</label>
         <input type="text" class="form-control" #event_endAtHour id="pwd" style="width: 15em">
     </div>
+
+    
+
     <button (click)="add(event_name.value, event_category.value, event_visibility.value, event_Type.value, event_minAge.value, event_place.value, event_beginAtDay.value, event_beginAtMonth.value, event_beginAtYear.value, event_beginAtHour.value, event_endAtDay.value, event_endAtMonth.value, event_endAtYear.value, event_endAtHour.value);" type="submit" class="btn btn-success custom-width-buttons">Crear evento</button>
     <a routerLink="/home"><button type="submit" class="btn btn-success custom-width-buttons">Atras</button></a>
+
 </form>
 </div>

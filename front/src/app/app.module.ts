@@ -20,6 +20,7 @@ import { MyCalendarComponent } from './my-calendar/my-calendar.component';
 import { ProfileComponent } from './profile/profile.component';
 
 import { AuthGuard } from './_guards/auth.guard';
+import { UserSearchComponent } from './user-search/user-search.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { AuthGuard } from './_guards/auth.guard';
     AddEventComponent,
     EditEventComponent,
     MyCalendarComponent,
-    ProfileComponent
+    ProfileComponent,
+    UserSearchComponent
   ],
   imports: [
     BrowserModule,  

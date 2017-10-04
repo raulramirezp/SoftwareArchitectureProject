@@ -29,7 +29,9 @@ export class HomeComponent implements OnInit {
         this.loadFriends();
     }
     private loadAllUsers() {
-        this.userService.getAll().subscribe(users => { this.users = users; });
+        this.userService.getAll().subscribe(users => {
+            console.log('something');
+            this.users = users; });
     }
     private loadCreatedEvents() {
        // this.eventService.getCreatedEvents().subscribe(createdEvents => { this.createdEvents = createdEvents; });

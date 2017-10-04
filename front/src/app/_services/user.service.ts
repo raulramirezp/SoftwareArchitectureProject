@@ -82,7 +82,7 @@ export class UserService {
         console.log("this is another test");
         this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
         this.headers.append('Authorization', 'Token token='.concat(this.currentUser.token));
-        console.log("test");
+        console.log("test defiitive");
         return this.http.get(this.usersUrl, {headers: this.headers}).map((response: Response) => response.json());
     }
     getRequests(){
