@@ -49,17 +49,25 @@ export class HomeComponent implements OnInit {
     private aceptFriend(user_id:string)
     {
         console.log("test 1");
-        this.userService.aceptFriend(user_id).subscribe(() => { this.loadAllUsers() });
-        this.router.navigate(['/home']);
+        this.userService.aceptFriend(user_id).subscribe(() => { this.router.navigate(['/home']); });
+        
     }
     private viewProfile(user_id:string)
     {
         console.log("test 1");
-        
-       this.userService.viewProfile(user_id).subscribe(profileUser => { localStorage.setItem('profileUser',JSON.stringify(profileUser)); });
-//        this.profileComponent.setUser(this.profileUser)
-       let link = ['/profile', user_id];
+        console.log(user_id)
+       this.userService.viewProfile(user_id).subscribe(profileUser => {
+           console.log(profileUser.name)
+           localStorage.setItem('profileUser',JSON.stringify(profileUser)); 
+            this.profileUser=JSON.parse(localStorage.getItem('profileUser'));
+            console.log('pretest');
+            console.log(this.profileUser.email);    
+            let link = ['/profile', user_id];
        this.router.navigate(link);
+       });
+       
+        //       this.profileComponent.setUser(this.profileUser)
+       
     }
     private logout(){
         this.userService.logout();

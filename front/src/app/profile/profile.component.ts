@@ -13,7 +13,7 @@ import { UserService } from '../_services/user.service';
 })
 export class ProfileComponent implements OnInit {
   user: User;
- 
+  friends: User[] = [];
   constructor(
     private userService: UserService,
     private route: ActivatedRoute,
@@ -24,9 +24,15 @@ export class ProfileComponent implements OnInit {
    // this.userService.getUser('id')
      // .subscribe(user => this.user = user);
   this.user = JSON.parse(localStorage.getItem('profileUser'));
+  this.loadFriends();
   }
  
   goBack(): void {
+      localStorage.removeItem('profileUser');
     this.location.back();
   }
+  private loadFriends() {
+        console.log('this is a test 3');
+        this.userService.getFriends().subscribe(friends => { this.friends = friends; });
+    }
 }

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router }            from '@angular/router';
 import { UserService } from '../_services/user.service';
-
+import { NavbarComponent } from '../navbar/navbar.component';
 import { Authentication } from '../_models/authentication';
 import { User } from '../_models/user';
 @Component({
@@ -25,7 +25,8 @@ export class LoginComponent implements OnInit {
         if (!user_email || !user_password ) { return; }
         this.userService.authenticate(user_email, user_password).subscribe(
             data => {
-                    this.router.navigate(['/home'])
+             NavbarComponent.updateUserStatus.next(true);
+                    this.router.navigate(['/home']);
                     },
             error => {
                     console.log(error);

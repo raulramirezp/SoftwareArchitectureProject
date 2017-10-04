@@ -39,10 +39,10 @@
     </ul> -->
     <div class="row">
 	<div class="col">
-	<h2>Amigos de John Doe</h2>
+	<h2>Amigos de {{user.name}} {{user.lastname}}</h2>
 	</div>
 	</div>
-		<div class="row border rounded evdiv">
+		<div *ngFor="let user of friends" class="row border rounded evdiv">
 	<div class="col-8">
 	<div class="media" style="margin-top: 10px">
 

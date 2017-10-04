@@ -68,6 +68,14 @@ export class UserService {
         this.headers.append('Authorization', 'Token token='.concat(this.currentUser.token));
        return this.http.get(this.friendsUrl, {headers: this.headers}).map((response: Response) => response.json());
     }
+    getProfileFriends() {
+      const url = this.friendsUrl;
+        this.headers= new Headers();
+        this.headers.append('currentUser', this.currentUser.id);
+        console.log("this is another test");
+        this.headers.append('Authorization', 'Token token='.concat(this.currentUser.token));
+       return this.http.get(this.friendsUrl, {headers: this.headers}).map((response: Response) => response.json());
+    }
     getAll(){
         this.headers= new Headers();
         this.headers.append('Content-Type', 'application/json');
