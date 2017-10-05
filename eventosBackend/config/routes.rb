@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   resources :eventdates
   resources :users
   resources :categories
-  resources :invitations
+  # resources :invitations
   resources :participants
   resources :evendates
   resources :events
@@ -33,10 +33,15 @@ Rails.application.routes.draw do
       get 'friends_names', to: "friendships#friends_names"
     end
   end
-  resources :invitations, only: [] do
+  resources :invitations, only: [:create, :index] do
     collection do
       get 'acept', to: "invitations#acept"
       get 'decline', to: "invitations#decline"
+    end
+  end
+  resources :events do
+    collection do
+      get 'find_coincidences', to: "events#find_coincidences"
     end
   end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

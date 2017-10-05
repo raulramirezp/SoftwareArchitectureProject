@@ -15,4 +15,8 @@ class Event < ApplicationRecord
   validates :isPrivate, presence: true
   validates :minAge, presence: true
   validates :place, presence: true
+
+  def self.find_coincidences(str)
+    where("name like ?", "%#{str}%")
+  end
 end

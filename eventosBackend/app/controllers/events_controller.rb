@@ -20,7 +20,8 @@ class EventsController < ApiController
 
   # POST /events
   def create
-    @event = Event.new(event_params)
+    # raise params.inspect
+    @event = Event.new(name: params[:name], assistants: params[:assistants], category_id: params[:category_id], user_id: params[:user_id], isPrivate: params[:isPrivate], minAge: params[:minAge], place: params[:place])
 
     if @event.save
       render json: @event, status: :created, location: @event
@@ -41,6 +42,11 @@ class EventsController < ApiController
   # DELETE /events/1
   def destroy
     @event.destroy
+  end
+
+  def find_coincidences
+    @ev = Event.find_coincidences(:name)
+    render json: @ev
   end
 
   private

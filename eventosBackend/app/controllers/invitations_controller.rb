@@ -16,10 +16,10 @@ class InvitationsController < ApiController
 
   # POST /invitations
   def create
-    @invitation = Invitation.new(invitation_params)
+    @invitation = Invitation.new(user_id: params[:user_id], invited_id: params[:invited_id], event_id: params[:event_id])
 
     if @invitation.save
-      render json: @invitation, status: :created, location: @invitation
+      render json: @invitation, status: :created, location: @invitations
     else
       render json: @invitation.errors, status: :unprocessable_entity
     end
