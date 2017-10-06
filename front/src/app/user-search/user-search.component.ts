@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Router }            from '@angular/router';
- 
+
 import { Observable }        from 'rxjs/Observable';
 import { Subject }           from 'rxjs/Subject';
- 
+
 // Observable class extensions
 import 'rxjs/add/observable/of';
- 
+
 // Observable operators
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/debounceTime';
@@ -23,18 +23,18 @@ import { User } from '../_models/user';
 })
 export class UserSearchComponent implements OnInit {
   users: Observable<User[]>;
-  guests: User[];    
+  guests: User[];
   private searchTerms = new Subject<string>();
- 
+
   constructor(
     private userSearchService: UserSearchService,
     private router: Router) {}
- 
+
   // Push a search term into the observable stream.
   search(term: string): void {
     this.searchTerms.next(term);
   }
- 
+
   ngOnInit(): void {
     this.users = this.searchTerms
       .debounceTime(300)        // wait 300ms after each keystroke before considering the term
@@ -51,7 +51,7 @@ export class UserSearchComponent implements OnInit {
       });
       this.guests=[];
   }
- 
+
   addToInvitation(user: User): void {
       console.log(user.name)
       this.guests.push(user);

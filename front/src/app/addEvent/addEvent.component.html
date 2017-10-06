@@ -74,8 +74,9 @@
       <input class="form-control col-sm-5 col-sx-4" type="text" #event_beginAtHour id="pwd" style="width: 15em">
       <input class="form-control col-sm-5 col-sx-4" type="date" #myDate [value]="demoUser.date | date:'yyyy-MM-dd'" (input)="demoUser.date=parseDate($event.target.value)" />
     </div> -->
-
+    <app-user-search></app-user-search>
     <button (click)="add(eventName.value, getValueFromSelect(eventCategory.value), getValueFromSelect(eventVisibility.value), eventAssistants.value, eventMinAge.value, eventPlace.value, eventBeginAt.value, eventEndAt.value);" type="submit" class="btn btn-success custom-width-buttons">Crear evento</button>
     <a routerLink="/home"><button type="submit" class="btn btn-success custom-width-buttons">Atras</button></a>
   </form>
+
 </div>
