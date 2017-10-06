@@ -10,21 +10,22 @@ import { Router }            from '@angular/router';
 @Injectable()
 export class UserService {
     private headers;
+    private localhostaddress = 'http://localhost:3000/';
     private currentUser: User;
-    private usersUrl = 'http://localhost:3000/users/';
-    private authenticationsUrl = 'http://localhost:3000/authentications';
-    private loginUrl = 'http://localhost:3000/login.json';
+    private usersUrl = this.localhostaddress.concat('users/');
+    private authenticationsUrl = this.localhostaddress.concat('authentications');
+    private loginUrl = this.localhostaddress.concat('login.json');
     // URL to web api
-    private inviteUrl = 'http://localhost:3000/relationships/invite/';
-    private requestsUrl = 'http://localhost:3000/relationships/requests/';
-    private aceptRequestUrl = 'http://localhost:3000/relationships/acept/';
-    private friendsUrl = 'http://localhost:3000/friendships/friends/';
+    private inviteUrl = this.localhostaddress.concat('relationships/invite/');
+    private requestsUrl = this.localhostaddress.concat('relationships/requests/');
+    private aceptRequestUrl = this.localhostaddress.concat('relationships/acept/');
+    private friendsUrl = this.localhostaddress.concat('friendships/friends/');
     constructor(private http: Http, private router: Router) {
    //     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
      //   this.headers= new Headers();
     //    this.headers.append('Content-Type', 'application/json');
     //    this.headers.append('Authorization', 'Token token='.concat(this.currentUser.token));
-    
+
     }
     authenticate(user_email:string, user_password:string){
         this.headers= new Headers();
@@ -60,8 +61,8 @@ export class UserService {
     getFriends() {
       const url = this.friendsUrl;
         this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
-        
-        
+
+
         this.headers= new Headers();
         this.headers.append('currentUser', this.currentUser.id);
         console.log("this is another test");

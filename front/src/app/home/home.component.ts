@@ -14,9 +14,9 @@ export class HomeComponent implements OnInit {
     users: User[] = [];
     friends: User[] = [];
     usersRequests: User[] = [];
-    
+
     createdEvents: Event[]= [];
-    
+
     constructor(private userService: UserService, private router: Router) {
         this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
     }

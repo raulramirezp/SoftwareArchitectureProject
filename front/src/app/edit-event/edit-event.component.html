@@ -1,3 +1,47 @@
-<p>
-  edit-event works!
-</p>
+<!-- <div align="center" class="top">
+  <h1>Edita tu Evento</h1>
+  <br />
+  <form class="form-horizontal">
+    <div class="form-group form-inline">
+      <div class="col-sm-2 col-xs-1"></div>
+      <label class="control-label col-sm-2 col-xs-3 right-space" for="event_name">Nombre</label>
+      <input class="form-control col-sm-5 col-sx-4" type="text" #event_name id="email" style="width: 15em" required placeholder="Nombre evento">
+    </div>
+    <div class="form-group form-inline">
+      <div class="col-sm-2 col-xs-1"></div>
+      <label class="control-label col-sm-2 col-xs-3 right-space" for="event_category">Categoría</label>
+      <select class="form-control col-sm-5 col-sx-4" required>
+        <option value="" disabled selected hidden>Seleccione uno...</option>
+        <option *ngFor="let category of categories" value="categories.id">{{category.description}}</option>
+      </select>
+    </div>
+    <div class="form-group form-inline">
+      <div class="col-sm-2 col-xs-1"></div>
+      <label class="control-label col-sm-2 col-xs-3 right-space" for="event_visibility">Visibilidad</label>
+      <input class="form-control col-sm-5 col-sx-4" type="text" #event_visibility id="pwd" style="width: 15em" required placeholder="Privado?">
+    </div>
+    <div class="form-group form-inline">
+      <div class="col-sm-2 col-xs-1"></div>
+      <label class="control-label col-sm-2 col-xs-3 right-space" for="event_minAge">Edad Mínima</label>
+      <input class="form-control col-sm-5 col-sx-4" type="text" #event_minAge id="pwd" style="width: 15em" placeholder="Para todo publico es 0">
+    </div>
+    <div class="form-group form-inline">
+      <div class="col-sm-2 col-xs-1"></div>
+      <label class="control-label col-sm-2 col-xs-3 right-space" for="event_place">Lugar</label>
+      <input class="form-control col-sm-5 col-sx-4" type="text" #event_place id="pwd" style="width: 15em" required placeholder="Direccion">
+    </div>
+    <div class="form-group form-inline">
+      <div class="col-sm-2 col-xs-1"></div>
+      <label class="control-label col-sm-2 col-xs-3 right-space" for="event_beginAtDay">Fecha Inicio</label>
+      <input class="form-control col-sm-5 col-sx-4" type="datetime-local" #event_beginAtDay id="pwd" style="width: 15em" required>
+    </div>
+    <div class="form-group form-inline">
+      <div class="col-sm-2 col-xs-1"></div>
+      <label class="control-label col-sm-2 col-xs-3 right-space" for="event_beginAtDay">Fecha Final</label>
+      <input class="form-control col-sm-5 col-sx-4" type="datetime-local" #event_beginAtDay id="pwd" style="width: 15em" required>
+    </div>
+    <button (click)="add(event_name.value, event_category.value, event_visibility.value, event_Type.value, event_minAge.value, event_place.value, event_beginAtDay.value, event_beginAtMonth.value, event_beginAtYear.value, event_beginAtHour.value, event_endAtDay.value, event_endAtMonth.value, event_endAtYear.value, event_endAtHour.value);"
+      type="submit" class="btn btn-success custom-width-buttons">Crear evento</button>
+    <a routerLink="/home"><button type="submit" class="btn btn-success custom-width-buttons">Atras</button></a>
+  </form>
+</div> -->
