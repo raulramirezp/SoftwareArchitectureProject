@@ -29,6 +29,10 @@ class User < ApplicationRecord
   validates :birthdate, presence: true
   validates :email, presence: true, format: { with: /\A[^@\s]+@([^@\s]+\.)+[^@\s]+\z/, message: "No valid format"}
 
+  def self.search(search)
+    where('name LIKE ? OR lastname LIKE ? OR email LIKE ?',"%#{search}%","%#{search}%","%#{search}%")
+  end
+
   def invite(u)
     if Friendship.exists?(user_id: self.id, friend_id: u.id)
       err_msg = "Ya son amigos"
@@ -133,5 +137,17 @@ class User < ApplicationRecord
     end
     p @names
     @names
+  end
+
+  def eventsRequests
+    Invitation.includes(:event).where(invited_id: self.id)
+    r = Invitation.includes(:event).where(invited_id: self.id)
+    @events = []
+    r.each do |n|
+      k = Event.where(id: n.user_id)
+      @events.push k[0]
+    end
+    p @events
+    @events
   end
 end

@@ -49,6 +49,12 @@ class EventsController < ApiController
     render json: @ev
   end
 
+  def followevents
+    @cu = current_user
+    @ans = @cu.following_event
+    render json: @ans
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_event

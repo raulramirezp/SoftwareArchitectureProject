@@ -12,7 +12,7 @@ class Event < ApplicationRecord
   validates :assistants, presence: true, numericality: { only_integer: true }
   validates :category_id, presence: true
   validates :user_id, presence: true
-  validates :isPrivate, presence: true
+  validates :isPrivate, inclusion: { in: [ true, false ] }
   validates :minAge, presence: true
   validates :place, presence: true
 

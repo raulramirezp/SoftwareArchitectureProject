@@ -4,9 +4,23 @@ class UsersController < ApiController
   # GET /users
   def index
     @users = User.all
-
+      if params[:search]
+        @users = User.search(params[:search])
+      end
+      @users.each
     render json: @users
   end
+
+  # def search
+  #   @users = User.all
+  #
+  #   if params[:search]
+  #     p params[:id]
+  #     @users = User.search(params[:id], params[:search])
+  #   end
+  #   @users.each
+  #   render json: @users
+  # end
 
   # GET /users/1
   def show
@@ -46,6 +60,6 @@ class UsersController < ApiController
 
     # Only allow a trusted parameter "white list" through.
     def user_params
-      params.require(:user).permit(:name, :lastname, :nickname, :birthdate, :email)
+      params.require(:user).permit(:name, :lastname, :nickname, :birthdate, :email, :search)
     end
 end

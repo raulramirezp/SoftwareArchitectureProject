@@ -41,24 +41,35 @@ class InvitationsController < ApiController
 
   def acept
     @cu = current_user
-    @ev = Event.find(params[:event].to_i)
+    @ev = Event.find(params[:id].to_i)
+    @done = false
     if @cu.follows?(@ev)
-      render json: ["OK"]
-      false
+      @done = false
     else
       @cu.follow(@ev)
       @r = Invitation.where(user_id: @cu.id, invited_id: params[:invited_id].to_i,event_id: @ev.id)
       @r.delete_all
-      true
+      @done = true
     end
+    render json: @done
   end
 
   def decline
     @cu = current_user
-    @ev = Event.find(params[:event].to_i)
+    @ev = Event.find(params[:id].to_i)
     @r = Invitation.where(user_id: @cu.id, invited_id: params[:invited_id].to_i,event_id: @ev.id)
     @r.delete_all
     true
+  end
+
+  def eventRequests
+    @cu = current_user
+    @inv = Invitation.where(invited_id: @cu.id)
+    @ans = []
+    @inv.each do |i|
+      @ans.push(Event.find(i.event_id))
+    end
+    render json: @ans
   end
 
   private
