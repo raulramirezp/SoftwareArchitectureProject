@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 20171002161544) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["token"], name: "index_authentications_on_token"
+    t.index ["user_id"], name: "index_authentications_on_user_id", unique: true
   end
 
   create_table "categories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -70,7 +71,7 @@ ActiveRecord::Schema.define(version: 20171002161544) do
     t.bigint "friend_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["friend_id"], name: "index_friendships_on_friend_id"
+    t.index ["friend_id"], name: "index_friendships_on_friend_id", unique: true
     t.index ["user_id"], name: "index_friendships_on_user_id"
   end
 
@@ -81,7 +82,7 @@ ActiveRecord::Schema.define(version: 20171002161544) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["event_id"], name: "index_invitations_on_event_id"
-    t.index ["invited_id"], name: "index_invitations_on_invited_id"
+    t.index ["invited_id"], name: "index_invitations_on_invited_id", unique: true
     t.index ["user_id"], name: "index_invitations_on_user_id"
   end
 
@@ -90,7 +91,7 @@ ActiveRecord::Schema.define(version: 20171002161544) do
     t.bigint "invited_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["invited_id"], name: "index_relationships_on_invited_id"
+    t.index ["invited_id"], name: "index_relationships_on_invited_id", unique: true
     t.index ["user_id"], name: "index_relationships_on_user_id"
   end
 
@@ -102,6 +103,8 @@ ActiveRecord::Schema.define(version: 20171002161544) do
     t.string "email"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["nickname"], name: "index_users_on_nickname", unique: true
   end
 
   add_foreign_key "eventdates", "events"
