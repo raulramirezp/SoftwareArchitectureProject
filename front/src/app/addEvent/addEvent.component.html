@@ -10,12 +10,8 @@
         <input type="text" class="form-control" #event_category id="email" style="width: 15em">
     </div>
     <div class="form-group">
-        <label for="event_visibility">Visibilidad</label>
-        <input type="text" class="form-control" #event_visibility id="pwd" style="width: 15em">
-    </div>
-    <div class="form-group">
-        <label for="event_Type">Tipo de Evento</label>
-        <input type="text" class="form-control" #event_Type id="pwd" style="width: 15em">
+        <label for="event_isPrivate">Visibilidad</label>
+        <input type="text" class="form-control" #event_isPrivate id="pwd" style="width: 15em">
     </div>
     <div class="form-group">
         <label for="event_minAge">Edad Mínima</label>
@@ -62,8 +58,9 @@
 
     
 
-    <button (click)="add(event_name.value, event_category.value, event_visibility.value, event_Type.value, event_minAge.value, event_place.value, event_beginAtDay.value, event_beginAtMonth.value, event_beginAtYear.value, event_beginAtHour.value, event_endAtDay.value, event_endAtMonth.value, event_endAtYear.value, event_endAtHour.value);" type="submit" class="btn btn-success custom-width-buttons">Crear evento</button>
+    <button (click)="add(event_name.value, event_category.value, event_isPrivate.value, event_minAge.value, event_place.value, event_beginAtDay.value, event_beginAtMonth.value, event_beginAtYear.value, event_beginAtHour.value, event_endAtDay.value, event_endAtMonth.value, event_endAtYear.value, event_endAtHour.value);" type="submit" class="btn btn-success custom-width-buttons">Crear evento</button>
     <a routerLink="/home"><button type="submit" class="btn btn-success custom-width-buttons">Atras</button></a>
 
 </form>
 </div>
+

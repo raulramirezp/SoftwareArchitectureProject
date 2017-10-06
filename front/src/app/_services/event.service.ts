@@ -11,6 +11,7 @@ import { User } from '../_models/user';
 export class EventService {
     private eventsUrl = 'http://localhost:3000/events';
     private eventDatesUrl = 'http://localhost:3000/eventdates'; 
+    private invitationsUrl = 'http://localhost:3000/invitations'; 
     private currentUser: User;
     private headers;
     constructor(private http: Http) {
@@ -41,17 +42,38 @@ export class EventService {
         .then(response => response.json().data as Event)
         .catch(this.handleError);
     }
-    create(name: string, category_id: string, visibility: string, eventType: string, minAge: string, place: string, beginAt: string, endAt: string): Promise<Event> {
+    create(name: string, category_id: string, isPrivate: string, minAge: string, place: string, beginAt: string, endAt: string): Promise<Event> {
+        let privat =  false;
+        if(isPrivate=='true'){
+            privat=true;
+        }
+        else{
+            privat=false;
+        }
+            
         console.log(this.currentUser.token);
       return this.http
-        .post(this.eventsUrl, JSON.stringify({name: name, assistants:"0", category_id:category_id, user_id: this.currentUser.id, visibility: visibility, eventType: eventType, minAge: minAge, place: place}), {headers: this.headers})
+        .post(this.eventsUrl, JSON.stringify({name: name, assistants:"0", category_id:category_id, user_id: String(this.currentUser.id), isPrivate: privat, minAge: minAge, place: place}), {headers: this.headers})
         .toPromise()
         .then(response => response.json() as Event)
         .catch(this.handleError);
     }
+    
     createEventDate(event_id: string, beginAt: string, endAt: string): Promise<EventDate> {
       return this.http
         .post(this.eventDatesUrl, JSON.stringify({ beginAt:beginAt, endAt: endAt, event_id: event_id}), {headers: this.headers})
+        .toPromise()
+        .then(response => response.json() as EventDate)
+        .catch(this.handleError);
+    }
+    sendInvitations(invited_id: string, event_id: string){
+        this.headers= new Headers();
+        this.headers.append('Content-Type', 'application/json');
+        console.log("this is another test");
+        this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        this.headers.append('Authorization', 'Token token='.concat(this.currentUser.token));
+      return this.http
+        .post(this.invitationsUrl, JSON.stringify({ user_id:this.currentUser.id, invited_id: invited_id, event_id: event_id}), {headers: this.headers})
         .toPromise()
         .then(response => response.json() as EventDate)
         .catch(this.handleError);
@@ -60,4 +82,5 @@ export class EventService {
       console.error('An error occurred', error); // for demo purposes only
       return Promise.reject(error.message || error);
     }
+    
 }

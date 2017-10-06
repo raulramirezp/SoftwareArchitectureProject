@@ -4,8 +4,7 @@ export class Event {
     assistants: number;
     category_id: string;
     user_id: string;
-    visibility: string;
-    eventType: string;
+    isPrivate: string;
     minAge: number;
     place: string;
     created_at: string;

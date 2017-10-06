@@ -49,10 +49,12 @@ export class UserSearchComponent implements OnInit {
         console.log(error);
         return Observable.of<User[]>([]);
       });
+      this.guests=[];
   }
  
   addToInvitation(user: User): void {
-    this.guests.push(user);
+      console.log(user.name)
+      this.guests.push(user);
       localStorage.setItem('guestUsers',JSON.stringify(this.guests));
     //this.router.navigate(link);
   }

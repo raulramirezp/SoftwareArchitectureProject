@@ -82,6 +82,37 @@
 		</div>
 	</div>
 	</div>
+        <div class="row sdiv">
+            <div class="col">
+            <h2>Invitaciones a eventos</h2>
+        </div>
+            <div *ngFor="let user of usersRequests" class="row border rounded evdiv">
+	<div class="col-8">
+	<div class="media" style="margin-top: 10px">
+
+  <div class="media-left">
+    <img src="https://www.w3schools.com/bootstrap/img_avatar2.png" class="media-object" style="width:60px">
+  </div>
+  <div class="media-body" style="margin-left: 10px">
+    <h4 class="media-heading">{{user.name}} {{user.lastname}}</h4>
+    <p>Correo: {{user.email}}</p>
+  </div>
+</div>
+	</div>
+	<div class="col-4" style="text-align: right">
+		<div class="btn-group">
+		  	<a (click)="aceptFriend(user.id)" class="btn btn-default" href="#">
+   				<i class="fa fa-check-square-o fa-2x" aria-hidden="true" title="Aceptar Solicitud"></i>
+  			</a>
+  			<a class="btn btn-default" href="#">
+   				<i class="fa fa-times fa-2x" aria-hidden="true" title="Rechazar"></i>
+  			</a>
+  			<a (click)="viewProfile(user.id)" class="btn btn-default" href="#">
+   				<i class="fa fa-user-circle fa-2x" aria-hidden="true" title="Ver perfil"></i>
+  			</a>
+		</div>
+	</div>
+	</div>
 <!--
 		<div class="row border rounded evdiv">
 	<div class="col-8">
