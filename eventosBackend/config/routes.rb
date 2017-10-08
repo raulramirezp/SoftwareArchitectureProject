@@ -1,18 +1,17 @@
 Rails.application.routes.draw do
   # resources :friendships
   # resources :relationships
-  resources :eventdates
   # resources :users
   resources :categories
   # resources :invitations
   resources :participants
-  resources :evendates
   # resources :events
   resources :authentications
 
   resources :users do
     collection do
-      get 'search/:id', to: "users#search"
+      get 'search', to: "users#search"
+      get 'searchfriend', to: "users#search_friend"
     end
   end
 
@@ -42,14 +41,16 @@ Rails.application.routes.draw do
   resources :invitations, only: [:create, :index] do
     collection do
       get 'acept/:id', to: "invitations#acept"
-      get 'decline', to: "invitations#decline"
+      get 'decline/:id', to: "invitations#decline"
       get 'eventsrequest', to: "invitations#eventRequests"
     end
   end
   resources :events do
     collection do
       get 'find_coincidences', to: "events#find_coincidences"
-      get 'followevents', to: "events#followevents"
+      get 'followevents', to: "events#follow_events"
+      get 'myevents', to: "events#my_events"
+      get ':id/assistants', to: "events#my_assistants"
     end
   end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

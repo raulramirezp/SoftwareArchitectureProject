@@ -1,14 +1,11 @@
 class User < ApplicationRecord
   require 'date'
 
-  has_many :events
-  has_many :users, :source => :relationship, :through => :relationship
+  has_many :events, dependent: :destroy
+  has_many :users, :source => :relationship, :through => :relationship, dependent: :destroy
   has_many :users, :source => :friendship, :through => :friendship
-  has_many :participants
-  has_many :invitations
-  has_many :events, through: :event_invite
-  has_many :events, through: :participant
-  has_one :authentication
+  has_many :invitations, dependent: :destroy
+  has_one :authentication, dependent: :destroy
 
   acts_as_follower
 
@@ -25,32 +22,38 @@ class User < ApplicationRecord
 
   validates :name, presence: true
   validates :lastname, presence: true
-  validates :nickname, presence: true
+  validates :nickname, presence: true, uniqueness: true
   validates :birthdate, presence: true
-  validates :email, presence: true, format: { with: /\A[^@\s]+@([^@\s]+\.)+[^@\s]+\z/, message: "No valid format"}
+  validates :email, presence: true, format: { with: /\A[^@\s]+@([^@\s]+\.)+[^@\s]+\z/, message: "No valid format"}, uniqueness: true
 
   def self.search(search)
-    where('name LIKE ? OR lastname LIKE ? OR email LIKE ?',"%#{search}%","%#{search}%","%#{search}%")
+    where('name LIKE ? OR lastname LIKE ? OR email LIKE ? OR nickname LIKE ?',"%#{search}%","%#{search}%","%#{search}%","%#{search}%")
   end
 
   def invite(u)
-    if Friendship.exists?(user_id: self.id, friend_id: u.id)
-      err_msg = "Ya son amigos"
+    if self.id == u.id
+      err_msg = "Ya eres amigo tuyo"
       errors[:base] << (err_msg)
     else
-      if Relationship.exists?(user_id: u.id, invited_id: self.id)
-        err_msg = "Ya hay una solicitud de esta persona"
+      if Friendship.exists?(user_id: self.id, friend_id: u.id)
+        err_msg = "Ya son amigos"
         errors[:base] << (err_msg)
       else
-        if Relationship.exists?(user_id: self.id, invited_id: u.id)
-          err_msg = "Ya hay una solicitud para esta persona"
-          errors[:relation] << (err_msg)
+        if Relationship.exists?(user_id: u.id, invited_id: self.id)
+          err_msg = "Ya hay una solicitud de esta persona"
+          errors[:base] << (err_msg)
+          p "Ya hay una solicitud de esta persona"
         else
-          @r = Relationship.new(user_id: self.id, invited_id: u.id)
-          if @r.valid?
-            @r.save
+          if Relationship.exists?(user_id: self.id, invited_id: u.id)
+            err_msg = "Ya hay una solicitud para esta persona"
+            errors[:relation] << (err_msg)
           else
-            @r.errors.messages
+            @r = Relationship.new(user_id: self.id, invited_id: u.id)
+            if @r.valid?
+              @r.save
+            else
+              @r.errors.messages
+            end
           end
         end
       end

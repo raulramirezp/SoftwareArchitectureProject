@@ -20,10 +20,15 @@ class EventsController < ApiController
 
   # POST /events
   def create
+    @cu = current_user
     # raise params.inspect
-    @event = Event.new(name: params[:name], assistants: params[:assistants], category_id: params[:category_id], user_id: params[:user_id], isPrivate: params[:isPrivate], minAge: params[:minAge], place: params[:place])
+    @event = Event.new(name: params[:name], assistants: params[:assistants],
+      category_id: params[:category_id], user_id: params[:user_id],
+      isPrivate: params[:isPrivate], minAge: params[:minAge], place: params[:place],
+      beginAt: params[:beginAt], endAt: params[:endAt])
 
     if @event.save
+      @cu.follow @event
       render json: @event, status: :created, location: @event
     else
       render json: @event.errors, status: :unprocessable_entity
@@ -49,9 +54,25 @@ class EventsController < ApiController
     render json: @ev
   end
 
-  def followevents
+  def follow_events
     @cu = current_user
     @ans = @cu.following_event
+    render json: @ans
+  end
+
+  def my_events
+    @cu = current_user
+    @events = Event.where(user_id: @cu.id)
+    render json: @events
+  end
+
+  #Revisar! Por quiery n+1
+  def my_assistants
+    @ev = Event.find(params[:id])
+    @ans = []
+    @ev.followings.each do |f|
+      @ans.push(User.find(f.follower_id))
+    end
     render json: @ans
   end
 
@@ -63,6 +84,6 @@ class EventsController < ApiController
 
     # Only allow a trusted parameter "white list" through.
     def event_params
-      params.require(:event).permit(:name, :assistants, :category_id, :user_id, :isPrivate, :minAge, :place)
+      params.require(:event).permit(:name, :assistants, :category_id, :user_id, :isPrivate, :minAge, :place, :beginAt, :endAt)
     end
 end

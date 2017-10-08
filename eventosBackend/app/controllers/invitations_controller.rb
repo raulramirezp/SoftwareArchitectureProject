@@ -47,7 +47,8 @@ class InvitationsController < ApiController
       @done = false
     else
       @cu.follow(@ev)
-      @r = Invitation.where(user_id: @cu.id, invited_id: params[:invited_id].to_i,event_id: @ev.id)
+      @r = Invitation.where(invited_id: @cu.id, event_id: @ev.id)
+      p @r
       @r.delete_all
       @done = true
     end
@@ -57,7 +58,7 @@ class InvitationsController < ApiController
   def decline
     @cu = current_user
     @ev = Event.find(params[:id].to_i)
-    @r = Invitation.where(user_id: @cu.id, invited_id: params[:invited_id].to_i,event_id: @ev.id)
+    @r = Invitation.where(invited_id: @cu.id, event_id: @ev.id)
     @r.delete_all
     true
   end

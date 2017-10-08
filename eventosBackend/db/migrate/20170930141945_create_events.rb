@@ -8,6 +8,8 @@ class CreateEvents < ActiveRecord::Migration[5.1]
       t.boolean :isPrivate
       t.integer :minAge
       t.string :place
+      t.datetime :beginAt
+      t.datetime :endAt
 
       t.timestamps
     end

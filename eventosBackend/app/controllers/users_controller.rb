@@ -1,26 +1,33 @@
 class UsersController < ApiController
   before_action :set_user, only: [:show, :update, :destroy]
+  before_action :require_login, only: [:search_friend]
 
   # GET /users
   def index
     @users = User.all
-      if params[:search]
-        @users = User.search(params[:search])
-      end
-      @users.each
+
     render json: @users
   end
 
-  # def search
-  #   @users = User.all
-  #
-  #   if params[:search]
-  #     p params[:id]
-  #     @users = User.search(params[:id], params[:search])
-  #   end
-  #   @users.each
-  #   render json: @users
-  # end
+  def search
+    @users = User.all
+    if params[:search]
+      @users = User.search(params[:search])
+    end
+    @users.each
+    render json: @users
+  end
+
+  def search_friend
+    @cu = current_user
+    @usersfriends = []
+    @cu.friends.each do |f|
+      if (f.name.include? params[:search]) || (f.lastname.include? params[:search]) || (f.email.include? params[:search]) || (f.nickname.include? params[:search])
+        @usersfriends.push(f)
+      end
+    end
+    render json: @usersfriends
+  end
 
   # GET /users/1
   def show

@@ -29,15 +29,6 @@ ActiveRecord::Schema.define(version: 20171002161544) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "eventdates", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.datetime "beginAt"
-    t.datetime "endAt"
-    t.bigint "event_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["event_id"], name: "index_eventdates_on_event_id"
-  end
-
   create_table "events", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "name"
     t.integer "assistants"
@@ -46,6 +37,8 @@ ActiveRecord::Schema.define(version: 20171002161544) do
     t.boolean "isPrivate"
     t.integer "minAge"
     t.string "place"
+    t.datetime "beginAt"
+    t.datetime "endAt"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["category_id"], name: "index_events_on_category_id"
@@ -82,7 +75,7 @@ ActiveRecord::Schema.define(version: 20171002161544) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["event_id"], name: "index_invitations_on_event_id"
-    t.index ["invited_id"], name: "index_invitations_on_invited_id", unique: true
+    t.index ["invited_id"], name: "index_invitations_on_invited_id"
     t.index ["user_id"], name: "index_invitations_on_user_id"
   end
 
@@ -107,7 +100,6 @@ ActiveRecord::Schema.define(version: 20171002161544) do
     t.index ["nickname"], name: "index_users_on_nickname", unique: true
   end
 
-  add_foreign_key "eventdates", "events"
   add_foreign_key "events", "categories"
   add_foreign_key "events", "users"
   add_foreign_key "invitations", "events"
