@@ -17,7 +17,7 @@
       <div class="col-sm-3"></div>
       <label class="control-label col-sm-1 right-space" for="email">Email:</label>
       <input class="form-control col-sm-5" type="email" placeholder="Ingrese su email" aria-label="user_email" id="email " #user_email required
-      pattern="/^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/" alt="Ingrese su email" title="El correo debe ser de la forma correo@mail.com">
+       alt="Ingrese su email" title="El correo debe ser de la forma correo@mail.com">
     </div>
     <div class="form-group form-inline">
       <div class="col-sm-3"></div>
@@ -27,7 +27,7 @@
     <div class="form-group form-inline">
       <div class="col-sm-3"></div>
       <label for="user_dateDay" class="right-space col-sm-1">Nacimiento</label>
-      <input type="date" class="form-control col-sm-2 col-xs-4" #user_alldate id="email" style="width: 15em" reuired max="31-12-2013">
+      <input type="date" class="form-control col-sm-2 col-xs-4" #user_alldate id="email" style="width: 15em" reuired [max]="today">
     </div>
 
 

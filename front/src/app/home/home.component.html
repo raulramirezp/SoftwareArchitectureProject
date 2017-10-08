@@ -25,7 +25,7 @@
 						<div class="media" style="margin-top: 10px">
 
 							<div class="media-left">
-								<img src="https://www.w3schools.com/bootstrap/img_avatar4.png" class="media-object" style="width:60px">
+								<img src="https://www.w3schools.com/bootstrap/img_avatar2.png" class="media-object" style="width:60px">
 							</div>
 							<div class="media-body" style="margin-left: 10px">
 								<h4 class="media-heading">{{user.name}} {{user.lastname}}</h4>
@@ -73,8 +73,8 @@
 							<a (click)="aceptFriend(user.id)" class="btn btn-default" href="#">
    				<i class="fa fa-check-square-o fa-2x" aria-hidden="true" title="Aceptar Solicitud"></i>
   			</a>
-							<a class="btn btn-default" href="#">
-   				<i class="fa fa-times fa-2x" aria-hidden="true" title="Rechazar"></i>
+							<a (click)="declineFriendRequest(user.id)" class="btn btn-default" href="#">
+   				<i class="fa fa-times fa-2x" aria-hidden="true" title="Rechazar Solicitud"></i>
   			</a>
 							<a (click)="viewProfile(user.id)" class="btn btn-default" href="#">
    				<i class="fa fa-user-circle fa-2x" aria-hidden="true" title="Ver perfil"></i>
@@ -87,11 +87,11 @@
 						<h2>Invitaciones a eventos</h2>
 					</div>
 					<div *ngFor="let event of invitedEvents" class="row border rounded evdiv">
-						<div class="col-8">
+						<div class="col">
 							<div class="media" style="margin-top: 10px">
 
 								<div class="media-left">
-									<img src="https://www.w3schools.com/bootstrap/img_avatar2.png" class="media-object" style="width:60px">
+									<img src="assets/iconos/{{event.category_id}}.png" class="media-object" style="width:60px">
 								</div>
 								<div class="media-body" style="margin-left: 10px">
 									<h4 class="media-heading">{{event.name}}</h4>
@@ -102,11 +102,11 @@
 						<div class="col-4" style="text-align: right">
 							<div class="btn-group">
 								<a (click)="aceptEvent(event.id)" class="btn btn-default" href="#">
-   				<i class="fa fa-check-square-o fa-2x" aria-hidden="true" title="Aceptar Solicitud"></i>
-  			</a>
-								<a class="btn btn-default" href="#">
-   				<i class="fa fa-times fa-2x" aria-hidden="true" title="Rechazar"></i>
-  			</a>
+   								<i class="fa fa-check-square-o fa-2x" aria-hidden="true" title="Aceptar Solicitud"></i>
+  							</a>
+								<a (click)="declineEvent(event.id)" class="btn btn-default" href="#">
+   								<i class="fa fa-times fa-2x" aria-hidden="true" title="Rechazar Solicitud"></i>
+  							</a>
 							</div>
 						</div>
 					</div>
@@ -135,6 +135,63 @@
 							<a class="btn btn-default" href="#">
    				<i class="fa fa-user-circle fa-2x" aria-hidden="true" title="Ver perfil"></i>
   			</a>
+		</div>
+	</div>
+-->
+				</div>
+				<div class="row sdiv">
+					<div class="col">
+						<h2>Mis Eventos</h2>
+					</div>
+					<div *ngFor="let event of myEvents" class="row border rounded evdiv">
+						<div class="col">
+							<div class="media" style="margin-top: 10px">
+
+								<div class="media-left">
+									<img src="assets/iconos/{{event.category_id}}.png" class="media-object" style="width:60px">
+								</div>
+								<div class="media-body" style="margin-left: 10px">
+									<h4 class="media-heading">{{event.name}}</h4>
+									<p>Fecha: {{event.beginAt}}</p>
+								</div>
+							</div>
+						</div>
+						<div class="col-4" style="text-align: right">
+							<div class="btn-group">
+								<a (click)="aceptEvent(event.id)" class="btn btn-default" href="#">
+									<i class="fa fa-edit fa-2x" aria-hidden="true" title="Editar Evento"></i>
+								</a>
+								<a (click)="removeEvent(event.id)" class="btn btn-default" href="#">
+									<i class="fa fa-times fa-2x" aria-hidden="true" title="Eliminar Evento"></i>
+								</a>
+							</div>
+						</div>
+					</div>
+					<!--
+		<div class="row border rounded evdiv">
+	<div class="col-8">
+	<div class="media" style="margin-top: 10px">
+
+							<div class="media-left">
+								<img src="https://www.w3schools.com/bootstrap/img_avatar3.png" class="media-object" style="width:60px">
+							</div>
+							<div class="media-body" style="margin-left: 10px">
+								<h4 class="media-heading">John Doe</h4>
+								<p></p>
+							</div>
+						</div>
+					</div>
+					<div class="col-4" style="text-align: right">
+						<div class="btn-group">
+							<a class="btn btn-default" href="#">
+					<i class="fa fa-check-square-o fa-2x" aria-hidden="true" title="Aceptar"></i>
+				</a>
+							<a class="btn btn-default" href="#">
+					<i class="fa fa-times fa-2x" aria-hidden="true" title="Rechazar"></i>
+				</a>
+							<a class="btn btn-default" href="#">
+					<i class="fa fa-user-circle fa-2x" aria-hidden="true" title="Ver perfil"></i>
+				</a>
 		</div>
 	</div>
 -->
@@ -170,6 +227,9 @@
 							<a (click)="viewProfile(user.id)" class="btn btn-default" href="#">
    							<i class="fa fa-user-circle fa-2x" aria-hidden="true" title="Ver perfil"></i>
   						</a>
+							<a (click)="removeFriend(user.id)" class="btn btn-default" href="#">
+								<i class="fa fa-times fa-2x" aria-hidden="true" title="Eliminar Amigo"></i>
+							</a>
 						</div>
 					</div>
 				</div>
@@ -205,11 +265,4 @@
 			</div>
 		</div>
 	</div>
-	<a routerLink="/addevent"><button type="submit" class="btn btn-success custom-width-buttons">Añadir Evento</button></a>
-	<h3>Mis Eventos:</h3>
-	<ul>
-		<li *ngFor="let events of myevents">
-			{{event.name}} ( {{event.place}} ) - <a (click)="viewProfile(user.id)">Ver perfil</a>
-		</li>
-	</ul>
 	<!-- <a routerLink="/login"><button type="submit" class="btn btn-success custom-width-buttons">Logout</button></a> -->

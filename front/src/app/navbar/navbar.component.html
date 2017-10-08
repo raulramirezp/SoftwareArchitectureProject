@@ -8,10 +8,10 @@
       <div class="collapse navbar-collapse" id="navbarsExampleDefault">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item">
-            <a class="nav-link" routerLink="/home">Home<span class="sr-only">(current)</span></a>
+            <a class="nav-link" routerLink="/home" (click)="clearStorage()">Home<span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" routerLink="/home">Perfil<span class="sr-only">(current)</span></a>
+            <a class="nav-link" routerLink="/home" (click)="clearStorage()">Perfil<span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item">
             <a (click)="logout()" class="nav-link" routerLink="/login">Cerrar Sesión<span class="sr-only">(current)</span></a>
@@ -37,6 +37,6 @@
         </form>
       </div>
     </nav>
-    
+
     <script>window.jQuery || document.write('<script src="../../../../assets/js/vendor/jquery.min.js"><\/script>')</script>
 </div>

@@ -14,8 +14,12 @@ export class EventService {
   private eventsUrl = this.localhostaddress.concat('events');
   private eventDatesUrl = this.localhostaddress.concat('eventdates');
   private categoriesUrl = this.localhostaddress.concat('categories');
-  private invitationsUrl = this.localhostaddress.concat('invitations/eventsrequest/');
-  private aceptEventUrl = this.localhostaddress.concat('invitations/acept')
+  private invitationsUrl = this.localhostaddress.concat('invitations');
+  private invitationsRequestsUrl = this.localhostaddress.concat('invitations/eventsrequest/');
+  private aceptEventUrl = this.localhostaddress.concat('invitations/acept/')
+  private declineEventUrl = this.localhostaddress.concat('invitations/decline/')
+  private myEventsUrl = this.localhostaddress.concat('events/myevents')
+  private followEventsUrl = this.localhostaddress.concat('events/followevents')
   private currentUser: User;
   private headers;
   constructor(private http: Http) {
@@ -24,21 +28,6 @@ export class EventService {
     this.headers.append('Content-Type', 'application/json');
     this.headers.append('Authorization', 'Token token='.concat(this.currentUser.token));
   }
-  //    getCreatedEvents(){
-  //        this.headers= new Headers();
-  //        this.headers.append('Content-Type', 'application/json');
-  //        console.log("this is another test");
-  //        this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
-  //        this.headers.append('Authorization', 'Token token='.concat(this.currentUser.token));
-  //        console.log("test");
-  //        return this.http.get(this.usersUrl, {headers: this.headers}).map((response: Response) => response.json());
-  //    }
-  // getEvents(event_id) {
-  //   return this.http.get(this.eventsUrl)
-  //     .toPromise()
-  //     .then(response => response.json().data as Event[])
-  //     .catch(this.handleError)
-  // }
   getEvent(id: string){
     const url = `${this.eventsUrl}/${id}`;
     this.headers= new Headers();
@@ -46,15 +35,15 @@ export class EventService {
     this.headers.append('Authorization', 'Token token='.concat(this.currentUser.token));
     return this.http.get(url, {headers: this.headers}).map((response: Response) => response.json());
     }
-  //    getCreatedEvents(){
-  //        this.headers= new Headers();
-  //        this.headers.append('Content-Type', 'application/json');
-  //        console.log("this is another test");
-  //        this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
-  //        this.headers.append('Authorization', 'Token token='.concat(this.currentUser.token));
-  //        console.log("test");
-  //        return this.http.get(this.usersUrl, {headers: this.headers}).map((response: Response) => response.json());
-  //    }
+   getMyCreatedEvents(){
+     this.headers= new Headers();
+     this.headers.append('Content-Type', 'application/json');
+     console.log("this is another test");
+     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+     this.headers.append('currentUser', this.currentUser.id);
+     this.headers.append('Authorization', 'Token token='.concat(this.currentUser.token));
+     return this.http.get(this.myEventsUrl, {headers: this.headers}).map((response: Response) => response.json());
+   }
   getEvents(event_id) {
     return this.http.get(this.eventsUrl)
       .toPromise()
@@ -76,10 +65,13 @@ export class EventService {
     else {
       privat = false;
     }
-
-    console.log(this.currentUser.token);
+    this.headers= new Headers();
+    this.headers.append('Content-Type', 'application/json');
+    this.headers.append('currentUser', this.currentUser.id);
+    this.headers.append('Authorization', 'Token token='.concat(this.currentUser.token));
+    console.log(name,assistants,privat,minAge,place,beginAt,endAt)
     return this.http
-      .post(this.eventsUrl, JSON.stringify({ name: name, assistants: assistants, category_id: category_id, user_id: String(this.currentUser.id), isPrivate: privat, minAge: minAge, place: place }), { headers: this.headers })
+      .post(this.eventsUrl, JSON.stringify({ name: name, assistants: assistants, category_id: category_id, user_id: String(this.currentUser.id), isPrivate: privat, minAge: minAge, place: place, beginAt: beginAt, endAt: endAt }), { headers: this.headers })
       .toPromise()
       .then(response => response.json() as Event)
       .catch(this.handleError);
@@ -111,7 +103,7 @@ export class EventService {
     this.headers.append('currentUser', this.currentUser.id);
     this.headers.append('Authorization', 'Token token='.concat(this.currentUser.token));
     console.log("test");
-    return this.http.get(this.invitationsUrl, { headers: this.headers }).map((response: Response) => response.json());
+    return this.http.get(this.invitationsRequestsUrl, { headers: this.headers }).map((response: Response) => response.json());
   }
   getMyEvents(){
     this.headers = new Headers();
@@ -119,7 +111,7 @@ export class EventService {
     this.headers.append('currentUser', this.currentUser.id);
     this.headers.append('Authorization', 'Token token='.concat(this.currentUser.token));
     console.log("test");
-    return this.http.get(this.invitationsUrl, { headers: this.headers }).map((response: Response) => response.json());
+    return this.http.get(this.followEventsUrl, { headers: this.headers }).map((response: Response) => response.json());
   }
   getCategories() {
     this.headers = new Headers();
@@ -130,11 +122,23 @@ export class EventService {
     return this.http.get(this.categoriesUrl, { headers: this.headers }).map((response: Response) => response.json());
   }
   aceptEvent(id: string) {
-    console.log("this is another test 1")
     this.headers = new Headers();
     this.headers.append('currentUser', this.currentUser.id);
     this.headers.append('Authorization', 'Token token='.concat(this.currentUser.token));
     return this.http.get(this.aceptEventUrl + id, { headers: this.headers }).map((response: Response) => response.json());
+  }
+  declineEvent(id: string) {
+    this.headers = new Headers();
+    this.headers.append('Content-Type', 'application/json');
+    this.headers.append('currentUser', this.currentUser.id);
+    this.headers.append('Authorization', 'Token token='.concat(this.currentUser.token));
+    return this.http.get(this.declineEventUrl + id, { headers: this.headers }).map((response: Response) => response.json());
+  }
+  removeEvent(id: string) {
+    this.headers = new Headers();
+    this.headers.append('currentUser', this.currentUser.id);
+    this.headers.append('Authorization', 'Token token='.concat(this.currentUser.token));
+    return this.http.delete(this.eventsUrl + "/" + id, { headers: this.headers }).map((response: Response) => response.json());
   }
   private handleError(error: any): Promise<any> {
     console.error('An error occurred', error); // for demo purposes only

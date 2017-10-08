@@ -19,7 +19,9 @@ export class UserService {
   private inviteUrl = this.localhostaddress.concat('relationships/invite/');
   private requestsUrl = this.localhostaddress.concat('relationships/requests/');
   private aceptRequestUrl = this.localhostaddress.concat('relationships/acept/');
+  private declineRequestUrl = this.localhostaddress.concat('relationships/decline/');
   private friendsUrl = this.localhostaddress.concat('friendships/friends/');
+  private removeFriendUrl = this.localhostaddress.concat('friendships/remove/');
   constructor(private http: Http, private router: Router) {
     //     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
     //   this.headers= new Headers();
@@ -31,7 +33,6 @@ export class UserService {
     this.headers = new Headers();
     this.headers.append('Content-Type', 'application/json');
     //    this.headers.append('Authorization', 'Token token='.concat(this.currentUser.token));
-    console.log(12345)
     return this.http
       .post(this.loginUrl, JSON.stringify({ email: user_email, password: user_password }), { headers: this.headers }).map((response: Response) => {
         // res.json().data as User;
@@ -66,7 +67,6 @@ export class UserService {
 
     this.headers = new Headers();
     this.headers.append('currentUser', this.currentUser.id);
-    console.log("this is another test");
     this.headers.append('Authorization', 'Token token='.concat(this.currentUser.token));
     return this.http.get(this.friendsUrl, { headers: this.headers }).map((response: Response) => response.json());
   }
@@ -74,17 +74,14 @@ export class UserService {
     const url = this.friendsUrl;
     this.headers = new Headers();
     this.headers.append('currentUser', this.currentUser.id);
-    console.log("this is another test");
     this.headers.append('Authorization', 'Token token='.concat(this.currentUser.token));
     return this.http.get(this.friendsUrl, { headers: this.headers }).map((response: Response) => response.json());
   }
   getAll() {
     this.headers = new Headers();
     this.headers.append('Content-Type', 'application/json');
-    console.log("this is another test");
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
     this.headers.append('Authorization', 'Token token='.concat(this.currentUser.token));
-    console.log("test defiitive");
     return this.http.get(this.usersUrl, { headers: this.headers }).map((response: Response) => response.json());
   }
   getRequests() {
@@ -94,25 +91,33 @@ export class UserService {
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
     this.headers.append('currentUser', this.currentUser.id);
     this.headers.append('Authorization', 'Token token='.concat(this.currentUser.token));
-    console.log("test");
     return this.http.get(this.requestsUrl, { headers: this.headers }).map((response: Response) => response.json());
   }
   addFriend(id: string) {
-    console.log("this is another test")
     this.headers = new Headers();
     this.headers.append('currentUser', this.currentUser.id);
     this.headers.append('Authorization', 'Token token='.concat(this.currentUser.token));
     return this.http.get(this.inviteUrl + id, { headers: this.headers }).map((response: Response) => response.json());
   }
   aceptFriend(id: string) {
-    console.log("this is another test 1")
     this.headers = new Headers();
     this.headers.append('currentUser', this.currentUser.id);
     this.headers.append('Authorization', 'Token token='.concat(this.currentUser.token));
     return this.http.get(this.aceptRequestUrl + id, { headers: this.headers }).map((response: Response) => response.json());
   }
+  declineRequestFriend(id: string) {
+    this.headers = new Headers();
+    this.headers.append('currentUser', this.currentUser.id);
+    this.headers.append('Authorization', 'Token token='.concat(this.currentUser.token));
+    return this.http.get(this.declineRequestUrl + id, { headers: this.headers }).map((response: Response) => response.json());
+  }
+  removeFriend(id: string) {
+    this.headers = new Headers();
+    this.headers.append('currentUser', this.currentUser.id);
+    this.headers.append('Authorization', 'Token token='.concat(this.currentUser.token));
+    return this.http.get(this.removeFriendUrl + id, { headers: this.headers }).map((response: Response) => response.json());
+  }
   viewProfile(user_id: string) {
-    console.log("test 5");
     this.headers = new Headers();
     this.headers.append('Content-Type', 'application/json');
     this.headers.append('Authorization', 'Token token='.concat(this.currentUser.token));
@@ -122,7 +127,6 @@ export class UserService {
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
     this.headers = new Headers();
     this.headers.append('Content-Type', 'application/json');
-    console.log('this is a test');
     console.log(this.usersUrl);
     return this.http
       .post(this.usersUrl, JSON.stringify({ name: firstName, lastname: lastName, nickname: nickname, birthdate: birthdate, email: email }), { headers: this.headers })

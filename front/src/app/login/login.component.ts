@@ -30,9 +30,7 @@ export class LoginComponent implements OnInit {
       },
       error => {
         console.log(error);
-        alert("El usuario no existe");
-        this.router.navigate(['/login']);
-        return "No hay usuario"
+        alert(error._body);
       });
 
   }

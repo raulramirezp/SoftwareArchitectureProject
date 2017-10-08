@@ -32,4 +32,10 @@ export class NavbarComponent implements OnInit {
         this.userService.logout();
     }
 
+    clearStorage(){
+      if (this.router.url == '/addevent'){
+        localStorage.removeItem('guestUsers')
+      }
+    }
+
 }
