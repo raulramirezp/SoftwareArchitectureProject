@@ -19,12 +19,15 @@ export class NavbarComponent implements OnInit {
 }
 
   ngOnInit() {
+      this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+      this.isLogged();
   }
     private isLogged(){
         if(this.currentUser==null){
             return false;
         }
         else{
+            this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
             return true;
         }
     }

@@ -51,7 +51,7 @@ export class AddEventComponent implements OnInit {
               this.invitedUsers=JSON.parse(localStorage.getItem('guestUsers'));
               if (this.invitedUsers != null){
                 for(var i=0;i<this.invitedUsers.length;i++){
-                  this.eventService.sendInvitations(this.invitedUsers[i].id, event.id)
+                  this.eventService.sendInvitations(this.invitedUsers[i].id, event.id.toString())
                 }
               }
               localStorage.removeItem('guestUsers');

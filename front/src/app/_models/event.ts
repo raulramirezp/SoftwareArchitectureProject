@@ -1,12 +1,14 @@
 export class Event {
-    id: string;
+    id: number;
     name: string;
     assistants: number;
-    category_id: string;
-    user_id: string;
-    isPrivate: string;
+    category_id: number;
+    user_id: number;
+    isPrivate: boolean;
     minAge: number;
     place: string;
+    beginAt: string;
+    endAt: string;
     created_at: string;
     updated_at: string;
 }

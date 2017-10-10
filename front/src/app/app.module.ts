@@ -21,6 +21,8 @@ import { ProfileComponent } from './profile/profile.component';
 
 import { AuthGuard } from './_guards/auth.guard';
 import { UserSearchComponent } from './user-search/user-search.component';
+import { GeneralSearchComponent } from './general-search/general-search.component';
+import { EventDetailComponent } from './event-detail/event-detail.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +37,9 @@ import { UserSearchComponent } from './user-search/user-search.component';
     EditEventComponent,
     MyCalendarComponent,
     ProfileComponent,
-    UserSearchComponent
+    UserSearchComponent,
+    GeneralSearchComponent,
+    EventDetailComponent
   ],
   imports: [
     BrowserModule,  

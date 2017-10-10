@@ -1,0 +1,29 @@
+.search-result{
+  width: 100%;
+  /*width:195px;
+  height: 16px;
+  padding: 5px;
+  background-color: white;
+  cursor: pointer;*/
+}
+
+.search-result:hover {
+  background-color: #83cfe5 !important;
+}
+
+.search-result:active{
+  background-color: black;
+}
+
+#search-box{
+  width: 200px;
+  height: 20px;
+}
+
+.option-box{
+  height: 8em;
+  background: whitesmoke;
+  padding: 0;
+  border: 1px solid rgba(0,0,0,.15);
+  border-radius: 5px;
+}
