@@ -44,7 +44,12 @@ export class EditEventComponent implements OnInit {
   };
   (<HTMLInputElement>document.getElementById('ev_assistants')).value = String(this.event.assistants);
   (<HTMLInputElement>document.getElementById('ev_place')).value = String(this.event.place);
-  // (<HTMLInputElement>document.getElementById('ev_beginAt')).value = String(this.event.beginAt);
+  let parsedBeginDate = String(this.event.beginAt).split(' ').join('T');
+  (<HTMLInputElement>document.getElementById('ev_beginAt')).value = parsedBeginDate;
+  (<HTMLInputElement>document.getElementById('ev_beginAt')).setAttribute('min',parsedBeginDate);
+  let parsedEndDate = String(this.event.endAt).split(' ').join('T');
+  (<HTMLInputElement>document.getElementById('ev_endAt')).value = parsedEndDate;
+  (<HTMLInputElement>document.getElementById('ev_endAt')).setAttribute('min',parsedBeginDate);
   // (<HTMLInputElement>document.getElementById('ev_endAt')).value = String(this.event.endAt);
   // localStorage.removeItem('eventToEdit');
 

@@ -21,6 +21,7 @@ import { ProfileComponent } from './profile/profile.component';
 
 import { AuthGuard } from './_guards/auth.guard';
 import { UserSearchComponent } from './user-search/user-search.component';
+import { LOCALE_ID } from '@angular/core';
 
 @NgModule({
   declarations: [
@@ -38,12 +39,12 @@ import { UserSearchComponent } from './user-search/user-search.component';
     UserSearchComponent
   ],
   imports: [
-    BrowserModule,  
+    BrowserModule,
     FormsModule,
     HttpModule,
     AppRoutingModule
   ],
-  providers: [UserService, EventService, AuthGuard],
+  providers: [UserService, EventService, AuthGuard, {provide: LOCALE_ID, useValue: 'es-co'}],
   bootstrap: [AppComponent]
-})  
+})
 export class AppModule { }

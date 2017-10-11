@@ -17,11 +17,11 @@ export class MyCalendarComponent implements OnInit {
 
   ngOnInit() {
     this.loadMyEvents();
-    this.loadCategories();
+    // this.loadCategories();
   }
 
   private loadMyEvents() {
-      this.eventService.getMyEvents().subscribe(events => { this.events = events; });
+      this.eventService.getMyEvents().subscribe(events => { this.events = events; this.loadCategories()});
   }
 
   loadCategories() {

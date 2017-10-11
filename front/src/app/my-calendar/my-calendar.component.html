@@ -7,8 +7,8 @@
 			</div>
 			<div class="media-body" style="margin-left: 10px">
 				<h5 class="media-heading"> {{event.name}} </h5>
-				<i class="fa fa-calendar" aria-hidden="true"></i> Fecha: 22 - 22 - 2222 <br>
-				<i class="fa fa-clock-o" aria-hidden="true"></i> Hora: 22:22
+				<i class="fa fa-calendar" aria-hidden="true"></i> Fecha: {{event.beginAt | date: 'fullDate'}} <br>
+				<i class="fa fa-clock-o" aria-hidden="true"></i> Hora: {{event.beginAt | date:'shortTime' }}
 			</div>
 		</div>
 	</div>

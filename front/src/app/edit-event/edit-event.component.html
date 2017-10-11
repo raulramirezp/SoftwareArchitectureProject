@@ -61,12 +61,12 @@
     <div class="form-group form-inline">
       <div class="col-sm-2 col-xs-1"></div>
       <label class="control-label col-sm-2 col-xs-3 right-space" for="eventBeginAt">Fecha Inicio</label>
-      <input class="form-control col-sm-5 col-sx-4" type="datetime-local" #eventBeginAt id="ev_beginAt" style="width: 15em" required [min]="today" [value]="today">
+      <input class="form-control col-sm-5 col-sx-4" type="datetime-local" #eventBeginAt id="ev_beginAt" style="width: 15em" required>
     </div>
     <div class="form-group form-inline">
       <div class="col-sm-2 col-xs-1"></div>
       <label class="control-label col-sm-2 col-xs-3 right-space" for="eventEndAt">Fecha Final</label>
-      <input class="form-control col-sm-5 col-sx-4" type="datetime-local" #eventEndAt id="ev_endAt" style="width: 15em" required [attr.min]="endDate" [value]="eventBeginAt.value" (click)="updateFinal(eventBeginAt.value)">
+      <input class="form-control col-sm-5 col-sx-4" type="datetime-local" #eventEndAt id="ev_endAt" style="width: 15em" required [attr.min]="endDate" (click)="updateFinal(eventBeginAt.value)">
     </div>
     <!-- <div class="form-group form-inline">
       <div class="col-sm-2 col-xs-1"></div>

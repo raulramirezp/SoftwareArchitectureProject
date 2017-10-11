@@ -95,7 +95,8 @@
 								</div>
 								<div class="media-body" style="margin-left: 10px">
 									<h4 class="media-heading">{{event.name}}</h4>
-									<p>Fecha: {{event.beginAt}}</p>
+									<i class="fa fa-calendar" aria-hidden="true"></i> Fecha: {{event.beginAt | date: 'fullDate'}} <br>
+									<i class="fa fa-clock-o" aria-hidden="true"></i> Hora: {{event.beginAt | date:'shortTime' }}
 								</div>
 							</div>
 						</div>
@@ -152,7 +153,8 @@
 								</div>
 								<div class="media-body" style="margin-left: 10px">
 									<h4 class="media-heading">{{event.name}}</h4>
-									<p>Fecha: {{event.beginAt}}</p>
+									<i class="fa fa-calendar" aria-hidden="true"></i> Fecha: {{event.beginAt | date: 'fullDate'}} <br>
+									<i class="fa fa-clock-o" aria-hidden="true"></i> Hora: {{event.beginAt | date:'shortTime' }}
 								</div>
 							</div>
 						</div>
