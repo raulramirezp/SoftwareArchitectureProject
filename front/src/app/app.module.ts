@@ -23,6 +23,7 @@ import { AuthGuard } from './_guards/auth.guard';
 import { UserSearchComponent } from './user-search/user-search.component';
 import { GeneralSearchComponent } from './general-search/general-search.component';
 import { EventDetailComponent } from './event-detail/event-detail.component';
+import { AdvanceSearchComponent } from './advance-search/advance-search.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { EventDetailComponent } from './event-detail/event-detail.component';
     ProfileComponent,
     UserSearchComponent,
     GeneralSearchComponent,
-    EventDetailComponent
+    EventDetailComponent,
+    AdvanceSearchComponent
   ],
   imports: [
     BrowserModule,  

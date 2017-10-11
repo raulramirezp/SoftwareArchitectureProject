@@ -1,0 +1,44 @@
+<div align="center" class="top">
+  <h1>Busqueda Avanzada de Eventos</h1>
+  <br />
+  <form class="form-horizontal">
+    <div class="form-group form-inline">
+      <div class="col-sm-2 col-xs-1"></div>
+      <label class="control-label col-sm-2 col-xs-3 right-space" for="eventName">Nombre</label>
+      <input class="form-control col-sm-5 col-sx-4" type="text" #eventName id="ev_name" style="width: 15em" placeholder="Nombre evento">
+    </div>
+    <div class="form-group form-inline">
+      <div class="col-sm-2 col-xs-1"></div>
+      <label class="control-label col-sm-2 col-xs-3 right-space" for="eventCategory">Categoría</label>
+      <select class="form-control col-sm-5 col-sx-4" #eventCategory>
+        <!-- <option [value]="null" disabled selected hidden>Seleccione uno...</option> -->
+        <option [value]=null>Cualquiera</option>
+        <option *ngFor="let category of categories" [value]="category.id">{{category.description}}</option>
+      </select>
+      <!-- <input class="form-control col-sm-5 col-sx-4" type="text" #eventCategory id="email" style="width: 15em" required> -->
+    </div>
+    <div class="form-group form-inline">
+      <div class="col-sm-2 col-xs-1"></div>
+      <label class="control-label col-sm-2 col-xs-3 right-space" for="eventVisibility">Visibilidad</label>
+      <select class="form-control col-sm-5 col-sx-4" #eventVisibility>
+        <option [value]=null selected>Cualquiera</option>  
+        <option [value]="false" selected>Público</option>
+        <option [value]="true">Privado</option>
+      </select>
+      <!-- <input class="form-control col-sm-5 col-sx-4" type="text" #eventCategory id="email" style="width: 15em" required> -->
+    </div>
+    <div class="form-group form-inline">
+      <div class="col-sm-2 col-xs-1"></div>
+      <label class="control-label col-sm-2 col-xs-3 right-space" for="eventBeginAt">Fecha Inicio</label>
+      <input class="form-control col-sm-5 col-sx-4" type="datetime-local" #eventBeginAt id="ev_beginAt" style="width: 15em" [min]="today" [value]="today">
+    </div>
+    <div class="form-group form-inline">
+      <div class="col-sm-2 col-xs-1"></div>
+      <label class="control-label col-sm-2 col-xs-3 right-space" for="eventEndAt">Fecha Final</label>
+      <input class="form-control col-sm-5 col-sx-4" type="datetime-local" #eventEndAt id="ev_endAt" style="width: 15em" [attr.min]="endDate" [value]="eventBeginAt.value" (click)="updateFinal(eventBeginAt.value)">
+    </div>
+    <button (click)="search(eventName.value, getValueFromSelect(eventCategory.value), getValueFromSelect(eventVisibility.value), eventBeginAt.value, eventEndAt.value);" type="submit" class="btn btn-success custom-width-buttons">Buscar Eventos</button>
+    <a routerLink="/home"><button type="submit" class="btn btn-success custom-width-buttons">Atras</button></a>
+  </form>
+
+</div>

@@ -28,7 +28,10 @@ export class EventService {
     this.headers.append('Content-Type', 'application/json');
     this.headers.append('Authorization', 'Token token='.concat(this.currentUser.token));
   }
-  getEvent(id: string){
+  getSpecificEvents(name: string, category_id:string, isPrivate:string, beginAt:string, endAt:string){
+      
+  }    
+    getEvent(id: string){
     const url = `${this.eventsUrl}/${id}`;
     this.headers= new Headers();
     this.headers.append('Content-Type', 'application/json');
