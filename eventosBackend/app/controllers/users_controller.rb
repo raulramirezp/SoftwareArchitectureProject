@@ -14,7 +14,7 @@ class UsersController < ApiController
     if params[:search]
       @users = User.search(params[:search])
     end
-    @users.each
+    # @users.each
     render json: @users
   end
 
@@ -22,7 +22,7 @@ class UsersController < ApiController
     @cu = current_user
     @usersfriends = []
     @cu.friends.each do |f|
-      if (f.name.include? params[:search]) || (f.lastname.include? params[:search]) || (f.email.include? params[:search]) || (f.nickname.include? params[:search])
+      if (f.name.include? params[:search]) || (f.lastname.include? params[:search]) || (f.email.split("@")[0].include? params[:search]) || (f.nickname.include? params[:search])
         @usersfriends.push(f)
       end
     end

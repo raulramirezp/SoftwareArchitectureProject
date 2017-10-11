@@ -76,6 +76,27 @@ class EventsController < ApiController
     render json: @ans
   end
 
+  #Revisar! query n+1
+  def inviteds
+    # @inv = User.includes(:invitations).where(invitations: {event_id: params[:id]})
+    @inv = Invitation.where(event_id: params[:id])
+    @ans = []
+    @inv.each do |i|
+      @ans.push(User.find(i.invited_id))
+    end
+    render json: @ans
+  end
+
+  def remove_from_event
+    @us = User.find(params[:user_id])
+    @ev = Event.find(params[:event_id])
+    if @us.unfollow @ev
+      render json: { unfollow: true }
+    else
+      render json: @us.errors, status: :unprocessable_entity
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_event

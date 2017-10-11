@@ -43,6 +43,7 @@ Rails.application.routes.draw do
       get 'acept/:id', to: "invitations#acept"
       get 'decline/:id', to: "invitations#decline"
       get 'eventsrequest', to: "invitations#eventRequests"
+      post 'removeinvitation', to: "invitations#destroy_with_params"
     end
   end
   resources :events do
@@ -51,6 +52,8 @@ Rails.application.routes.draw do
       get 'followevents', to: "events#follow_events"
       get 'myevents', to: "events#my_events"
       get ':id/assistants', to: "events#my_assistants"
+      get ':id/inviteds', to: "events#inviteds"
+      post 'removefromevent', to: "events#remove_from_event"
     end
   end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

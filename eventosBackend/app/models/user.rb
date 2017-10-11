@@ -3,7 +3,7 @@ class User < ApplicationRecord
 
   has_many :events, dependent: :destroy
   has_many :users, :source => :relationship, :through => :relationship, dependent: :destroy
-  has_many :users, :source => :friendship, :through => :friendship
+  has_many :users, :source => :friendship, :through => :friendship, dependent: :destroy
   has_many :invitations, dependent: :destroy
   has_one :authentication, dependent: :destroy
 
@@ -27,7 +27,7 @@ class User < ApplicationRecord
   validates :email, presence: true, format: { with: /\A[^@\s]+@([^@\s]+\.)+[^@\s]+\z/, message: "No valid format"}, uniqueness: true
 
   def self.search(search)
-    where('name LIKE ? OR lastname LIKE ? OR email LIKE ? OR nickname LIKE ?',"%#{search}%","%#{search}%","%#{search}%","%#{search}%")
+    where('name LIKE ? OR lastname LIKE ? OR SUBSTRING(`email`, 1, (LOCATE("@", `email`) - 1)) LIKE ? OR nickname LIKE ?',"%#{search}%","%#{search}%","%#{search}%","%#{search}%")
   end
 
   def invite(u)

@@ -16,12 +16,14 @@ class InvitationsController < ApiController
 
   # POST /invitations
   def create
-    @invitation = Invitation.new(user_id: params[:user_id], invited_id: params[:invited_id], event_id: params[:event_id])
+    if !Invitation.exists?(user_id: params[:user_id], invited_id: params[:invited_id], event_id: params[:event_id])
+      @invitation = Invitation.new(user_id: params[:user_id], invited_id: params[:invited_id], event_id: params[:event_id])
 
-    if @invitation.save
-      render json: @invitation, status: :created, location: @invitations
-    else
-      render json: @invitation.errors, status: :unprocessable_entity
+      if @invitation.save
+        render json: @invitation, status: :created, location: @invitations
+      else
+        render json: @invitation.errors, status: :unprocessable_entity
+      end
     end
   end
 
@@ -37,6 +39,15 @@ class InvitationsController < ApiController
   # DELETE /invitations/1
   def destroy
     @invitation.destroy
+  end
+
+  def destroy_with_params
+    @cu = current_user
+    if Invitation.exists?(user_id: @cu.id, invited_id: params[:invited_id], event_id: params[:event_id])
+      @inv = Invitation.where(user_id: @cu.id, invited_id: params[:invited_id], event_id: params[:event_id])
+      p @inv
+      @inv.destroy_all
+    end
   end
 
   def acept
