@@ -7,6 +7,8 @@ export class Event {
     isPrivate: string;
     minAge: number;
     place: string;
+    beginAt: string;
+    endAt: string;
     created_at: string;
     updated_at: string;
 }

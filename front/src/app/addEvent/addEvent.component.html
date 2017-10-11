@@ -46,13 +46,13 @@
     <div class="form-group form-inline">
       <div class="col-sm-2 col-xs-1"></div>
       <label class="control-label col-sm-2 col-xs-3 right-space" for="eventAssistants">Asistentes</label>
-      <input class="form-control col-sm-5 col-sx-4" type="number" #eventAssistants id="ev_assistants" style="width: 15em" placeholder="Sin limite es 0" value="0" min="0" required>
+      <input class="form-control col-sm-5 col-sx-4" type="number" #eventAssistants id="ev_assistants" style="width: 15em" placeholder="Sin limite es 0" value="0" min="0" required (click)="loadLocalStorage('assistants',eventAssistants.value)">
     </div>
-    <div class="form-group form-inline">
+    <!-- <div class="form-group form-inline">
       <div class="col-sm-2 col-xs-1"></div>
       <label class="control-label col-sm-2 col-xs-3 right-space" for="eventMinAge">Edad Mínima</label>
-      <input class="form-control col-sm-5 col-sx-4" type="number" #eventMinAge id="ev_minAge" style="width: 15em" placeholder="Para todo publico es 0" value="0" min="0" required>
-    </div>
+      <input class="form-control col-sm-5 col-sx-4" type="number" #eventMinAge id="ev_minAge" style="width: 15em" placeholder="Para todo publico es 0" value="0" min="0" required (click)="loadLocalStorage('minAge',eventMinAge.value)">
+    </div> -->
     <div class="form-group form-inline">
       <div class="col-sm-2 col-xs-1"></div>
       <label class="control-label col-sm-2 col-xs-3 right-space" for="event_place">Lugar</label>
@@ -75,8 +75,8 @@
       <input class="form-control col-sm-5 col-sx-4" type="date" #myDate [value]="demoUser.date | date:'yyyy-MM-dd'" (input)="demoUser.date=parseDate($event.target.value)" />
     </div> -->
     <app-user-search></app-user-search>
-    <button (click)="add(eventName.value, getValueFromSelect(eventCategory.value), getValueFromSelect(eventVisibility.value), eventAssistants.value, eventMinAge.value, eventPlace.value, eventBeginAt.value, eventEndAt.value);" type="submit" class="btn btn-success custom-width-buttons">Crear evento</button>
-    <a routerLink="/home"><button (click)="clearInvitations();" type="submit" class="btn btn-success custom-width-buttons">Atras</button></a>
+    <button (click)="add(eventName.value, getValueFromSelect(eventCategory.value), getValueFromSelect(eventVisibility.value), eventAssistants.value, '0', eventPlace.value, eventBeginAt.value, eventEndAt.value);" type="submit" class="btn btn-success custom-width-buttons">Crear evento</button>
+    <a routerLink="/home"><button (click)="clearLocalStorage();" type="submit" class="btn btn-success custom-width-buttons">Atras</button></a>
   </form>
 
 </div>

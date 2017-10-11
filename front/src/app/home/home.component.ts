@@ -98,6 +98,9 @@ export class HomeComponent implements OnInit {
     loadCategories() {
       this.eventService.getCategories().subscribe(categories => { this.categories = categories; });
     }
+    loadEventLS(event) {
+      localStorage.setItem('eventToEdit',JSON.stringify(event));
+    }
     private viewProfile(user_id:string)
     {
         console.log("test 1");

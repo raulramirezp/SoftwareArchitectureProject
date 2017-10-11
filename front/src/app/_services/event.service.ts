@@ -15,11 +15,13 @@ export class EventService {
   private eventDatesUrl = this.localhostaddress.concat('eventdates');
   private categoriesUrl = this.localhostaddress.concat('categories');
   private invitationsUrl = this.localhostaddress.concat('invitations');
+  private removeInvitationsUrl = this.localhostaddress.concat('invitations/removeinvitation/');
   private invitationsRequestsUrl = this.localhostaddress.concat('invitations/eventsrequest/');
   private aceptEventUrl = this.localhostaddress.concat('invitations/acept/')
   private declineEventUrl = this.localhostaddress.concat('invitations/decline/')
   private myEventsUrl = this.localhostaddress.concat('events/myevents')
   private followEventsUrl = this.localhostaddress.concat('events/followevents')
+  private removeFromEventUrl = this.localhostaddress.concat('events/removefromevent')
   private currentUser: User;
   private headers;
   constructor(private http: Http) {
@@ -77,6 +79,26 @@ export class EventService {
       .catch(this.handleError);
   }
 
+  update(name: string, category_id: string, assistants: string, isPrivate: string, minAge: string, place: string, beginAt: string, endAt: string): Promise<Event> {
+    let privat = false;
+    if (isPrivate == 'true') {
+      privat = true;
+    }
+    else {
+      privat = false;
+    }
+    this.headers= new Headers();
+    this.headers.append('Content-Type', 'application/json');
+    this.headers.append('currentUser', this.currentUser.id);
+    this.headers.append('Authorization', 'Token token='.concat(this.currentUser.token));
+    let eventId = JSON.parse(localStorage.getItem('eventToEdit')).id
+    return this.http
+      .put(this.eventsUrl + "/" + eventId, JSON.stringify({ name: name, assistants: assistants, category_id: category_id, user_id: String(this.currentUser.id), isPrivate: privat, minAge: minAge, place: place, beginAt: beginAt, endAt: endAt }), { headers: this.headers })
+      .toPromise()
+      .then(response => response.json() as Event)
+      .catch(this.handleError);
+  }
+
   createEventDate(event_id: string, beginAt: string, endAt: string): Promise<EventDate> {
     return this.http
       .post(this.eventDatesUrl, JSON.stringify({ beginAt: beginAt, endAt: endAt, event_id: event_id }), { headers: this.headers })
@@ -93,7 +115,30 @@ export class EventService {
     return this.http
       .post(this.invitationsUrl, JSON.stringify({ user_id: this.currentUser.id, invited_id: invited_id, event_id: event_id }), { headers: this.headers })
       .toPromise()
-      .then(response => response.json() as EventDate)
+      .then(response => response.json())
+      .catch(this.handleError);
+  }
+  removeInvitation(invited_id: string, event_id: string) {
+    this.headers = new Headers();
+    this.headers.append('Content-Type', 'application/json');
+    this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    this.headers.append('currentUser', this.currentUser.id);
+    this.headers.append('Authorization', 'Token token='.concat(this.currentUser.token));
+    return this.http
+      .post(this.removeInvitationsUrl, JSON.stringify({ invited_id: invited_id, event_id: event_id }), { headers: this.headers })
+      .toPromise()
+      .then(response => response.json())
+      .catch(this.handleError);
+  }
+  removeConfirmed(invited_id: string, event_id: string) {
+    this.headers = new Headers();
+    this.headers.append('Content-Type', 'application/json');
+    this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    this.headers.append('Authorization', 'Token token='.concat(this.currentUser.token));
+    return this.http
+      .post(this.removeFromEventUrl, JSON.stringify({ user_id: invited_id, event_id: event_id }), { headers: this.headers })
+      .toPromise()
+      .then(response => response.json())
       .catch(this.handleError);
   }
   getInvitations(){
@@ -120,6 +165,22 @@ export class EventService {
     console.log(this.currentUser.token)
     this.headers.append('Authorization', 'Token token='.concat(this.currentUser.token));
     return this.http.get(this.categoriesUrl, { headers: this.headers }).map((response: Response) => response.json());
+  }
+  getInvitedToEvent(id: string) {
+    this.headers = new Headers();
+    this.headers.append('Content-Type', 'application/json');
+    this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    this.headers.append('Authorization', 'Token token='.concat(this.currentUser.token));
+    return this.http.get(this.eventsUrl+"/"+id+"/inviteds", { headers: this.headers }).map((response: Response) => response.json()).catch(this.handleError);
+    // Log respuesta
+    // return this.http.get(this.eventsUrl+"/"+id+"/inviteds", { headers: this.headers }).map((response: Response) => {console.log(response.json());response.json();}).catch(this.handleError);
+  }
+  getConfirmedAssistantsToEvent(id: string) {
+    this.headers = new Headers();
+    this.headers.append('Content-Type', 'application/json');
+    this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    this.headers.append('Authorization', 'Token token='.concat(this.currentUser.token));
+    return this.http.get(this.eventsUrl+"/"+id+"/assistants", { headers: this.headers }).map((response: Response) => response.json()).catch(this.handleError);
   }
   aceptEvent(id: string) {
     this.headers = new Headers();

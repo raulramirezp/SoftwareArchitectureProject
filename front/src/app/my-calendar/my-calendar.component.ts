@@ -18,8 +18,6 @@ export class MyCalendarComponent implements OnInit {
   ngOnInit() {
     this.loadMyEvents();
     this.loadCategories();
-    console.log(this.events)
-    console.log(this.categories)
   }
 
   private loadMyEvents() {

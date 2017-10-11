@@ -1,3 +1,14 @@
+<div class="form-group form-inline" *ngIf="isEditing">
+  <div class="col-sm-4 col-xs-1"></div>
+  <div class="col-sm-5" id="friends">
+    <!-- <label *ngIf="loadLocalStorage('minAge')!='0'"
+         class="alert alert-warning">la busqueda esta filtrada según la edad minima
+    </label> -->
+    <label *ngIf="loadLocalStorage('assistants')!='0'"
+         class="alert alert-warning">La busqueda esta filtrada según la cantidad de usuarios
+    </label>
+  </div>
+</div>
 <div id="search-component" class="form-group form-inline">
   <div class="col-sm-2 col-xs-1"></div>
   <label class="control-label col-sm-2 col-xs-3 right-space">Invitar Amigos</label>
@@ -9,7 +20,28 @@
   <label class="control-label col-sm-2 col-xs-3 right-space" for="event_place"></label>
   <div class="col-sm-5 pre-scrollable option-box" id="friends">
     <label *ngFor="let user of users | async"
-         (click)="addToInvitation(user);" class="search-result" style="height: 2.5em" [ngStyle]="{'background-color':selectedColor(user.email)}">
+         (click)="addToInvitation(user);" class="search-result" style="height: 2.5em" [ngStyle]="{'background-color':selectedColor(user.email)}"  title="Agregar a {{user.name}}">
+      {{user.name}} {{user.lastname}} - {{user.nickname}} - {{user.email}}
+    </label>
+  </div>
+</div>
+<div class="form-group form-inline">
+  <div class="col-sm-2 col-xs-1"></div>
+  <label class="control-label col-sm-2 col-xs-3 right-space custom-label" for="event_place">Lista Invitados</label>
+  <div class="col-sm-5 pre-scrollable option-box" id="friends">
+    <label *ngFor="let user of invitedUs"
+          (click)="removeFromInvitation(user)" class="invited-result" style="height: 2.5em;"  title="Cancelar invitacion de {{user.name}}">
+      {{user.name}} {{user.lastname}} - {{user.nickname}} - {{user.email}}
+    </label>
+  </div>
+</div>
+
+<div class="form-group form-inline" *ngIf="isEditing">
+  <div class="col-sm-2 col-xs-1"></div>
+  <label class="control-label col-sm-2 col-xs-3 right-space custom-label" for="event_place">Lista Confirmados</label>
+  <div class="col-sm-5 pre-scrollable option-box" id="friends">
+    <label *ngFor="let user of confirmedUsers"
+          (click)="removeFromConfirmed(user)" class="invited-result" style="height: 2.5em;" [ngStyle]="{'background-color':selectedColorConfirm(user.email)}" title="Eliminar a {{user.name}} del evento">
       {{user.name}} {{user.lastname}} - {{user.nickname}} - {{user.email}}
     </label>
   </div>
