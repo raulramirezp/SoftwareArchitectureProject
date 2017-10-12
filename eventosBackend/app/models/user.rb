@@ -27,7 +27,7 @@ class User < ApplicationRecord
   validates :email, presence: true, format: { with: /\A[^@\s]+@([^@\s]+\.)+[^@\s]+\z/, message: "No valid format"}, uniqueness: true
 
   def self.search(search)
-    where('name LIKE ? OR lastname LIKE ? OR email LIKE ? OR nickname LIKE ?',"%#{search}%","%#{search}%","%#{search}%","%#{search}%")
+    where('name LIKE ? OR lastname LIKE ? OR nickname LIKE ?',"%#{search}%","%#{search}%","%#{search}%")
   end
 
   def invite(u)

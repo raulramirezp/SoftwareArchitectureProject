@@ -9,7 +9,24 @@ class EventsController < ApiController
   # GET /events
   def index
     @events = Event.all
+    if params[:search]
+      @events = Event.search(params[:search])
+    elsif params[:advancedSearch]
+        #render :json => '{foo: "bar"}'
+        @events = Event.advancedSearch(params[:advancedSearch])
+    else
+        @events = Event.all
+    end
+    render json: @events
+ #   @events = Event.all
 
+#    render json: @events
+  end
+  def search
+    @events = Events.all
+    if params[:search]
+      @events = Event.search(params[:search])
+    end  
     render json: @events
   end
 
