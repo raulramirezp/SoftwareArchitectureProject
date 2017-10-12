@@ -41,15 +41,30 @@ export class AdvanceSearchComponent implements OnInit {
   }
   search(name: string, category_id: string, isPrivate: string, beginAt: string, endAt: string ){
       console.log(name);   
-      //let tempName=null;
+      let tempName=null;
+      let tempbeginAt=null;
+      let tempendAt=null;
       if(!name){
           console.log("name empty");   
       }
       else{
-         // tempName=name;
+          tempName=name;
       }
-      console.log(name, category_id, isPrivate, beginAt, endAt);
-      //this.eventService.getSpecificEvents(tempName, category_id, isPrivate, beginAt, endAt).subscribe(events => {this.events = events});
+      if(!beginAt){
+          console.log("beginAt empty");   
+      }
+      else{
+          tempbeginAt=beginAt;
+      }if(!endAt){
+          console.log("endAt empty");   
+      }
+      else{
+          tempendAt=endAt;
+      }
+      console.log(tempName, category_id, isPrivate, tempbeginAt, tempendAt);
+      this.eventService.getSpecificEvents(tempName, category_id, isPrivate, tempbeginAt, tempendAt).subscribe(events => {this.events = events
+      console.log(this.events)});
+      
   }
   loadCategories() {
     this.eventService.getCategories().subscribe(categories => { this.categories = categories; });

@@ -20,6 +20,7 @@ export class EventService {
   private declineEventUrl = this.localhostaddress.concat('invitations/decline/')
   private myEventsUrl = this.localhostaddress.concat('events/myevents')
   private followEventsUrl = this.localhostaddress.concat('events/followevents')
+  private advancedSearchUrl = this.localhostaddress.concat('events?advancedSearch=')
   private currentUser: User;
   private headers;
   constructor(private http: Http) {
@@ -29,7 +30,12 @@ export class EventService {
     this.headers.append('Authorization', 'Token token='.concat(this.currentUser.token));
   }
   getSpecificEvents(name: string, category_id:string, isPrivate:string, beginAt:string, endAt:string){
-      
+    console.log(name, category_id, isPrivate, beginAt, endAt)
+    console.log(this.advancedSearchUrl+name+','+category_id+','+isPrivate+','+beginAt+','+endAt)  
+    this.headers= new Headers();
+    this.headers.append('Content-Type', 'application/json');
+    this.headers.append('Authorization', 'Token token='.concat(this.currentUser.token));
+    return this.http.get(this.advancedSearchUrl+name+','+category_id+','+isPrivate+','+beginAt+','+endAt, {headers: this.headers}).map((response: Response) => response.json());  
   }    
     getEvent(id: string){
     const url = `${this.eventsUrl}/${id}`;

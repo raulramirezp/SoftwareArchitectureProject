@@ -40,5 +40,25 @@
     <button (click)="search(eventName.value, getValueFromSelect(eventCategory.value), getValueFromSelect(eventVisibility.value), eventBeginAt.value, eventEndAt.value);" type="submit" class="btn btn-success custom-width-buttons">Buscar Eventos</button>
     <a routerLink="/home"><button type="submit" class="btn btn-success custom-width-buttons">Atras</button></a>
   </form>
-
+  <div class="row border rounded evdiv" *ngFor="let event of events">
+	<div class="col-8">
+		<div class="media" style="margin-top: 10px">
+		<div class="media-left">
+			<img src="assets/iconos/{{event.category_id}}.png" class="media-object" style="width:60px">
+		</div>
+		<div class="media-body" style="margin-left: 10px">
+            <h5 class="media-heading"> {{event.name}} </h5>
+            <i class="fa fa-calendar" aria-hidden="true"></i> Fecha: {{event.beginAt.substring(0,11)}} <br>
+            <i class="fa fa-clock-o" aria-hidden="true"></i> Hora: {{event.beginAt.substring(11,event.beginAt.length)}}
+        </div>
+        </div>
+    </div>
+        <div class="col-4" style="text-align: right">
+            <div class="btn-group">
+                <a class="btn btn-default" href="#">
+                    <i class="fa fa-info-circle" aria-hidden="true" title="Más Información"></i>
+                </a>
+            </div>
+        </div>
+    </div>
 </div>
