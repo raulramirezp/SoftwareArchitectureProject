@@ -23,6 +23,22 @@ class Event < ApplicationRecord
   def self.search(search)
     where('name LIKE ?',"%#{search}%")
   end
+  def self.returnCategory(value)
+    if value == ''
+        return '%'
+    else
+        return value
+    end
+  end    
+  def self.returnBoolean(value)
+    if value == 'true'
+        return true
+    elsif value == 'false'
+        return false
+    else
+        return '%'
+    end
+  end
   def self.advancedSearch(search)
     searchArray = search.split(",")
     puts searchArray
@@ -43,7 +59,7 @@ class Event < ApplicationRecord
         end
     end
     puts searchArray
-    where("name LIKE ? AND category_id LIKE ? AND isPrivate LIKE ? AND (beginAt BETWEEN ? AND ?)", "%#{searchArray[0]}%", "%#{searchArray[1]}%", "%#{searchArray[2]}%", "#{searchArray[3]}", "#{searchArray[4]}" )
+    where("name LIKE ? AND category_id LIKE ? AND isPrivate LIKE ? AND (beginAt BETWEEN ? AND ?)", "%#{searchArray[0]}%", returnCategory(searchArray[1]), returnBoolean(searchArray[2]), "#{searchArray[3]}", "#{searchArray[4]}" )
   end        
 end
 #tempName, category_id, isPrivate, beginAt, endAt
