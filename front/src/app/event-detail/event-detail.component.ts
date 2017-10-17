@@ -27,6 +27,7 @@ export class EventDetailComponent implements OnInit {
    // this.userService.getUser('id')
      // .subscribe(user => this.user = user);
     this.event = JSON.parse(localStorage.getItem('eventDetail'));
+    alert(this.event.id)
   }
     goBack(): void {
       localStorage.removeItem('profileUser');

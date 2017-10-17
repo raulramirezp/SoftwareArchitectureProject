@@ -84,6 +84,15 @@ export class AdvanceSearchComponent implements OnInit {
   }
   consoleOut(value) {
     console.log(value)
-  }    
-
+  }
+  goToEvent(event: Event): void{
+      console.log("goto event test"); this.eventService.getEvent(event.id.toString()).subscribe(eventDetail => {
+           console.log(eventDetail.name)
+           localStorage.setItem('eventDetail',JSON.stringify(eventDetail));
+            console.log('pretest');
+            console.log(eventDetail.email);
+            let link = ['/eventDetail', event.id.toString()];
+       this.router.navigate(link);
+       });
+    }    
 }
