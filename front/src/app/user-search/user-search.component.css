@@ -1,18 +1,37 @@
 .search-result{
   width: 100%;
-  /*width:195px;
-  height: 16px;
-  padding: 5px;
-  background-color: white;
-  cursor: pointer;*/
 }
 
 .search-result:hover {
   background-color: #83cfe5 !important;
+  color: white;
 }
 
 .search-result:active{
   background-color: black;
+  color: white;
+}
+
+.invited-result {
+  width: 100%;
+}
+
+.invited-result:hover {
+  background-color: #e7908e !important;
+  color: white;
+}
+
+.invited-result2 {
+  width: 100%;
+}
+
+.invited-result2:hover {
+  background-color: #9dd49d !important;
+  color: white;
+}
+
+.custom-label {
+  top: 0% !important;
 }
 
 #search-box{

@@ -1,47 +1,82 @@
-<!-- <div align="center" class="top">
-  <h1>Edita tu Evento</h1>
+<div align="center" class="top">
+  <h1>Edita Evento</h1>
   <br />
   <form class="form-horizontal">
     <div class="form-group form-inline">
       <div class="col-sm-2 col-xs-1"></div>
-      <label class="control-label col-sm-2 col-xs-3 right-space" for="event_name">Nombre</label>
-      <input class="form-control col-sm-5 col-sx-4" type="text" #event_name id="email" style="width: 15em" required placeholder="Nombre evento">
+      <label class="control-label col-sm-2 col-xs-3 right-space" for="eventName">Nombre</label>
+      <input class="form-control col-sm-5 col-sx-4" type="text" #eventName id="ev_name" style="width: 15em" required placeholder="Nombre evento">
     </div>
     <div class="form-group form-inline">
       <div class="col-sm-2 col-xs-1"></div>
-      <label class="control-label col-sm-2 col-xs-3 right-space" for="event_category">Categoría</label>
-      <select class="form-control col-sm-5 col-sx-4" required>
-        <option value="" disabled selected hidden>Seleccione uno...</option>
-        <option *ngFor="let category of categories" value="categories.id">{{category.description}}</option>
+      <label class="control-label col-sm-2 col-xs-3 right-space" for="eventCategory">Categoría</label>
+      <select class="form-control col-sm-5 col-sx-4" #eventCategory id="ev_category">
+        <!-- <option [value]="null" disabled selected hidden>Seleccione uno...</option> -->
+        <option *ngFor="let category of categories" [value]="category.id" [selected]="category.id == loadedCategory">{{category.description}}</option>
       </select>
+      <!-- <input class="form-control col-sm-5 col-sx-4" type="text" #eventCategory id="email" style="width: 15em" required> -->
     </div>
     <div class="form-group form-inline">
       <div class="col-sm-2 col-xs-1"></div>
-      <label class="control-label col-sm-2 col-xs-3 right-space" for="event_visibility">Visibilidad</label>
-      <input class="form-control col-sm-5 col-sx-4" type="text" #event_visibility id="pwd" style="width: 15em" required placeholder="Privado?">
+      <label class="control-label col-sm-2 col-xs-3 right-space" for="eventVisibility">Visibilidad</label>
+      <select class="form-control col-sm-5 col-sx-4" #eventVisibility id="ev_visibility">
+        <option [value]="false" [selected]="loadedP2">Público</option>
+        <option [value]="true" [selected]="loadedP1">Privado</option>
+      </select>
+      <!-- <input class="form-control col-sm-5 col-sx-4" type="text" #eventCategory id="email" style="width: 15em" required> -->
     </div>
+    <!-- Texto Plano -->
+    <!-- <div class="form-group form-inline">
+      <div class="col-sm-2 col-xs-1"></div>
+      <label class="control-label col-sm-2 col-xs-3 right-space" for="eventVisibility">Visibilidad</label>
+      <input class="form-control col-sm-5 col-sx-4" type="text" #eventVisibility id="ev_visibility" style="width: 15em" required placeholder="Privado?">
+    </div> -->
+    <!-- Radio inputs -->
+    <!-- <div class="form-group form-inline">
+      <div class="col-sm-2 col-xs-1"></div>
+      <label class="control-label col-sm-2 col-xs-3 right-space" for="eventVisibility">Visibilidad</label>
+      <input class="form-control" type="radio" value="0" name="visibility" [ngModel]="event.visibility">Público
+      <input class="form-control" type="radio" value="1" name="visibility" [ngModel]="event.visibility">Privado
+    </div> -->
+    <!-- <div class="form-group form-inline">*ngIf="eventCategory.value === null: required = false;"
+      <div class="col-sm-2 col-xs-1"></div>
+      <label class="control-label col-sm-2 col-xs-3 right-space" for="eventType">Tipo de Evento</label>
+      <input class="form-control col-sm-5 col-sx-4" type="text" #eventType id="pwd" style="width: 15em" required>
+    </div> -->
     <div class="form-group form-inline">
       <div class="col-sm-2 col-xs-1"></div>
-      <label class="control-label col-sm-2 col-xs-3 right-space" for="event_minAge">Edad Mínima</label>
-      <input class="form-control col-sm-5 col-sx-4" type="text" #event_minAge id="pwd" style="width: 15em" placeholder="Para todo publico es 0">
+      <label class="control-label col-sm-2 col-xs-3 right-space" for="eventAssistants">Asistentes</label>
+      <input class="form-control col-sm-5 col-sx-4" type="number" #eventAssistants id="ev_assistants" style="width: 15em" placeholder="Sin limite es 0" value="0" min="0" required (click)="loadLocalStorage('assistants',eventAssistants.value)">
     </div>
+    <!-- <div class="form-group form-inline">
+      <div class="col-sm-2 col-xs-1"></div>
+      <label class="control-label col-sm-2 col-xs-3 right-space" for="eventMinAge">Edad Mínima</label>
+      <input class="form-control col-sm-5 col-sx-4" type="number" #eventMinAge id="ev_minAge" style="width: 15em" placeholder="Para todo publico es 0" value="0" min="0" required (click)="loadLocalStorage('minAge',eventMinAge.value)">
+    </div> -->
     <div class="form-group form-inline">
       <div class="col-sm-2 col-xs-1"></div>
       <label class="control-label col-sm-2 col-xs-3 right-space" for="event_place">Lugar</label>
-      <input class="form-control col-sm-5 col-sx-4" type="text" #event_place id="pwd" style="width: 15em" required placeholder="Direccion">
+      <input class="form-control col-sm-5 col-sx-4" type="text" #eventPlace id="ev_place" style="width: 15em" required placeholder="Direccion">
     </div>
     <div class="form-group form-inline">
       <div class="col-sm-2 col-xs-1"></div>
-      <label class="control-label col-sm-2 col-xs-3 right-space" for="event_beginAtDay">Fecha Inicio</label>
-      <input class="form-control col-sm-5 col-sx-4" type="datetime-local" #event_beginAtDay id="pwd" style="width: 15em" required>
+      <label class="control-label col-sm-2 col-xs-3 right-space" for="eventBeginAt">Fecha Inicio</label>
+      <input class="form-control col-sm-5 col-sx-4" type="datetime-local" #eventBeginAt id="ev_beginAt" style="width: 15em" required>
     </div>
     <div class="form-group form-inline">
       <div class="col-sm-2 col-xs-1"></div>
-      <label class="control-label col-sm-2 col-xs-3 right-space" for="event_beginAtDay">Fecha Final</label>
-      <input class="form-control col-sm-5 col-sx-4" type="datetime-local" #event_beginAtDay id="pwd" style="width: 15em" required>
+      <label class="control-label col-sm-2 col-xs-3 right-space" for="eventEndAt">Fecha Final</label>
+      <input class="form-control col-sm-5 col-sx-4" type="datetime-local" #eventEndAt id="ev_endAt" style="width: 15em" required [attr.min]="endDate" (click)="updateFinal(eventBeginAt.value)">
     </div>
-    <button (click)="add(event_name.value, event_category.value, event_visibility.value, event_Type.value, event_minAge.value, event_place.value, event_beginAtDay.value, event_beginAtMonth.value, event_beginAtYear.value, event_beginAtHour.value, event_endAtDay.value, event_endAtMonth.value, event_endAtYear.value, event_endAtHour.value);"
-      type="submit" class="btn btn-success custom-width-buttons">Crear evento</button>
-    <a routerLink="/home"><button type="submit" class="btn btn-success custom-width-buttons">Atras</button></a>
+    <!-- <div class="form-group form-inline">
+      <div class="col-sm-2 col-xs-1"></div>
+      <label class="control-label col-sm-2 col-xs-3 right-space" for="event_beginAtHour">Hora Inicio</label>
+      <input class="form-control col-sm-5 col-sx-4" type="text" #event_beginAtHour id="pwd" style="width: 15em">
+      <input class="form-control col-sm-5 col-sx-4" type="date" #myDate [value]="demoUser.date | date:'yyyy-MM-dd'" (input)="demoUser.date=parseDate($event.target.value)" />
+    </div> -->
+    <app-user-search></app-user-search>
+    <button (click)="update(eventName.value, getValueFromSelect(eventCategory.value), getValueFromSelect(eventVisibility.value), eventAssistants.value, '0', eventPlace.value, eventBeginAt.value, eventEndAt.value);" type="submit" class="btn btn-success custom-width-buttons">Guardar Cambios</button>
+    <a routerLink="/home"><button (click)="clearLocalStorage();" type="submit" class="btn btn-success custom-width-buttons">Atras</button></a>
   </form>
-</div> -->
+
+</div>

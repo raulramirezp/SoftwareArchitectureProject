@@ -5,6 +5,7 @@ import { EventService } from '../_services/event.service';
 // import { ProfileComponent } from '../profile/profile.component';
 import { Router }            from '@angular/router';
 import { Category } from '../_models/category';
+import {Observable} from 'rxjs/Rx';
 
 @Component({
   selector: 'app-home',
@@ -28,13 +29,12 @@ export class HomeComponent implements OnInit {
 
     ngOnInit() {
         console.log("test");
-        this.loadAllUsers();
-        this.loadMyCreatedEvents();
-        this.loadRequests();
-        this.loadFriends();
-        this.loadEventsInvitations();
-        this.loadCategories();
-
+          this.loadAllUsers()
+          // this.loadMyCreatedEvents()
+          // this.loadRequests()
+          // this.loadFriends()
+          // this.loadEventsInvitations()
+          // this.loadCategories()
     }
     private loadAllUsers() {
       var us = [];
@@ -47,13 +47,15 @@ export class HomeComponent implements OnInit {
             }
           }
           //
-          this.users = users; });
+          this.users = users;
+          this.loadMyCreatedEvents();
+        });
     }
     private loadMyCreatedEvents() {
-       this.eventService.getMyCreatedEvents().subscribe(myEvents => { this.myEvents = myEvents; });
+       this.eventService.getMyCreatedEvents().subscribe(myEvents => { this.myEvents = myEvents; this.loadRequests()});
     }
     private loadFriends() {
-        this.userService.getFriends().subscribe(friends => { this.friends = friends; });
+        this.userService.getFriends().subscribe(friends => { this.friends = friends; this.loadEventsInvitations()});
     }
     getFriendsCount(): number{
       console.log(this.friends)
@@ -63,10 +65,10 @@ export class HomeComponent implements OnInit {
       return this.friends.length;
     }
     private loadRequests() {
-        this.userService.getRequests().subscribe(usersRequests => { this.usersRequests = usersRequests; });
+        this.userService.getRequests().subscribe(usersRequests => { this.usersRequests = usersRequests; this.loadFriends()});
     }
     private loadEventsInvitations() {
-        this.eventService.getInvitations().subscribe(invitedEvents => { this.invitedEvents = invitedEvents; });
+        this.eventService.getInvitations().subscribe(invitedEvents => { this.invitedEvents = invitedEvents; this.loadCategories()});
     }
     private addFriend(user_id:string)
     {
@@ -97,6 +99,9 @@ export class HomeComponent implements OnInit {
     }
     loadCategories() {
       this.eventService.getCategories().subscribe(categories => { this.categories = categories; });
+    }
+    loadEventLS(event) {
+      localStorage.setItem('eventToEdit',JSON.stringify(event));
     }
     private viewProfile(user_id:string)
     {

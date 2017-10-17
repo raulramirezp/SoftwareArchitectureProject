@@ -38,6 +38,13 @@ export class NavbarComponent implements OnInit {
     clearStorage(){
       if (this.router.url == '/addevent'){
         localStorage.removeItem('guestUsers')
+        localStorage.removeItem('assistants')
+      }
+      if (this.router.url == '/editevent'){
+        localStorage.removeItem('guestUsers')
+        localStorage.removeItem('assistants')
+        localStorage.removeItem('eventToEdit')
+        localStorage.removeItem('previusGuest')
       }
     }
 

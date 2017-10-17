@@ -95,7 +95,8 @@
 								</div>
 								<div class="media-body" style="margin-left: 10px">
 									<h4 class="media-heading">{{event.name}}</h4>
-									<p>Fecha: {{event.beginAt}}</p>
+									<i class="fa fa-calendar" aria-hidden="true"></i> Fecha: {{event.beginAt | date: 'fullDate'}} <br>
+									<i class="fa fa-clock-o" aria-hidden="true"></i> Hora: {{event.beginAt | date:'shortTime' }}
 								</div>
 							</div>
 						</div>
@@ -152,13 +153,14 @@
 								</div>
 								<div class="media-body" style="margin-left: 10px">
 									<h4 class="media-heading">{{event.name}}</h4>
-									<p>Fecha: {{event.beginAt}}</p>
+									<i class="fa fa-calendar" aria-hidden="true"></i> Fecha: {{event.beginAt | date: 'fullDate'}} <br>
+									<i class="fa fa-clock-o" aria-hidden="true"></i> Hora: {{event.beginAt | date:'shortTime' }}
 								</div>
 							</div>
 						</div>
 						<div class="col-4" style="text-align: right">
 							<div class="btn-group">
-								<a (click)="aceptEvent(event.id)" class="btn btn-default" href="#">
+								<a class="btn btn-default" routerLink="/editevent" (click)="loadEventLS(event)">
 									<i class="fa fa-edit fa-2x" aria-hidden="true" title="Editar Evento"></i>
 								</a>
 								<a (click)="removeEvent(event.id)" class="btn btn-default" href="#">

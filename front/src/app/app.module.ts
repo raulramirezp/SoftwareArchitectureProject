@@ -24,6 +24,7 @@ import { UserSearchComponent } from './user-search/user-search.component';
 import { GeneralSearchComponent } from './general-search/general-search.component';
 import { EventDetailComponent } from './event-detail/event-detail.component';
 import { AdvanceSearchComponent } from './advance-search/advance-search.component';
+import { LOCALE_ID } from '@angular/core';
 
 @NgModule({
   declarations: [
@@ -44,12 +45,12 @@ import { AdvanceSearchComponent } from './advance-search/advance-search.componen
     AdvanceSearchComponent
   ],
   imports: [
-    BrowserModule,  
+    BrowserModule,
     FormsModule,
     HttpModule,
     AppRoutingModule
   ],
-  providers: [UserService, EventService, AuthGuard],
+  providers: [UserService, EventService, AuthGuard, {provide: LOCALE_ID, useValue: 'es-co'}],
   bootstrap: [AppComponent]
-})  
+})
 export class AppModule { }

@@ -2,34 +2,34 @@
 <div class="row border rounded evdiv" *ngFor="let event of events">
 	<div class="col-8">
 		<div class="media" style="margin-top: 10px">
-		<div class="media-left">
-			<img src="assets/iconos/{{event.category_id}}.png" class="media-object" style="width:60px">
+			<div class="media-left">
+				<img src="assets/iconos/{{event.category_id}}.png" class="media-object" style="width:60px">
+			</div>
+			<div class="media-body" style="margin-left: 10px">
+				<h5 class="media-heading"> {{event.name}} </h5>
+				<i class="fa fa-calendar" aria-hidden="true"></i> Fecha: {{event.beginAt | date: 'fullDate'}} <br>
+				<i class="fa fa-clock-o" aria-hidden="true"></i> Hora: {{event.beginAt | date:'shortTime' }}
+			</div>
 		</div>
-		<div class="media-body" style="margin-left: 10px">
-		<h5 class="media-heading"> {{event.name}} </h5>
-		<i class="fa fa-calendar" aria-hidden="true"></i> Fecha: 22 - 22 - 2222 <br>
-		<i class="fa fa-clock-o" aria-hidden="true"></i> Hora: 22:22
 	</div>
-	</div>
-</div>
 	<div class="col-4" style="text-align: right">
 		<div class="btn-group">
-  			<a class="btn btn-default" href="#">
+			<a class="btn btn-default" href="#">
    				<i class="fa fa-info-circle" aria-hidden="true" title="Más Información"></i>
   			</a>
-  			  <a class="btn btn-default" href="#">
+			<a class="btn btn-default" href="#">
    				<i class="fa fa-trash" aria-hidden="true" title="Eliminar de mi lista"></i>
   			</a>
 		</div>
 	</div>
 </div>
 <div class="row evdiv">
-<div class="col" style="text-align: center">
-<a class="btn btn-default" routerLink="/addevent" (click)="loadHaveFriend()"><i class="fa fa-map-o fa-5x" aria-hidden="true" title="Agregar Nuevo Evento"></i></a>
-</div>
+	<div class="col" style="text-align: center">
+		<a class="btn btn-default" routerLink="/addevent" (click)="loadHaveFriend()"><i class="fa fa-map-o fa-5x" aria-hidden="true" title="Agregar Nuevo Evento"></i></a>
+	</div>
 </div>
 
-				<!--       <div *ngFor="let row of data" class="container">
+<!--       <div *ngFor="let row of data" class="container">
 				        <div *ngFor="let item of row" class="container">
 				          {{ item.id + ': ' + item.name }}
 				        </div>

@@ -48,10 +48,11 @@ export class UserService {
   }
   getUser(user_id: number) {
     const url = `${this.usersUrl}/${user_id}`;
-    return this.http.get(this.usersUrl)
-      .toPromise()
-      .then(response => response.json() as User)
-      .catch(this.handleError)
+    // return this.http.get(this.usersUrl)
+    //   .toPromise()
+    //   .then(response => response.json() as User)
+    //   .catch(this.handleError)
+    return this.http.get(this.usersUrl, { headers: this.headers }).map((response: Response) => response.json()).catch(this.handleError);
   }
   getCurrtenUser(id: number): Promise<User> {
     const url = `${this.usersUrl}/${id}`;
@@ -59,6 +60,7 @@ export class UserService {
       .toPromise()
       .then(response => response.json().data as User)
       .catch(this.handleError);
+    // return this.http.get(url, { headers: this.headers }).map((response: Response) => response.json()).catch(this.handleError);
   }
   getFriends() {
     const url = this.friendsUrl;

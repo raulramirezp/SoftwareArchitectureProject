@@ -21,10 +21,20 @@ export class AddEventComponent implements OnInit {
   categories: Category[] = [];
   today: string;
   endDate: string;
+  mAge: string;
   constructor(private eventService: EventService,
     private router: Router) {
     this.today = new Date(Date.now() - this.tzoffset).toISOString().slice(0, 16);
   }
+
+ ngAfterViewInit(){
+  //  this.loadLocalStorage('minAge',(<HTMLInputElement>document.getElementById('ev_minAge')).value)
+   this.loadLocalStorage('assistants',(<HTMLInputElement>document.getElementById('ev_assistants')).value)
+ }
+
+ loadLocalStorage(t,v){
+   localStorage.setItem(t,v)
+ }
 
   ngOnInit() {
     this.loadCategories();
@@ -36,7 +46,6 @@ export class AddEventComponent implements OnInit {
     place = place.trim();
     minAge = minAge.trim();
     let d = new Date();
-
     // let beginAt = beginAtYear.concat('-').concat(beginAtMonth).concat('-').concat(beginAtDay).concat('T').concat(beginAtHour).concat(':').concat('00').concat(':').concat('00');
 
     // let endAt = endAtYear.concat('-').concat(endAtMonth).concat('-').concat(endAtDay).concat('T').concat(endAtHour).concat(':').concat('00').concat(':').concat('00');
@@ -62,8 +71,10 @@ export class AddEventComponent implements OnInit {
     });
   }
 
-  clearInvitations(){
+  clearLocalStorage(){
+    // localStorage.removeItem('minAge');
     localStorage.removeItem('guestUsers');
+    localStorage.removeItem('assistants');
   }
 
   loadCategories() {
