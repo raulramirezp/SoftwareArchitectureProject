@@ -97,14 +97,14 @@ export class EditEventComponent implements OnInit {
               for(var i=0;i<this.invitedUsers.length;i++){
                 // console.log(this.findByAttr(this.previousInvitedUsers,'email',this.invitedUsers[i].email))
                 if (this.findByAttr(this.previousInvitedUsers,'email',this.invitedUsers[i].email) == -1) {
-                  this.eventService.sendInvitations(this.invitedUsers[i].id, event.id)
+                  this.eventService.sendInvitations(this.invitedUsers[i].id, String(event.id))
                 }
               }
               for(var i=0;i<this.previousInvitedUsers.length;i++){
                 // this.eventService.sendInvitations(this.invitedUsers[i].id, event.id)
                 // console.log(this.findByAttr(this.invitedUsers,'email',this.previousInvitedUsers[i].email))
                 if (this.findByAttr(this.invitedUsers,'email',this.previousInvitedUsers[i].email) == -1) {
-                  this.eventService.removeInvitation(this.previousInvitedUsers[i].id, event.id)
+                  this.eventService.removeInvitation(this.previousInvitedUsers[i].id, String(event.id))
                 }
               }
               if (this.invitedUsers != null){
@@ -115,7 +115,7 @@ export class EditEventComponent implements OnInit {
               this.removeConfirmedUsers = JSON.parse(localStorage.getItem('confirmUsers'));
               if (this.removeConfirmedUsers != null) {
                 for(var i=0;i<this.removeConfirmedUsers.length;i++){
-                  this.eventService.removeConfirmed(this.removeConfirmedUsers[i].id, event.id)
+                  this.eventService.removeConfirmed(this.removeConfirmedUsers[i].id, String(event.id))
                 }
               }
               localStorage.removeItem('guestUsers');
