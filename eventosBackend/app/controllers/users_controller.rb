@@ -5,18 +5,25 @@ class UsersController < ApiController
   # GET /users
   def index
     @users = User.all
-
-    render json: @users
-  end
-
-  def search
-    @users = User.all
     if params[:search]
       @users = User.search(params[:search])
+    else
+      @users = User.all        
     end
     # @users.each
     render json: @users
   end
+
+#  def search
+#    @users = User.all
+#    if params[:search]
+#      @users = User.search(params[:search])
+#    else
+#      @users = User.all        
+#    end
+#    render json: @users 
+#    #@users.each
+#  end
 
   def search_friend
     @cu = current_user
