@@ -25,6 +25,7 @@ import { GeneralSearchComponent } from './general-search/general-search.componen
 import { EventDetailComponent } from './event-detail/event-detail.component';
 import { AdvanceSearchComponent } from './advance-search/advance-search.component';
 import { LOCALE_ID } from '@angular/core';
+import {CalendarComponent} from "angular2-fullcalendar/src/calendar/calendar";
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { LOCALE_ID } from '@angular/core';
     UserSearchComponent,
     GeneralSearchComponent,
     EventDetailComponent,
-    AdvanceSearchComponent
+    AdvanceSearchComponent,
+    CalendarComponent  
   ],
   imports: [
     BrowserModule,
