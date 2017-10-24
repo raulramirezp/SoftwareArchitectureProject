@@ -1,4 +1,3 @@
-
 <h2>Próximos Eventos</h2>
 <div class="row border rounded evdiv" *ngFor="let event of events">
 	<div class="col-8">
@@ -24,13 +23,14 @@
 		</div>
 	</div>
 </div>
+<div style="height: 20px"></div>
+<div *ngIf="isReady">
+    <angular2-fullcalendar [options]="calendarOptions"></angular2-fullcalendar>
+</div>
 <div class="row evdiv">
 	<div class="col" style="text-align: center">
 		<a class="btn btn-default" routerLink="/addevent" (click)="loadHaveFriend()"><i class="fa fa-map-o fa-5x" aria-hidden="true" title="Agregar Nuevo Evento"></i></a>
 	</div>
-</div>
-<div *ngIf="isReady">
-    <angular2-fullcalendar [options]="calendarOptions"></angular2-fullcalendar>
 </div>
 <!--       <div *ngFor="let row of data" class="container">
 				        <div *ngFor="let item of row" class="container">

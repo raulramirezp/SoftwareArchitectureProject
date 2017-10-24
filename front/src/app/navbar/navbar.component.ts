@@ -11,6 +11,7 @@ import { Subject } from 'rxjs/Subject';
 export class NavbarComponent implements OnInit {
     public static updateUserStatus: Subject<boolean> = new Subject();
     currentUser: User;
+    logedBool: boolean;
   constructor(private userService: UserService, private router: Router) {
        NavbarComponent.updateUserStatus.subscribe(res => {
      this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
@@ -22,17 +23,24 @@ export class NavbarComponent implements OnInit {
       this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
       this.isLogged();
   }
+  // ngAfterViewInit(){
+  //   this.isLogged();
+  // }
     private isLogged(){
         if(this.currentUser==null){
+          // this.logedBool = false;
             return false;
         }
         else{
             this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+            // this.logedBool = true;
             return true;
         }
+        // console.log(this.logedBool)
     }
     logout(){
         this.userService.logout();
+        window.location.reload();
     }
 
     clearStorage(){
