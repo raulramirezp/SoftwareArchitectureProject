@@ -39,7 +39,10 @@ export class GeneralSearchComponent implements OnInit {
      }
     search(value: string): void {
         this.searchTerms.next(value);
-        this.typing = true;
+        if(value.length > 0)
+          this.typing = true;
+        else
+          this.typing = false;
     }
 
     isTyping(): boolean{
@@ -60,6 +63,7 @@ export class GeneralSearchComponent implements OnInit {
         console.log(error);
         return Observable.of<User[]>([]);
       });
+
     this.events = this.searchTerms
       .debounceTime(300)        // wait 300ms after each keystroke before considering the term
       .distinctUntilChanged()   // ignore if next search term is same as previous

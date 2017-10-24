@@ -13,12 +13,14 @@
     <div class="dropdown">
       <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
         <ul id="list">
+          Eventos
             <div *ngFor="let event of events | async" class="col-sm-5 pre-scrollable option-box" (click)="goToEvent(event);" class="search-result" style="height: 2.5em">
                <li class="dropdown-item" >
                  {{event.name}} {{event.date}}
                </li>
             </div>
             <div class="dropdown-divider"></div>
+          Usuarios
             <div *ngFor="let user of users | async" class="col-sm-5 pre-scrollable option-box" (click)="goToUser(user);" class="search-result" style="height: 2.5em">
                <li class="dropdown-item" >
                  {{user.name}} {{user.lastname}}
