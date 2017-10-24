@@ -9,11 +9,14 @@
 User.destroy_all
 ActiveRecord::Base.connection.execute("ALTER TABLE users AUTO_INCREMENT = 1;")
 
-User.create!(name:"Sergio", lastname: "Castro", nickname: "scastro", email: "sergio@mail.com", birthdate: "1990-01-01")
-User.create!(name:"Jose", lastname: "Molano", nickname: "jmolano", email: "jose@mail.com", birthdate: "1990-02-02")
-User.create!(name:"Raul", lastname: "Ramirez", nickname: "rramirez", email: "raul@mail.com", birthdate: "1990-03-03")
-User.create!(name:"Santiago", lastname: "Blanco", nickname: "sblanco", email: "santiago@mail.com", birthdate: "1990-04-04")
-User.create!(name:"Luis", lastname: "Alfonso", nickname: "lalfonso", email: "luis@mail.com", birthdate: "1990-05-05")
+# User.create!(name:"Sergio", lastname: "Castro", nickname: "scastro", email: "sacastroc@unal.edu.co", birthdate: "1990-01-01")
+User.create!(name:"Jose", lastname: "Molano", nickname: "jmolano", email: "jrmolanor@unal.edu.co", birthdate: "1990-02-02")
+User.create!(name:"Raul", lastname: "Ramirez", nickname: "rramirez", email: "raaramirezpe@unal.edu.co", birthdate: "1990-03-03")
+User.create!(name:"Santiago", lastname: "Blanco", nickname: "sblanco", email: "sablancom@unal.edu.co", birthdate: "1990-04-04")
+User.create!(name:"Luis", lastname: "Alfonso", nickname: "lalfonso", email: "luealfonsoru@unal.edu.co", birthdate: "1990-05-05")
+# User.create!(name:"Richard", lastname: "Herrera", nickname: "rherrera", email: "rherrera@unal.edu.co", birthdate: "1990-05-20")
+# User.create!(name:"Alejandro", lastname: "Arias", nickname: "aarias", email: "aarias@unal.edu.co", birthdate: "1990-07-14")
+# User.create!(name:"Andres", lastname: "Arango", nickname: "aarango", email: "andres@mail.com", birthdate: "1990-01-22")
 
 Authentication.destroy_all
 ActiveRecord::Base.connection.execute("ALTER TABLE authentications AUTO_INCREMENT = 1;")
@@ -22,7 +25,7 @@ Authentication.create!(user_id:"1",password_digest:"123456")
 Authentication.create!(user_id:"2",password_digest:"123456")
 Authentication.create!(user_id:"3",password_digest:"123456")
 Authentication.create!(user_id:"4",password_digest:"123456")
-Authentication.create!(user_id:"5",password_digest:"123456")
+# Authentication.create!(user_id:"5",password_digest:"123456")
 
 Category.destroy_all
 ActiveRecord::Base.connection.execute("ALTER TABLE categories AUTO_INCREMENT = 1;")

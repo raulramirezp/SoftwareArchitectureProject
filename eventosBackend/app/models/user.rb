@@ -1,9 +1,10 @@
+require 'net/ldap'
 class User < ApplicationRecord
   require 'date'
 
   has_many :events, dependent: :destroy
-  has_many :users, :source => :relationship, :through => :relationship, dependent: :destroy
-  has_many :users, :source => :friendship, :through => :friendship, dependent: :destroy
+  #has_many :users, :source => :relationship, :through => :relationship, dependent: :destroy
+  #has_many :users, :source => :friendship, :through => :friendship, dependent: :destroy
   has_many :invitations, dependent: :destroy
   has_one :authentication, dependent: :destroy
 
