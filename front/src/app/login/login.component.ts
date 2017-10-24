@@ -27,10 +27,17 @@ export class LoginComponent implements OnInit {
       data => {
         NavbarComponent.updateUserStatus.next(true);
         this.router.navigate(['/home']);
+        window.location.reload();
       },
       error => {
         console.log(error);
-        alert(error._body);
+        console.log(JSON.parse(error._body).errors[0].detail);
+        if (JSON.parse(error._body).errors[0].detail == "LDAP") {
+            alert("Error de LDAP");
+        }
+        if (JSON.parse(error._body).errors[0].detail == "credenciales") {
+            alert("Usuario o contraseña incorrectos");
+        }
       });
 
   }
