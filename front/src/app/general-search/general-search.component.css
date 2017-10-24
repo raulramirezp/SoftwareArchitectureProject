@@ -27,3 +27,15 @@
   border: 1px solid rgba(0,0,0,.15);
   border-radius: 5px;
 }
+.dropdown-menu{
+  display: block;
+  margin: .125rem -50px 0px;
+
+}
+.nickname{
+  color: green;
+}
+
+.list{
+  padding: 0px;
+}
