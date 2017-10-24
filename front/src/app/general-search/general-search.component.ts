@@ -28,16 +28,24 @@ import { EventService } from '../_services/event.service';
 export class GeneralSearchComponent implements OnInit {
     users: Observable<User[]>;
     events: Observable<Event[]>;
-    counter: 0;
+    typing;
     private searchTerms = new Subject<string>();
     constructor(
         private generalSearchService: GeneralSearchService, private userService: UserService,
         private eventService: EventService,
         private router: Router
-        ) { }
+        ) {
+      this.typing = false;
+     }
     search(value: string): void {
         this.searchTerms.next(value);
+        this.typing = true;
     }
+
+    isTyping(): boolean{
+      return this.typing;
+    }
+
     ngOnInit(): void {
     this.users = this.searchTerms
       .debounceTime(300)        // wait 300ms after each keystroke before considering the term
@@ -67,7 +75,7 @@ export class GeneralSearchComponent implements OnInit {
         return Observable.of<Event[]>([]);
       });
         console.log('test get everything');
-        console.log(this.events);
+        this.typing = false;
   }
 
 
@@ -79,8 +87,7 @@ export class GeneralSearchComponent implements OnInit {
             console.log(profileUser.email);
             let link = ['/profile', user.id];
        this.router.navigate(link);
-       });
-        
+     });
     }
     goToEvent(event: Event): void{
         console.log("goto event test"); this.eventService.getEvent(event.id.toString()).subscribe(eventDetail => {
@@ -92,4 +99,5 @@ export class GeneralSearchComponent implements OnInit {
        this.router.navigate(link);
        });
     }
+
 }
