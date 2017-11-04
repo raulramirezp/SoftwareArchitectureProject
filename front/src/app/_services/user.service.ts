@@ -47,12 +47,16 @@ export class UserService {
     localStorage.clear();
   }
   getUser(user_id: number) {
-    const url = `${this.usersUrl}/${user_id}`;
+    const userUrl = `${this.usersUrl}/${user_id}`;
     // return this.http.get(this.usersUrl)
     //   .toPromise()
     //   .then(response => response.json() as User)
     //   .catch(this.handleError)
-    return this.http.get(this.usersUrl, { headers: this.headers }).map((response: Response) => response.json()).catch(this.handleError);
+    this.headers = new Headers();
+      this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+      this.headers.append('Content-Type', 'application/json');
+      this.headers.append('Authorization', 'Token token='.concat(this.currentUser.token));
+    return this.http.get(userUrl, { headers: this.headers }).map((response: Response) => response.json()).catch(this.handleError);
   }
   getCurrtenUser(id: number): Promise<User> {
     const url = `${this.usersUrl}/${id}`;
