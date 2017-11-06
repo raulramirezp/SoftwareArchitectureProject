@@ -56,5 +56,6 @@ Rails.application.routes.draw do
       post 'removefromevent', to: "events#remove_from_event"
     end
   end
+  wash_out :webservice
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

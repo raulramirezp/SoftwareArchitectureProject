@@ -48,7 +48,7 @@ class SessionsController < ApiController
   def connect
       ldap = Net::LDAP.new(
 
-        host: '192.168.99.101',
+        host: '192.168.11.5',
         port: 389,
         auth: {
           method: :simple,
@@ -66,7 +66,7 @@ class SessionsController < ApiController
       if connect()
         ldap = Net::LDAP.new(
 
-          host: '192.168.99.101',
+          host: '192.168.11.5',
           port: 389,
           auth: {
             method: :simple,
