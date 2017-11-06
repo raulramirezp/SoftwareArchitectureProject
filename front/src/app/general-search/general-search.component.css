@@ -29,13 +29,17 @@
 }
 .dropdown-menu{
   display: block;
-  margin: .125rem -50px 0px;
+  margin: .125rem -41px 0px;
+  width: 14.88em;
+  max-height: 500px;
 
 }
+
 .nickname{
   color: green;
 }
 
-.list{
-  padding: 0px;
+#list{
+  padding: 1em, 0px, 0px, 0px !important;
+  /*padding-left: 1em !important;*/
 }

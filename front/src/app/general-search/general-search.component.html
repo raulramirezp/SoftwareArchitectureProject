@@ -11,7 +11,7 @@
   <!-- <label class="control-label col-sm-2 col-xs-3 right-space" for="event_place"> </label> --->
 <label *ngIf="isTyping()">
     <div class="dropdown">
-      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+      <div class="dropdown-menu pre-scrollable" aria-labelledby="dropdownMenuButton">
         <ul id="list">
           Eventos
             <div *ngFor="let event of events | async" class="col-sm-5 pre-scrollable option-box" (click)="goToEvent(event);" class="search-result" style="height: 2.5em">

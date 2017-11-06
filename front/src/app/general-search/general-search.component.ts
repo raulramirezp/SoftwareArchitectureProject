@@ -78,6 +78,7 @@ export class GeneralSearchComponent implements OnInit {
         console.log("error  events"); console.log(this.generalSearchService.testEvent);
         return Observable.of<Event[]>([]);
       });
+        console.log(this.events);
         console.log('test get everything');
         this.typing = false;
   }
@@ -100,6 +101,7 @@ export class GeneralSearchComponent implements OnInit {
             console.log('pretest');
             console.log(eventDetail.email);
             let link = ['/eventDetail', event.id.toString()];
+            window.location.reload();
        this.router.navigate(link);
        });
     }
