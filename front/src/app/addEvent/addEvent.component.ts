@@ -14,8 +14,6 @@ import { DatePipe } from '@angular/common'
 
 export class AddEventComponent implements OnInit {
   private events: Event[];
-  private invitedUsers: User[];
-  private user: User;
   event: Event;
   tzoffset: number = (new Date()).getTimezoneOffset() * 60000;
   categories: Category[] = [];
@@ -52,23 +50,26 @@ export class AddEventComponent implements OnInit {
     if (!name || !place || !minAge || !category_id) { return; }
     this.eventService.create(name, category_id, assistants, isPrivate, minAge, place, beginAt, endAt).then(event => {
             //this.events.push(event);
-              console.log(event);
-              console.log("this is a test");
-              console.log(event.name);
-              // this.eventService.createEventDate(event.id,   beginAt, endAt);
-              this.user=JSON.parse(localStorage.getItem('currentUser'));
-              this.invitedUsers=JSON.parse(localStorage.getItem('guestUsers'));
-              if (this.invitedUsers != null){
-                for(var i=0;i<this.invitedUsers.length;i++){
-                  this.eventService.sendInvitations(this.invitedUsers[i].id, event.id.toString())
-                }
-              }
-              localStorage.removeItem('guestUsers');
-              this.router.navigate(['/home'])
+              // console.log(event);
+              // console.log("this is a test");
+              // console.log(event.name);
+              // // this.eventService.createEventDate(event.id,   beginAt, endAt);
+              // this.user=JSON.parse(localStorage.getItem('currentUser'));
+              // this.invitedUsers=JSON.parse(localStorage.getItem('guestUsers'));
+              // if (this.invitedUsers != null){
+              //   for(var i=0;i<this.invitedUsers.length;i++){
+              //     this.eventService.sendInvitations(this.invitedUsers[i].id, event.id.toString())
+              //   }
+              // }
+              // localStorage.removeItem('guestUsers');
+              // this.router.navigate(['/home']);
+              localStorage.setItem('newEvent',JSON.stringify(event));
+              this.router.navigate(['/inviteUser']);
     }, error => {
       console.log(error);
       alert("No se pudo crear el evento");
     });
+
   }
 
   clearLocalStorage(){

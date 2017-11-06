@@ -31,6 +31,10 @@ export class UserSearchComponent implements OnInit {
   confUs: User[];
   us: User[];
   friends: User[];
+  private event: Event;
+  private invitedUsers: User[];
+  private user: User;
+  idNum: number;
   bool: boolean;
   isEditing: boolean;
   haveFriend: boolean;
@@ -228,6 +232,30 @@ export class UserSearchComponent implements OnInit {
     }
     return -1;
   }
+
+  invite() {
+    this.idNum = JSON.parse(localStorage.getItem('newEvent')).id;
+    // this.eventService.createEventDate(event.id,   beginAt, endAt);
+    this.user=JSON.parse(localStorage.getItem('currentUser'));
+    this.invitedUsers=JSON.parse(localStorage.getItem('guestUsers'));
+    if (this.invitedUsers != null){
+      for(var i=0;i<this.invitedUsers.length;i++){
+        this.eventService.sendInvitations(this.invitedUsers[i].id, this.idNum.toString())
+        // console.log(this.event[0]);
+      }
+    }
+    this.clearLocalStorage();
+    this.router.navigate(['/home']);
+  }
+
+  clearLocalStorage(){
+    // localStorage.removeItem('minAge');
+    localStorage.removeItem('guestUsers');
+    localStorage.removeItem('assistants');
+    localStorage.removeItem('sizeFriends');
+    localStorage.removeItem('newEvent');
+  }
+
   loadInvitedsToEvent(event_id: string) {
     this.eventService.getInvitedToEvent(event_id).subscribe(previousInvitedUsers => { this.previousInvitedUsers = previousInvitedUsers;
       localStorage.setItem('guestUsers', JSON.stringify(this.previousInvitedUsers));

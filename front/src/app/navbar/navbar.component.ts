@@ -54,6 +54,12 @@ export class NavbarComponent implements OnInit {
         localStorage.removeItem('eventToEdit')
         localStorage.removeItem('previusGuest')
       }
+      if (this.router.url == '/inviteUser'){
+        localStorage.removeItem('guestUsers')
+        localStorage.removeItem('assistants')
+        localStorage.removeItem('sizeFriends')
+        localStorage.removeItem('newEvent')
+      }
     }
 
 }
