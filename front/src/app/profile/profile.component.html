@@ -1,91 +1,92 @@
 <div class="top">
-
 </div>
-<a routerLink="/home"><button type="submit" class="btn btn-success custom-width-buttons">Atras</button></a>
-
 <div class="container" style="margin-top: 100px;  margin-bottom: 100px">
-<div class="row" style="text-align: center;">
-<div class="col">
-<img src="https://www.w3schools.com/bootstrap/img_avatar4.png" class="media-object" style="width:160px">
-</div>
-</div>
-<div class="row evdiv" style="text-align: center; margin-bottom: 100px">
-<div class="col">
-<h1>{{user.name}}  {{user.lastname}} </h1>
-</div>
-</div>
-<div class="row">
-<div class="col-7">
-<!--	<app-my-calendar></app-my-calendar>-->
-</div>
-<div class="col-5">
-	<div class="container">
+	<div class="row" style="text-align: center;">
+		<div class="col">
+			<img src="assets/img_avatar2.png" class="media-object" style="width:160px">
+		</div>
+	</div>
+	<div class="row evdiv" style="text-align: center; margin-bottom: 100px">
+		<div class="col">
+			<h1>{{user.name}}  {{user.lastname}} </h1>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-7">
+			<!--	<app-my-calendar></app-my-calendar>-->
+		</div>
+		<div class="col-5">
+			<div class="container">
 
-<!--     <ul>
+				<!--     <ul>
         <li *ngFor="let user of usersRequests">
             {{user.email}} ( {{user.name}} )
             - <a (click)="aceptFriend(user.id)">Aceptar Amistad</a>
         </li>
     </ul> -->
-    <div class="row">
-	<div class="col">
-	<h2>Amigos de {{user.name}} {{user.lastname}}</h2>
-	</div>
-	</div>
-		<div *ngFor="let user of friends" class="row border rounded evdiv">
-	<div class="col-8">
-	<div class="media" style="margin-top: 10px">
+				<div class="row">
+					<div class="col">
+						<h2>Amigos de {{user.name}} {{user.lastname}}</h2>
+					</div>
+				</div>
+				<div *ngIf="friends != undefined">
+					<div *ngFor="let friend of friends" class="row border rounded evdiv">
+						<div class="col-8">
+							<div class="media" style="margin-top: 10px">
 
-  <div class="media-left">
-    <img src="https://www.w3schools.com/bootstrap/img_avatar6.png" class="media-object" style="width:60px">
-  </div>
-  <div class="media-body" style="margin-left: 10px">
-    <h4 class="media-heading">John Doe</h4>
-    <p>Lorem ipsum...</p>
-  </div>
-</div>
+								<div class="media-left">
+									<img src="assets/img_avatar2.png" class="media-object" style="width:60px">
+								</div>
+								<div class="media-body" style="margin-left: 10px">
+									<h4 class="media-heading">{{friend.name}} {{friend.lastname}}</h4>
+									<p>{{friend.email}}</p>
+								</div>
+							</div>
+						</div>
+						<div class="col-4" style="text-align: right">
+							<div class="btn-group">
+								<a class="btn btn-default" href="#">
+	   				<i class="fa fa-plus fa-2x" aria-hidden="true" title="Agregar a mis Amigos"><img class="img_icon" src="assets/icons/plus.svg"/></i>
+	  			</a>
+								<a class="btn btn-default" href="#">
+	   				<i class="fa fa-user-circle fa-2x" aria-hidden="true" title="Ver perfil"><img class="img_icon" src="assets/icons/user.svg"/></i>
+	  			</a>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- <div class="row border rounded evdiv">
+	<div class="col-8">
+		<div class="media" style="margin-top: 10px">
+
+			<div class="media-left">
+				<img src="assets/img_avatar2.png" class="media-object" style="width:60px">
+			</div>
+			<div class="media-body" style="margin-left: 10px">
+				<h4 class="media-heading">John Doe</h4>
+				<p>Lorem ipsum...</p>
+			</div>
+		</div>
 	</div>
 	<div class="col-4" style="text-align: right">
 		<div class="btn-group">
-		  			<a class="btn btn-default" href="#">
+			<a class="btn btn-default" href="#">
    				<i class="fa fa-plus fa-2x" aria-hidden="true" title="Agregar a mis Amigos"></i>
   			</a>
-  			<a class="btn btn-default" href="#">
+			<a class="btn btn-default" routerLink="/profile">
    				<i class="fa fa-user-circle fa-2x" aria-hidden="true" title="Ver perfil"></i>
   			</a>
 		</div>
 	</div>
-	</div>
-		<div class="row border rounded evdiv">
-	<div class="col-8">
-	<div class="media" style="margin-top: 10px">
-
-  <div class="media-left">
-    <img src="https://www.w3schools.com/bootstrap/img_avatar1.png" class="media-object" style="width:60px">
-  </div>
-  <div class="media-body" style="margin-left: 10px">
-    <h4 class="media-heading">John Doe</h4>
-    <p>Lorem ipsum...</p>
-  </div>
-</div>
-	</div>
-	<div class="col-4" style="text-align: right">
-		<div class="btn-group">
-		  			<a class="btn btn-default" href="#">
-   				<i class="fa fa-plus fa-2x" aria-hidden="true" title="Agregar a mis Amigos"></i>
-  			</a>
-  			<a class="btn btn-default" routerLink="/profile">
-   				<i class="fa fa-user-circle fa-2x" aria-hidden="true" title="Ver perfil"></i>
-  			</a>
-		</div>
-	</div>
-	</div>
-<!--     <ul>
+</div> -->
+				<!--     <ul>
         <li *ngFor="let user of friends">
             {{user.email}} ( {{user.name}} )
             - <a (click)="viewProfile(user.id)">Ver perfil</a>
         </li>
     </ul> -->
-</div>
-</div>
-</div>
+			</div>
+		</div>
+	</div>
+		<a routerLink="/home"><button type="submit" class="btn btn-success custom-width-buttons">Atras</button></a>

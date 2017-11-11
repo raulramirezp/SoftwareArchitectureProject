@@ -1,4 +1,4 @@
-<div class="container" style="margin-top: 100px;  margin-bottom: 100px">
+<!--div class="container" style="margin-top: 100px;  margin-bottom: 100px">
     <div class="row">
         <div class="media">
             <div class="media-left">
@@ -7,18 +7,104 @@
             <div class="media-body" style="margin-left: 25px">
                 <h4 class="media-heading" style="font-size: 32px;">{{event.name}}</h4><h3 style="font-size: 20px">{{ categorieOfEvent()}}</h3>
                 <h2 style="font-size: 20px">
-                    <i class="fa fa-calendar" aria-hidden="true"></i> Inicia el {{event.beginAt|date: 'fullDate'}} a las {{event.beginAt |date:'shortTime'}}<br> 
-                    <i class="fa fa-calendar" aria-hidden="true"></i> Finaliza el {{event.endAt|date: 'fullDate'}} a las {{event.endAt |date:'shortTime'}}<br>
+                    <i class="fa fa-calendar" aria-hidden="true"><img class="img_icon" src="assets/icons/calendar.svg"/></i> Inicia el {{event.beginAt|date: 'fullDate'}} a las {{event.beginAt |date:'shortTime'}}<br>
+                    <i class="fa fa-calendar" aria-hidden="true"><img class="img_icon" src="assets/icons/calendar.svg"/></i> Finaliza el {{event.endAt|date: 'fullDate'}} a las {{event.endAt |date:'shortTime'}}<br>
                 </h2>
                     <div style="margin-top: 20px; font-size: 18px">
-                        <i class="fa fa-users" aria-hidden="true"></i> Cupos: {{event.assistants}}<br>
+                        <i class="fa fa-users" aria-hidden="true"><img class="img_icon" src="assets/icons/users.svg"/></i> Cupos: {{event.assistants}}<br>
                         <div *ngIf="admin!=undefined"><i class="fa fa-user" aria-hidden="true"></i> Administrador: {{ adminOfEvent()}}<br></div>
                         <div *ngIf="event.isPrivate==false"><i class="fa fa-unlock" aria-hidden="true"></i> Privacidad: Público<br></div>
-                        <div *ngIf="event.isPrivate==true"><i class="fa fa-lock" aria-hidden="true"></i> Privacidad: Privado<br></div>    
-                        <i class="fa fa-map-marker" aria-hidden="true"></i> Lugar: {{event.place}}<br>
+                        <div *ngIf="event.isPrivate==true"><i class="fa fa-lock" aria-hidden="true"></i> Privacidad: Privado<br></div>
+                        <i class="fa fa-map-marker" aria-hidden="true"><img class="img_icon" src="assets/icons/map-marker.svg"/></i> Lugar: {{event.place}}<br>
+                        <i class="fa fa-map-marker" aria-hidden="true"><img class="img_icon" src="assets/icons/map-marker.svg"/></i> Anuncio: {{event.ads}}<br>
                     </div>
                     <button type="submit" class="btn btn-success custom-width-buttons" (click)="goBack();">Atras</button>
                 </div>
             </div>
         </div>
-    </div>
+    </div-->
+    <div class="container" style="margin-top: 100px;  margin-bottom: 100px">
+        <div class="row">
+            <div class="media">
+                <div class="media-left">
+                    <img src="assets/iconos/{{event.category_id}}.png" class="media-object" style="width:200px;">
+                </div>
+                <div class="media-body" style="margin-left: 25px">
+                    <h4 class="media-heading" style="font-size: 32px;">{{event.name}}</h4><h3 style="font-size: 20px">{{ categorieOfEvent()}}</h3>
+                    <h2 style="font-size: 20px">
+                        <i class="fa fa-calendar" aria-hidden="true"><img class="img_icon" src="assets/icons/calendar.svg"/></i> Inicia el {{event.beginAt|date: 'fullDate'}} a las {{event.beginAt |date:'shortTime'}}<br>
+                        <i class="fa fa-calendar" aria-hidden="true"><img class="img_icon" src="assets/icons/calendar.svg"/></i> Finaliza el {{event.endAt|date: 'fullDate'}} a las {{event.endAt |date:'shortTime'}}<br>
+                    </h2>
+                        <div style="margin-top: 20px; font-size: 18px">
+                            <i class="fa fa-users" aria-hidden="true"><img class="img_icon" src="assets/icons/users.svg"/></i> Cupos: {{event.assistants}}<br>
+                            <!--div *ngIf="admin!=undefined"><i class="fa fa-user" aria-hidden="true"></i> Administrador: {{ adminOfEvent()}}<br></div-->
+                            <div *ngIf="event.isPrivate==false"><i class="fa fa-unlock" aria-hidden="true"><img class="img_icon" src="assets/icons/unlock.svg"/></i> Privacidad: Público<br></div>
+                            <div *ngIf="event.isPrivate==true"><i class="fa fa-lock" aria-hidden="true"><img class="img_icon" src="assets/icons/lock.svg"/></i> Privacidad: Privado<br></div>
+                            <i class="fa fa-map-marker" aria-hidden="true"><img class="img_icon" src="assets/icons/map-marker.svg"/></i> Lugar: {{event.place}}<br>
+                        </div>
+                        <button type="submit" class="btn btn-success custom-width-buttons" (click)="goBack();">Atras</button>
+                    </div>
+
+                </div>
+            </div>
+            <div class="row">
+    					<div class="col">
+    						<h2>Administrador</h2>
+    					</div>
+    				</div>
+            <div class="row border rounded evdiv">
+    						<div *ngIf="admin!=undefined" class="media" style="margin-top: 10px">
+
+    							<div class="media-left">
+    								<img src="assets/img_avatar2.png" class="media-object" style="width:60px">
+    							</div>
+    							<div class="media-body" style="margin-left: 10px">
+    								<h4 class="media-heading">
+                                        {{admin.name}}
+                                        {{admin.lastname}}</h4>
+    								<p>Correo: {{admin.email}}</p>
+    							</div>
+    						</div>
+    					</div>
+            <div class="row">
+    					<div class="col">
+    						<h2>Lista de Invitados</h2>
+    					</div>
+    				</div>
+            <div *ngFor="let user of invited" class="row border rounded evdiv">
+    						<div *ngIf="user!=undefined" class="media" style="margin-top: 10px">
+
+    							<div class="media-left">
+    								<img src="assets/img_avatar2.png" class="media-object" style="width:60px">
+    							</div>
+    							<div class="media-body" style="margin-left: 10px">
+    								<h4 class="media-heading">
+                                        {{user.name}}
+                                        {{user.lastname}}</h4>
+    								<p>Correo: {{user.email}}</p>
+    							</div>
+    						</div>
+    					</div>
+            <div class="row">
+    					<div class="col">
+    						<h2>Anuncios</h2>
+    					</div>
+    				</div>
+            <!--div *ngFor="let add of adds" class="row border rounded evdiv"-->
+                <div class="row border rounded evdiv asd" *ngFor="let item of adds" style="border: 20px">
+                    <div *ngIf="event.ads!=undefined" class="media" style="margin-top: 10px">
+                        <div class="media-left">
+    								<!-- <img src="assets/img_avatar2.png" class="media-object" style="width:60px"> -->
+    							</div>
+    							<div class="media-body" style="margin-left: 10px" >
+    								<a href="http://192.168.1.2:4200/ListAd" target="_blank"><h4 class="media-heading">
+                      <img class="img_icon" src="assets/icons/name.svg"/> <span><b>Nombre:</b> {{item.name}}</span><br />
+                      <img class="img_icon" src="assets/icons/hits.svg"/> <span><b>Hits:</b> {{item.hits}}</span><br />
+                      <img class="img_icon" src="assets/icons/calendar.svg"/> <span><b>Caducidad:</b> {{item.expiration}}</span>
+                    </h4></a>
+    								<p></p>
+    							</div>
+                </div>
+            </div>
+        <!-- </div> -->
+        </div>

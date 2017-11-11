@@ -23,6 +23,7 @@ export class EventService {
   private followEventsUrl = this.localhostaddress.concat('events/followevents')
   private advancedSearchUrl = this.localhostaddress.concat('events?advancedSearch=')
   private removeFromEventUrl = this.localhostaddress.concat('events/removefromevent')
+  private ESBUrl = this.localhostaddress.concat('esb')
   private currentUser: User;
   private headers;
   constructor(private http: Http) {
@@ -33,12 +34,12 @@ export class EventService {
   }
   getSpecificEvents(name: string, category_id:string, isPrivate:string, beginAt:string, endAt:string){
     console.log(name, category_id, isPrivate, beginAt, endAt)
-    console.log(this.advancedSearchUrl+name+','+category_id+','+isPrivate+','+beginAt+','+endAt)  
+    console.log(this.advancedSearchUrl+name+','+category_id+','+isPrivate+','+beginAt+','+endAt)
     this.headers= new Headers();
     this.headers.append('Content-Type', 'application/json');
     this.headers.append('Authorization', 'Token token='.concat(this.currentUser.token));
-    return this.http.get(this.advancedSearchUrl+name+','+category_id+','+isPrivate+','+beginAt+','+endAt, {headers: this.headers}).map((response: Response) => response.json());  
-  }    
+    return this.http.get(this.advancedSearchUrl+name+','+category_id+','+isPrivate+','+beginAt+','+endAt, {headers: this.headers}).map((response: Response) => response.json());
+  }
     getEvent(id: string){
     const url = `${this.eventsUrl}/${id}`;
     this.headers= new Headers();
@@ -68,7 +69,7 @@ export class EventService {
   //     .then(response => response.json().data as Event)
   //     .catch(this.handleError);
   // }
-  create(name: string, category_id: string, assistants: string, isPrivate: string, minAge: string, place: string, beginAt: string, endAt: string): Promise<Event> {
+  create(name: string, category_id: string, assistants: string, isPrivate: string, minAge: string, place: string, beginAt: string, endAt: string, ads: string): Promise<Event> {
     let privat = false;
     if (isPrivate == 'true') {
       privat = true;
@@ -82,7 +83,7 @@ export class EventService {
     this.headers.append('Authorization', 'Token token='.concat(this.currentUser.token));
     console.log(name,assistants,privat,minAge,place,beginAt,endAt)
     return this.http
-      .post(this.eventsUrl, JSON.stringify({ name: name, assistants: assistants, category_id: category_id, user_id: String(this.currentUser.id), isPrivate: privat, minAge: minAge, place: place, beginAt: beginAt, endAt: endAt }), { headers: this.headers })
+      .post(this.eventsUrl, JSON.stringify({ name: name, assistants: assistants, category_id: category_id, user_id: String(this.currentUser.id), isPrivate: privat, minAge: minAge, place: place, beginAt: beginAt, endAt: endAt, ads: ads }), { headers: this.headers })
       .toPromise()
       .then(response => response.json() as Event)
       .catch(this.handleError);
@@ -114,6 +115,19 @@ export class EventService {
       .toPromise()
       .then(response => response.json() as EventDate)
       .catch(this.handleError);
+  }
+  postESB(category: string, userId: string){
+    this.headers = new Headers();
+    this.headers.append('Content-Type', 'application/json');
+    this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    this.headers.append('currentUser', this.currentUser.id);
+    this.headers.append('Authorization', 'Token token='.concat(this.currentUser.token));
+    return this.http.post(this.ESBUrl, JSON.stringify({ category: category, userId: userId}), { headers: this.headers }).map((response: Response) => response.json());
+  //  return this.http
+    //  .post(this.ESBUrl, JSON.stringify({ category: category, userId: userId}), { headers: this.headers })
+    //  .toPromise()
+    //  .then(response => response.json())
+    //  .catch(this.handleError);
   }
   sendInvitations(invited_id: string, event_id: string) {
     this.headers = new Headers();

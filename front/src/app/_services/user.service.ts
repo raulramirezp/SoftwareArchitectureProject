@@ -21,6 +21,7 @@ export class UserService {
   private aceptRequestUrl = this.localhostaddress.concat('relationships/acept/');
   private declineRequestUrl = this.localhostaddress.concat('relationships/decline/');
   private friendsUrl = this.localhostaddress.concat('friendships/friends/');
+  private friendFriendsUrl = this.localhostaddress.concat('friendships/friends_of/');
   private removeFriendUrl = this.localhostaddress.concat('friendships/remove/');
   constructor(private http: Http, private router: Router) {
     //     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
@@ -69,12 +70,18 @@ export class UserService {
   getFriends() {
     const url = this.friendsUrl;
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
-
-
     this.headers = new Headers();
     this.headers.append('currentUser', this.currentUser.id);
     this.headers.append('Authorization', 'Token token='.concat(this.currentUser.token));
     return this.http.get(this.friendsUrl, { headers: this.headers }).map((response: Response) => response.json());
+  }
+  getFriendsOf(id: string) {
+    const url = this.friendsUrl;
+    this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    this.headers = new Headers();
+    this.headers.append('currentUser', this.currentUser.id);
+    this.headers.append('Authorization', 'Token token='.concat(this.currentUser.token));
+    return this.http.get(this.friendFriendsUrl + id, { headers: this.headers }).map((response: Response) => response.json());
   }
   getProfileFriends() {
     const url = this.friendsUrl;
@@ -129,6 +136,12 @@ export class UserService {
     this.headers.append('Authorization', 'Token token='.concat(this.currentUser.token));
     return this.http.get(this.usersUrl + user_id, { headers: this.headers }).map((response: Response) => response.json());
   }
+  getInvited(event_id: number){
+    this.headers = new Headers();
+    this.headers.append('Content-Type', 'application/json');
+    this.headers.append('Authorization', 'Token token='.concat(this.currentUser.token));
+    return this.http.get(this.localhostaddress + 'events/'.concat(event_id.toString()).concat('/inviteds'), { headers: this.headers }).map((response: Response) => response.json());
+  }    
   createUser(firstName: string, lastName: string, email: string, nickname: string, birthdate: string): Promise<User> {
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
     this.headers = new Headers();

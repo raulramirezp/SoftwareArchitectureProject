@@ -91,6 +91,7 @@ export class GeneralSearchComponent implements OnInit {
             console.log('pretest');
             console.log(profileUser.email);
             let link = ['/profile', user.id];
+            window.location.reload();
        this.router.navigate(link);
      });
     }

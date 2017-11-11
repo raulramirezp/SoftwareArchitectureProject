@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
   templateUrl: './my-calendar.component.html'
 })
 export class MyCalendarComponent implements OnInit {
-  isReady: boolean = false;    
+  isReady: boolean = false;
   events: Event[] = [];
   categories: Category[] = [];
   calendarOptions:Object = {
@@ -24,12 +24,12 @@ export class MyCalendarComponent implements OnInit {
         events: [
         ]
       };
-  
-  constructor(private eventService: EventService, private homeComponent: HomeComponent, 
+
+  constructor(private eventService: EventService, private homeComponent: HomeComponent,
   private router: Router) { }
 
   ngOnInit() {
-     
+
     this.loadMyEvents();
     // this.loadCategories();
   }
@@ -46,8 +46,8 @@ export class MyCalendarComponent implements OnInit {
 //                  console.log('show events test')
 //                  console.log(this.calendarOptions['events']);
 //      return this.calendarOptions;
-//      
-//  }   
+//
+//  }
   private loadMyEvents() {
       this.eventService.getMyEvents().subscribe(events => { this.events = events; this.loadCategories();
               for(var i =0;i<this.events.length;i++)
@@ -59,11 +59,11 @@ export class MyCalendarComponent implements OnInit {
                           url: '/eventDetail/'.concat(this.events[i].id.toString())
                           //url: '/eventDetail/'.concat(this.events[i].id.toString())
                       });
-                
+
                   }
                   console.log('show events test')
                   console.log(this.calendarOptions['events']);
-                  this.isReady = true;                                           
+                  this.isReady = true;
                                                           });
   }
   goToEvent(event: Event): void{
@@ -72,10 +72,10 @@ export class MyCalendarComponent implements OnInit {
            localStorage.setItem('eventDetail',JSON.stringify(eventDetail));
             console.log('pretest');
             console.log(eventDetail.email);
-            //let link = ['/eventDetail', event.id.toString()];
-    //   this.router.navigate(link);
+            let link = ['/eventDetail', event.id.toString()];
+            this.router.navigate(link);
        });
-    }    
+    }
 
   loadCategories() {
     this.eventService.getCategories().subscribe(categories => { this.categories = categories; });
@@ -84,5 +84,6 @@ export class MyCalendarComponent implements OnInit {
   loadHaveFriend(){
     console.log(localStorage.setItem('sizeFriends',JSON.stringify(this.homeComponent.friends.length)))
   }
+
 
 }

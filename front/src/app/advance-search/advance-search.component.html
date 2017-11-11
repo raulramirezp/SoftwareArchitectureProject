@@ -21,7 +21,7 @@
       <div class="col-sm-2 col-xs-1"></div>
       <label class="control-label col-sm-2 col-xs-3 right-space" for="eventVisibility">Visibilidad</label>
       <select class="form-control col-sm-5 col-sx-4" #eventVisibility>
-        <option [value]=null selected>Cualquiera</option>  
+        <option [value]=null selected>Cualquiera</option>
         <option [value]="false" selected>Público</option>
         <option [value]="true">Privado</option>
       </select>
@@ -48,15 +48,15 @@
 		</div>
 		<div class="media-body" style="margin-left: 10px">
             <h5 class="media-heading"> {{event.name}} </h5>
-            <i class="fa fa-calendar" aria-hidden="true"></i> Fecha: {{event.beginAt.substring(0,11)}} <br>
-            <i class="fa fa-clock-o" aria-hidden="true"></i> Hora: {{event.beginAt.substring(11,event.beginAt.length)}}
+            <i class="fa fa-calendar" aria-hidden="true"><img class="img_icon" src="assets/icons/calendar.svg"/></i> Fecha: {{event.beginAt.substring(0,11)}} <br>
+            <i class="fa fa-clock-o" aria-hidden="true"><img class="img_icon" src="assets/icons/clock.svg"/></i> Hora: {{event.beginAt.substring(11,event.beginAt.length)}}
         </div>
         </div>
     </div>
         <div class="col-4" style="text-align: right">
             <div class="btn-group">
                 <a class="btn btn-default" href="#">
-                    <i class="fa fa-info-circle" (click)="goToEvent(event);" aria-hidden="true" title="Más Información"></i>
+                    <i class="fa fa-info-circle" (click)="goToEvent(event);" aria-hidden="true" title="Más Información"><img class="img_icon" src="assets/icons/info-circle.svg"/></i>
                 </a>
             </div>
         </div>
