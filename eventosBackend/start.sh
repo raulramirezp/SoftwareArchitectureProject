@@ -2,7 +2,7 @@
 echo "**************************"
 echo "* Ubicandose en el nodo1 *"
 echo "**************************"
-eval $(docker-machine env nodo1-rancher)
+eval $(docker-machine env rancher-node1)
 
 echo "**************************"
 echo "*        Build           *"

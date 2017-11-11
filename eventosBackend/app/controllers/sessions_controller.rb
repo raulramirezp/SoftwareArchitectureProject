@@ -6,10 +6,10 @@ class SessionsController < ApiController
     # Con LDAP
     # if create_ldap()
     #   if user = User.valid_login?(params[:email], params[:password])
-    #   	allow_token_to_be_used_only_once_for(user)
-    #   	send_auth_token_for_valid_login_of(user)
+    #     allow_token_to_be_used_only_once_for(user)
+    #    send_auth_token_for_valid_login_of(user)
     #   else
-    #     	render_unauthorized("credenciales")
+    #     render_unauthorized("credenciales")
     #   end
     # else
     #   render_unauthorized("LDAP")
@@ -19,7 +19,7 @@ class SessionsController < ApiController
       allow_token_to_be_used_only_once_for(user)
       send_auth_token_for_valid_login_of(user)
     else
-        render_unauthorized("credenciales")
+      render_unauthorized("credenciales")
     end
 
   end
@@ -47,8 +47,7 @@ class SessionsController < ApiController
 
   def connect
       ldap = Net::LDAP.new(
-
-        host: '192.168.11.5',
+        host: '192.168.1.7',
         port: 389,
         auth: {
           method: :simple,
@@ -65,12 +64,11 @@ class SessionsController < ApiController
       email = email[/\A\w+/].downcase
       if connect()
         ldap = Net::LDAP.new(
-
-          host: '192.168.11.5',
+          host: '192.168.1.7',
           port: 389,
           auth: {
             method: :simple,
-            dn: "cn=" + email + "@unal.edu.co,ou=Events,dc=arqsoft,dc=unal,dc=edu,dc=co",
+            dn: "cn=" + email + "@unal.edu.co,ou=Games,dc=arqsoft,dc=unal,dc=edu,dc=co",
             password: password
           }
         )

@@ -132,6 +132,17 @@ class User < ApplicationRecord
     @names
   end
 
+  def friends_of(id)
+    f = Friendship.includes(:user).where(user_id: id)
+    @names = []
+    f.each do |n|
+      k = User.where(id: n.friend_id)
+      @names.push k[0]
+    end
+    p @names
+    @names
+  end
+
   def friends_names
     r = Friendship.includes(:user).where(user_id: self.id)
     @names = []

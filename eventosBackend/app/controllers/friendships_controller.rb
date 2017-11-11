@@ -62,6 +62,12 @@ class FriendshipsController < ApiController
     render json: @ans
   end
 
+  def friends_of
+    @cu = params[:id]
+    @ans = @cu.friends_names
+    render json: @ans
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_friendship

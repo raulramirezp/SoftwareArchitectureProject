@@ -26,7 +26,7 @@ class EventsController < ApiController
     @events = Events.all
     if params[:search]
       @events = Event.search(params[:search])
-    end  
+    end
     render json: @events
   end
 
@@ -42,7 +42,7 @@ class EventsController < ApiController
     @event = Event.new(name: params[:name], assistants: params[:assistants],
       category_id: params[:category_id], user_id: params[:user_id],
       isPrivate: params[:isPrivate], minAge: params[:minAge], place: params[:place],
-      beginAt: params[:beginAt], endAt: params[:endAt])
+      beginAt: params[:beginAt], endAt: params[:endAt], ads: params[:ads])
 
     if @event.save
       @cu.follow @event
@@ -122,6 +122,6 @@ class EventsController < ApiController
 
     # Only allow a trusted parameter "white list" through.
     def event_params
-      params.require(:event).permit(:name, :assistants, :category_id, :user_id, :isPrivate, :minAge, :place, :beginAt, :endAt)
+      params.require(:event).permit(:name, :assistants, :category_id, :user_id, :isPrivate, :minAge, :place, :beginAt, :endAt, :ads)
     end
 end

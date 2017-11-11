@@ -36,6 +36,7 @@ Rails.application.routes.draw do
       get 'remove/:id', to: "friendships#remove"
       get 'friends', to: "friendships#friends"
       get 'friends_names', to: "friendships#friends_names"
+      get 'friends_of', to: "friendship#friends_of"
     end
   end
   resources :invitations, only: [:create, :index] do
@@ -56,6 +57,7 @@ Rails.application.routes.draw do
       post 'removefromevent', to: "events#remove_from_event"
     end
   end
+  post 'esb', to: "webservice#check_operation"
   wash_out :webservice
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
