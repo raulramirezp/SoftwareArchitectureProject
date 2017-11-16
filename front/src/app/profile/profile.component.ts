@@ -15,6 +15,7 @@ export class ProfileComponent implements OnInit {
   user: User;
   user2: User;
   friends: User[] = [];
+  numberofFriends: number=0;    
   friendFriends: User[] = [];
   constructor(
     private userService: UserService,
@@ -26,18 +27,19 @@ export class ProfileComponent implements OnInit {
     // this.userService.getUser('id')
     // .subscribe(user => this.user = user);
     this.user = JSON.parse(localStorage.getItem('profileUser'));
-    this.loadFriends();
+    this.loadFriendFriends();
   }
 
   goBack(): void {
-    localStorage.removeItem('profileUser');
+    //localStorage.removeItem('profileUser');
     this.location.back();
   }
-  private loadFriends() {
+  private loadFriend() {
     console.log('this is a test 3');
-    this.userService.getFriends().subscribe(friends => { this.friends = friends; });
+    this.userService.getFriends().subscribe(friends => { this.friends = friends; console.log(friends)});
   }
   private loadFriendFriends() {
-    this.userService.getFriends().subscribe(friendFriends => { this.friendFriends = friendFriends; console.log(this.friendFriends)});
+    this.userService.getFriendsOf(this.user.id).subscribe(friendFriends => { this.friendFriends = friendFriends; console.log(this.friendFriends)
+    this.numberofFriends=this.friendFriends.length});
   }
 }

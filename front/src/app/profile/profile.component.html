@@ -13,7 +13,7 @@
 	</div>
 	<div class="row">
 		<div class="col-7">
-			<!--	<app-my-calendar></app-my-calendar>-->
+			<app-profile-calendar></app-profile-calendar>
 		</div>
 		<div class="col-5">
 			<div class="container">
@@ -24,13 +24,23 @@
             - <a (click)="aceptFriend(user.id)">Aceptar Amistad</a>
         </li>
     </ul> -->
+                
 				<div class="row">
+                    <div *ngIf="numberofFriends !=  0">
 					<div class="col">
-						<h2>Amigos de {{user.name}} {{user.lastname}}</h2>
+						<h2>Amigos ({{numberofFriends}}) </h2>
 					</div>
+                    </div>
+                    <div *ngIf="numberofFriends ==  0">
+					<div class="col">
+						<h2>El usuario no tiene amigos</h2>
+					</div>
+                    </div>    
+
 				</div>
+                
 				<div *ngIf="friends != undefined">
-					<div *ngFor="let friend of friends" class="row border rounded evdiv">
+					<div *ngFor="let friend of friendFriends" class="row border rounded evdiv">
 						<div class="col-8">
 							<div class="media" style="margin-top: 10px">
 
@@ -55,6 +65,7 @@
 						</div>
 					</div>
 				</div>
+                
 
 				<!-- <div class="row border rounded evdiv">
 	<div class="col-8">

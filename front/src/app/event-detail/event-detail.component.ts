@@ -79,6 +79,7 @@ import { EventService } from '../_services/event.service';
 export class EventDetailComponent implements OnInit {
   event: Event;
   user: User;
+  invitedNumber: number = 0;
   categories: Category[] = [];
   admin: User;
   invited: User[] = [];
@@ -108,7 +109,11 @@ export class EventDetailComponent implements OnInit {
     this.location.back();
   }
   loadInvited(){
-      this.userService.getInvited(this.event.id).subscribe(invited => { this.invited = invited; });
+      this.userService.getInvited(this.event.id).subscribe(invited => { this.invited = invited; 
+        this.invitedNumber = this.invited.length;
+        console.log("number of invited")
+        console.log(this.invitedNumber)});
+      
   }
   loadCategories() {
     this.eventService.getCategories().subscribe(categories => { this.categories = categories; });

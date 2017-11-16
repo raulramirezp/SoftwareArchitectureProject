@@ -181,6 +181,14 @@ export class EventService {
     console.log("test");
     return this.http.get(this.followEventsUrl, { headers: this.headers }).map((response: Response) => response.json());
   }
+  getProfileEvents(user_id: string){
+    this.headers = new Headers();
+    this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    this.headers.append('currentUser', user_id);
+    this.headers.append('Authorization', 'Token token='.concat(this.currentUser.token));
+    console.log("test");
+    return this.http.get('http://localhost:3000/events/followevents', { headers: this.headers }).map((response: Response) => response.json());
+  }    
   getCategories() {
     this.headers = new Headers();
     this.headers.append('Content-Type', 'application/json');

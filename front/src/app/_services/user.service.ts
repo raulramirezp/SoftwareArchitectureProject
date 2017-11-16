@@ -140,7 +140,7 @@ export class UserService {
     this.headers = new Headers();
     this.headers.append('Content-Type', 'application/json');
     this.headers.append('Authorization', 'Token token='.concat(this.currentUser.token));
-    return this.http.get(this.localhostaddress + 'events/'.concat(event_id.toString()).concat('/inviteds'), { headers: this.headers }).map((response: Response) => response.json());
+    return this.http.get(this.localhostaddress + 'events/'.concat(event_id.toString()).concat('/assistants'), { headers: this.headers }).map((response: Response) => response.json());
   }    
   createUser(firstName: string, lastName: string, email: string, nickname: string, birthdate: string): Promise<User> {
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
